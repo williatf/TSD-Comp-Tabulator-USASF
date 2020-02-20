@@ -21,7 +21,6 @@ namespace TSD_Comp_Tabulator.ViewModels
 		public ShellViewModel()
 		{
 			_routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
-			_selectedRoutine = new RoutineModel();
 		}
 
 		public BindableCollection<RoutineModel> Routines
@@ -37,6 +36,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 			{
 				_selectedRoutine = value;
 				NotifyOfPropertyChange(() => SelectedRoutine);
+                
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 		}
 
 
-        public void LoadRoutines(object sender, RoutedEventArgs e)
+        public void LoadNewContest(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -106,7 +106,6 @@ namespace TSD_Comp_Tabulator.ViewModels
 
                 // update the UI with the new routines
                 Routines = new BindableCollection < RoutineModel >( SqliteDataAccess.LoadRoutines());
-                _selectedRoutine = new RoutineModel();
                 NotifyOfPropertyChange(() => Routines);
 
             }
@@ -116,6 +115,15 @@ namespace TSD_Comp_Tabulator.ViewModels
         public void Submit(object sender, RoutedEventArgs e)
         {
             SqliteDataAccess.SubmitRoutineScores(SelectedRoutine);
+            SelectedRoutine = null;
+            NotifyOfPropertyChange(() => SelectedRoutine);
         }
+
+        public void Cancel(object sender, RoutedEventArgs e)
+        {
+            _routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
+            NotifyOfPropertyChange(() => Routines);
+        }
+
     }
 }

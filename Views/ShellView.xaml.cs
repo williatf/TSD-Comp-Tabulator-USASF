@@ -34,7 +34,6 @@ namespace TSD_Comp_Tabulator.Views
         private void TextBox_GotKeyboardFocus(object sender, RoutedEventArgs e)
         {
             (sender as TextBox).SelectAll();
-            //(sender as TextBox).Select(0, (sender as TextBox).Text.Length);
             (sender as TextBox).Focus();
             e.Handled = true;
         }

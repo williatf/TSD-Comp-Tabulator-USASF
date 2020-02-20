@@ -37,7 +37,7 @@
             <DockPanel Grid.Column="0" Grid.Row="0">
                 <Menu DockPanel.Dock="Top">
                     <MenuItem Header="_File">
-                        <MenuItem Header ="Load Routines" x:Name="LoadRoutines" />
+                        <MenuItem Header ="Load Routines" x:Name="LoadNewContest" />
                         <Separator/>
                         <MenuItem Header="_Exit"/>
                     </MenuItem>
@@ -155,7 +155,7 @@
                     </Grid.RowDefinitions>
                     <!-- Buttons -->
                     <Button Grid.Row="0" Grid.Column="0" Padding="5 5" x:Name="Submit">Submit</Button>
-                    <Button Grid.Row="0" Grid.Column="2" Padding="5 5">Cancel</Button>
+                    <Button Grid.Row="0" Grid.Column="2" Padding="5 5" x:Name="Cancel">Cancel</Button>
                 </Grid>
             </Grid>
 
