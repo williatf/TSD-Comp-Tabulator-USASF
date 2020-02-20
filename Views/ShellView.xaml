@@ -1,0 +1,182 @@
+﻿<Window x:Class="TSD_Comp_Tabulator.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TSD_Comp_Tabulator.Views"
+        mc:Ignorable="d"
+        Title="TSDance Tabulator" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Crimson" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0 0 3 5" />
+        </Style>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="90" />
+        </Style>
+        <Style x:Key="DataStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="Margin" Value="0 0 15 5" />
+        </Style>
+    </Window.Resources>
+
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <!-- Menu -->
+            <DockPanel Grid.Column="0" Grid.Row="0">
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="_File">
+                        <MenuItem Header ="Load Routines" x:Name="LoadRoutines" />
+                        <Separator/>
+                        <MenuItem Header="_Exit"/>
+                    </MenuItem>
+                </Menu>
+            </DockPanel>
+            <!-- Header -->
+            <TextBlock Padding="3"
+                    FontSize="18"
+                    HorizontalAlignment="Center" 
+                    Text="Trendsetter Dance Competition Tabulator" 
+                    VerticalAlignment="Top" />
+            <!-- Item Details -->
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <!-- Row 0 -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="EntryID:"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_EntryID">999</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Type:"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_EntryType">Solo - Independent</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource HeaderStyle}" Text="Category:"/>
+                <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_Category">Public/Private School</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource HeaderStyle}" Text="Class:"/>
+                <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_Class">High School Medium (26-39)</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="8" Style="{StaticResource HeaderStyle}" Text="Studio Name:"/>
+                <TextBlock Grid.Row="0" Grid.Column="9" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_StudioName">Public/Private School</TextBlock>
+            </Grid>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <!-- Row 0 -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Routine Title:" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_RoutineTitle">Routine Title</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Participants:" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_Participants">Participants</TextBlock>
+            </Grid>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+                <!-- Headers -->
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderStyle}" Text="Technique" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Choreography" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource HeaderStyle}" Text="Execution" />
+                <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource HeaderStyle}" Text="Artistry" />
+                <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource HeaderStyle}" Text="Showmanship" />
+                <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource HeaderStyle}" Text="Appearance" />
+                <!-- Judge 1 -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 1" />
+                <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J1Technique, UpdateSourceTrigger=LostFocus}" ></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J1Choreography, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J1Execution, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="4" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J1Artistry, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="5" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J1Showmanship, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="6" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J1Appearance, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <!-- Judge 2 -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 2" />
+                <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J2Technique, UpdateSourceTrigger=LostFocus}" ></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J2Choreography, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J2Execution, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="4" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J2Artistry, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="5" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J2Showmanship, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="2" Grid.Column="6" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J2Appearance, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <!-- Judge 3 -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 3" />
+                <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J3Technique, UpdateSourceTrigger=LostFocus}" ></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J3Choreography, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J3Execution, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="4" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J3Artistry, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="5" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J3Showmanship, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBox Grid.Row="3" Grid.Column="6" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J3Appearance, UpdateSourceTrigger=LostFocus}"></TextBox>
+                <Grid Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="75" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <!-- Buttons -->
+                    <Button Grid.Row="0" Grid.Column="0" Padding="5 5" x:Name="Submit">Submit</Button>
+                    <Button Grid.Row="0" Grid.Column="2" Padding="5 5">Cancel</Button>
+                </Grid>
+            </Grid>
+
+        </StackPanel>
+        <!-- Item List -->
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Row="0" Grid.Column="0"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ColumnWidth="50"
+                IsReadOnly="True"
+                x:Name="Routines"
+                SelectedItem="{Binding Path=SelectedRoutine, Mode=OneWayToSource}"/>
+        </Grid>
+    </Grid>
+    
+</Window>
