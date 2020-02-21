@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,10 @@ namespace TSD_Comp_Tabulator.ViewModels
     {
 		private RoutineModel _selectedRoutine;
 		private BindableCollection<RoutineModel> _routines;
+        public double J1Technique;
+        private RoutineModel _currentRoutine;
 
-		public ShellViewModel()
+        public ShellViewModel()
 		{
 			_routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
 		}
@@ -35,25 +38,24 @@ namespace TSD_Comp_Tabulator.ViewModels
 			set 
 			{
 				_selectedRoutine = value;
-				NotifyOfPropertyChange(() => SelectedRoutine);
+                if (value != null)
+                {
+                    _currentRoutine = (RoutineModel)_selectedRoutine.Shallowcopy();
+                } else
+                {
+                    _currentRoutine = null;
+                }
+                NotifyOfPropertyChange(() => SelectedRoutine);
+                NotifyOfPropertyChange(() => CurrentRoutine);
                 
 			}
 		}
 
-		public string EntryType
-		{
-			get 
-			{
-				if (_selectedRoutine.EntryType == null)
-				{
-					return "n/a";
-				} else {
-					return _selectedRoutine.EntryType; 
-				}
-			}
-			set { }
-		}
-
+        public RoutineModel CurrentRoutine
+        {
+            get { return _currentRoutine; }
+            set { return; }
+        }
 
         public void LoadNewContest(object sender, RoutedEventArgs e)
         {
@@ -114,9 +116,11 @@ namespace TSD_Comp_Tabulator.ViewModels
 
         public void Submit(object sender, RoutedEventArgs e)
         {
-            SqliteDataAccess.SubmitRoutineScores(SelectedRoutine);
+            SqliteDataAccess.SubmitRoutineScores(CurrentRoutine);
             SelectedRoutine = null;
             NotifyOfPropertyChange(() => SelectedRoutine);
+            _routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
+            NotifyOfPropertyChange(() => Routines);
         }
 
         public void Cancel(object sender, RoutedEventArgs e)

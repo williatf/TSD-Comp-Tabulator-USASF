@@ -16,7 +16,6 @@ namespace TSD_Comp_Tabulator.Models
         public string StudioName { get; set; }
         public string RoutineTitle { get; set; }
         public double J1Technique { get; set; }
-
         public double J1Choreography { get; set; }
         public double J1Execution { get; set; }
         public double J1Artistry { get; set; }
@@ -35,7 +34,10 @@ namespace TSD_Comp_Tabulator.Models
         public double J3Showmanship { get; set; }
         public double J3Appearance { get; set; }
         
-    
+        public object Shallowcopy()
+        {
+            return this.MemberwiseClone();
+        }
     }
 
 
