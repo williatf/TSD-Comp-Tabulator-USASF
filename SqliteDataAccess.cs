@@ -119,5 +119,51 @@ namespace TSD_Comp_Tabulator
 
             }
         }
+
+        public static List<string> getStudioSoloClasses()
+        {
+            List<string> vClasses = new List<string>();
+
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
+                using (SQLiteCommand fmd = cnn.CreateCommand())
+                {
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Solo_Studio 
+                        ORDER BY
+                            CASE Class
+                                WHEN '1st-2nd' THEN 0
+                                WHEN '3rd-4th' THEN 1
+                                WHEN '5th-6th' THEN 2
+                                WHEN '7th-8th' THEN 3
+                                WHEN '9th-10th' THEN 4
+                                WHEN '11th-12th' THEN 5
+                            END
+                    ";
+                    fmd.CommandType = CommandType.Text;
+                    SQLiteDataReader r = fmd.ExecuteReader();
+                    while (r.Read())
+                    {
+                        vClasses.Add(Convert.ToString(r["Class"]));
+                    }
+                }
+                return vClasses;
+            }
+        }
+
+        public static List<Solos> getStudioSoloTrophies(string vClass = "Default")
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Solos>(
+                    "SELECT EntryID,StudioName,Dancer,AvgScore " +
+                    "FROM Solo_Studio " +
+                    "WHERE Class='" + vClass + "' " +
+                    "ORDER BY AvgScore DESC " +
+                    "LIMIT 6", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
     }
 }

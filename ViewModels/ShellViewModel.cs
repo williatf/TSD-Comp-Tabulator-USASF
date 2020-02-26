@@ -1,60 +1,26 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using TSD_Comp_Tabulator.Models;
 
 namespace TSD_Comp_Tabulator.ViewModels
 {
-    public class ShellViewModel : PropertyChangedBase
+    public class ShellViewModel : Conductor<object>
     {
-		private RoutineModel _selectedRoutine;
-		private BindableCollection<RoutineModel> _routines;
-        public double J1Technique;
-        private RoutineModel _currentRoutine;
-
         public ShellViewModel()
-		{
-			_routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
-		}
-
-		public BindableCollection<RoutineModel> Routines
-		{
-			get { return _routines; }
-			set { _routines = value; }
-		}
-
-		public RoutineModel SelectedRoutine
-		{
-			get { return _selectedRoutine; }
-			set 
-			{
-				_selectedRoutine = value;
-                if (value != null)
-                {
-                    _currentRoutine = (RoutineModel)_selectedRoutine.Shallowcopy();
-                } else
-                {
-                    _currentRoutine = null;
-                }
-                NotifyOfPropertyChange(() => SelectedRoutine);
-                NotifyOfPropertyChange(() => CurrentRoutine);
-                
-			}
-		}
-
-        public RoutineModel CurrentRoutine
         {
-            get { return _currentRoutine; }
-            set { return; }
+            ActivateItem(new DataViewModel());
+        }
+        public void ShowReportsView()
+        {
+            ActivateItem(new ReportsViewModel());
+        }
+
+        public void ShowDataView()
+        {
+            ActivateItem(new DataViewModel());
         }
 
         public void LoadNewContest(object sender, RoutedEventArgs e)
@@ -107,27 +73,10 @@ namespace TSD_Comp_Tabulator.ViewModels
                 SqliteDataAccess.LoadNewRoutinesFromDataset(ds);
 
                 // update the UI with the new routines
-                Routines = new BindableCollection < RoutineModel >( SqliteDataAccess.LoadRoutines());
-                NotifyOfPropertyChange(() => Routines);
+                ActivateItem(new DataViewModel());
 
             }
 
         }
-
-        public void Submit(object sender, RoutedEventArgs e)
-        {
-            SqliteDataAccess.SubmitRoutineScores(CurrentRoutine);
-            SelectedRoutine = null;
-            NotifyOfPropertyChange(() => SelectedRoutine);
-            _routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
-            NotifyOfPropertyChange(() => Routines);
-        }
-
-        public void Cancel(object sender, RoutedEventArgs e)
-        {
-            _routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
-            NotifyOfPropertyChange(() => Routines);
-        }
-
     }
 }
