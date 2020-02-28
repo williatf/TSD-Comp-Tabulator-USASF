@@ -24,6 +24,25 @@ namespace TSD_Comp_Tabulator
 
         public static void SubmitRoutineScores(RoutineModel routine)
         {
+            double Score = routine.J1Appearance
+                + routine.J1Artistry
+                + routine.J1Choreography
+                + routine.J1Execution
+                + routine.J1Showmanship
+                + routine.J1Technique
+                + routine.J2Appearance
+                + routine.J2Artistry
+                + routine.J2Choreography
+                + routine.J2Execution
+                + routine.J2Showmanship
+                + routine.J2Technique
+                + routine.J3Appearance
+                + routine.J3Artistry
+                + routine.J3Choreography
+                + routine.J3Execution
+                + routine.J3Showmanship
+                + routine.J3Technique;
+
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("UPDATE MasterDataReport SET (" +
@@ -44,7 +63,8 @@ namespace TSD_Comp_Tabulator
                     "J3Execution," +
                     "J3Artistry," +
                     "J3Showmanship," +
-                    "J3Appearance" +
+                    "J3Appearance," +
+                    "Score" +
                     ") = (" +
                     "@J1Technique," +
                     "@J1Choreography," +
@@ -63,7 +83,8 @@ namespace TSD_Comp_Tabulator
                     "@J3Execution," +
                     "@J3Artistry," +
                     "@J3Showmanship," +
-                    "@J3Appearance" +
+                    "@J3Appearance," +
+                    Score +
                     ")" +
                     "WHERE EntryID = @EntryID", routine);
             }
@@ -120,7 +141,7 @@ namespace TSD_Comp_Tabulator
             }
         }
 
-        public static List<string> getStudioSoloClasses()
+        public static List<string> getSoloClasses(string category)
         {
             List<string> vClasses = new List<string>();
 
@@ -129,17 +150,17 @@ namespace TSD_Comp_Tabulator
                 cnn.Open();
                 using (SQLiteCommand fmd = cnn.CreateCommand())
                 {
-                    fmd.CommandText = @"SELECT DISTINCT Class FROM Solo_Studio 
-                        ORDER BY
-                            CASE Class
-                                WHEN '1st-2nd' THEN 0
-                                WHEN '3rd-4th' THEN 1
-                                WHEN '5th-6th' THEN 2
-                                WHEN '7th-8th' THEN 3
-                                WHEN '9th-10th' THEN 4
-                                WHEN '11th-12th' THEN 5
-                            END
-                    ";
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Solos WHERE Category LIKE '%" + category + "%'" +
+                        " ORDER BY " +
+                            "CASE Class " +
+                                "WHEN '1st-2nd' THEN 0 " +
+                                "WHEN '3rd-4th' THEN 1 " +
+                                "WHEN '5th-6th' THEN 2 " +
+                                "WHEN '7th-8th' THEN 3 " +
+                                "WHEN '9th-10th' THEN 4 " +
+                                "WHEN '11th-12th' THEN 5 " +
+                            "END"
+                    ;
                     fmd.CommandType = CommandType.Text;
                     SQLiteDataReader r = fmd.ExecuteReader();
                     while (r.Read())
@@ -151,14 +172,15 @@ namespace TSD_Comp_Tabulator
             }
         }
 
-        public static List<Solos> getStudioSoloTrophies(string vClass = "Default")
+        public static List<Solos> getSoloTrophies(string vClass, string category)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Solos>(
                     "SELECT EntryID,StudioName,Dancer,AvgScore " +
-                    "FROM Solo_Studio " +
+                    "FROM Solos " +
                     "WHERE Class='" + vClass + "' " +
+                    "AND Category LIKE '%" + category + "%' " +
                     "ORDER BY AvgScore DESC " +
                     "LIMIT 6", new DynamicParameters()
                 );

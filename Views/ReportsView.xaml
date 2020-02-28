@@ -10,7 +10,9 @@
             <TabItem Header="Solos">
                 <FlowDocumentScrollViewer Document="{Binding Solos}"/>
             </TabItem>
-            <TabItem Header="Duets"></TabItem>
+            <TabItem Header="Duets">
+                <FlowDocumentScrollViewer Document="{Binding Duets}"/>
+           </TabItem>
             <TabItem Header="Trios"></TabItem>
             <TabItem Header="Ensembles"></TabItem>
             <TabItem Header="Officer"></TabItem>
