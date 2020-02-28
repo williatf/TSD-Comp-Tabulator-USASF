@@ -68,7 +68,7 @@
             <TextBlock Padding="3"
                     FontSize="18"
                     HorizontalAlignment="Center" 
-                    Text="Trendsetter Dance Competition Tabulator" 
+                    Text="Trendsetters Dance Competition Tabulator" 
                     VerticalAlignment="Top" />
             <!-- Item Details -->
             <Grid >

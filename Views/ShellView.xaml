@@ -16,6 +16,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -29,8 +30,25 @@
                     <MenuItem Header="_Exit"/>
                 </MenuItem>
             </Menu>
-            <ContentControl x:Name="ActiveItem" />
+            <Ribbon x:Name="RibbonWin" SelectedIndex="0" >
+                <Ribbon.ApplicationMenu>
+                    <RibbonApplicationMenu KeyTip="F">
+                        <RibbonApplicationMenuItem Header="Exit" ImageSource="..\Images\exit.png" />
+                    </RibbonApplicationMenu>
+                </Ribbon.ApplicationMenu>
+                <RibbonTab Header="Tabulation" KeyTip="T">
+                     <RibbonGroup x:Name="Actions">
+                        <RibbonMenuButton LargeImageSource="..\Images\download.png" Label="Load Routines" KeyTip="S"/>
+                    </RibbonGroup>                   <RibbonGroup x:Name="Application">
+                        <RibbonMenuButton LargeImageSource="..\Images\score.png" Label="Record Scores" KeyTip="S"/>
+                        <RibbonMenuButton LargeImageSource="..\Images\reports.png" Label="View Reports" KeyTip="S"/>
+                    </RibbonGroup>
+
+                </RibbonTab>
+            </Ribbon>
         </DockPanel>
+        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.Row="2"/>
+
     </Grid>
 
 
