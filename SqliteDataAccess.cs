@@ -43,6 +43,13 @@ namespace TSD_Comp_Tabulator
                 + routine.J3Showmanship
                 + routine.J3Technique;
 
+            double Appearance = routine.J1Appearance + routine.J2Appearance + routine.J3Appearance;
+            double Artistry   = routine.J1Artistry + routine.J2Artistry + routine.J3Artistry;
+            double Choreography = routine.J1Choreography + routine.J2Choreography + routine.J3Choreography;
+            double Execution = routine.J1Execution + routine.J2Execution + routine.J3Execution;
+            double Showmanship = routine.J1Showmanship + routine.J2Showmanship + routine.J3Showmanship;
+            double Technique = routine.J1Technique + routine.J2Technique + routine.J3Technique;
+
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("UPDATE MasterDataReport SET (" +
@@ -64,6 +71,12 @@ namespace TSD_Comp_Tabulator
                     "J3Artistry," +
                     "J3Showmanship," +
                     "J3Appearance," +
+                    "Technique," +
+                    "Choreography," +
+                    "Execution," +
+                    "Artistry," +
+                    "Showmanship," +
+                    "Appearance," +
                     "Score" +
                     ") = (" +
                     "@J1Technique," +
@@ -84,6 +97,12 @@ namespace TSD_Comp_Tabulator
                     "@J3Artistry," +
                     "@J3Showmanship," +
                     "@J3Appearance," +
+                    Technique + "," +
+                    Choreography + "," +
+                    Execution + "," +
+                    Artistry + "," +
+                    Showmanship + "," +
+                    Appearance + "," +
                     Score +
                     ")" +
                     "WHERE EntryID = @EntryID", routine);

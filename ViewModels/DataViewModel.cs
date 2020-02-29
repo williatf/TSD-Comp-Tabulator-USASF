@@ -10,22 +10,23 @@ namespace TSD_Comp_Tabulator.ViewModels
     public class DataViewModel : Screen
     {
         private RoutineModel _selectedRoutine;
-        private BindableCollection<RoutineModel> _routines;
-        private RoutineModel _currentRoutine;
         private double _j1Total;
-        private double _J2Total;
-        private double _J3Total;
+        private double _j2Total;
+        private double _j3Total;
+        private double _appearance;
+        private double _technique;
+        private double _choreography;
+        private double _execution;
+        private double _artistry;
+        private double _showmanship;
+        private double _total;
 
         public DataViewModel()
         {
-            _routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
+            Routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
         }
 
-        public BindableCollection<RoutineModel> Routines
-        {
-            get { return _routines; }
-            set { _routines = value; }
-        }
+        public BindableCollection<RoutineModel> Routines { get; set; }
 
         public RoutineModel SelectedRoutine
         {
@@ -35,11 +36,11 @@ namespace TSD_Comp_Tabulator.ViewModels
                 _selectedRoutine = value;
                 if (value != null)
                 {
-                    _currentRoutine = (RoutineModel)_selectedRoutine.Shallowcopy();
+                    CurrentRoutine = (RoutineModel)_selectedRoutine.Shallowcopy();
                 }
                 else
                 {
-                    _currentRoutine = null;
+                    CurrentRoutine = null;
                 }
                 NotifyOfPropertyChange(() => SelectedRoutine);
                 NotifyOfPropertyChange(() => CurrentRoutine);
@@ -64,27 +65,30 @@ namespace TSD_Comp_Tabulator.ViewModels
                 NotifyOfPropertyChange(() => J3Artistry);
                 NotifyOfPropertyChange(() => J3Showmanship);
                 NotifyOfPropertyChange(() => J3Total);
-
+                NotifyOfPropertyChange(() => Appearance);
+                NotifyOfPropertyChange(() => Technique);
+                NotifyOfPropertyChange(() => Choreography);
+                NotifyOfPropertyChange(() => Execution);
+                NotifyOfPropertyChange(() => Artistry);
+                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => Total);
             }
         }
 
-        public RoutineModel CurrentRoutine
-        {
-            get { return _currentRoutine; }
-        }
+        public RoutineModel CurrentRoutine { get; private set; }
 
         public void Submit(object sender, RoutedEventArgs e)
         {
             SqliteDataAccess.SubmitRoutineScores(CurrentRoutine);
             SelectedRoutine = null;
             NotifyOfPropertyChange(() => SelectedRoutine);
-            _routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
+            Routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
             NotifyOfPropertyChange(() => Routines);
         }
 
         public void Cancel(object sender, RoutedEventArgs e)
         {
-            _routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
+            Routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
             NotifyOfPropertyChange(() => Routines);
         }
 
@@ -92,132 +96,145 @@ namespace TSD_Comp_Tabulator.ViewModels
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J1Appearance;
+                    return CurrentRoutine.J1Appearance;
                 }
             }
             set
             {
-                _currentRoutine.J1Appearance = value;
+                CurrentRoutine.J1Appearance = value;
                 NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Appearance);
+                NotifyOfPropertyChange(() => Total);
+
             }
         }
         public double J1Technique
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J1Technique;
+                    return CurrentRoutine.J1Technique;
                 }
             }
             set
             {
-                _currentRoutine.J1Technique = value;
+                CurrentRoutine.J1Technique = value;
                 NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Technique);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J1Choreography
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J1Choreography;
+                    return CurrentRoutine.J1Choreography;
                 }
             }
             set
             {
-                _currentRoutine.J1Choreography = value;
+                CurrentRoutine.J1Choreography = value;
                 NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Choreography);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J1Execution
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J1Execution;
+                    return CurrentRoutine.J1Execution;
                 }
             }
             set
             {
-                _currentRoutine.J1Execution = value;
+                CurrentRoutine.J1Execution = value;
                 NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Execution);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J1Artistry
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J1Artistry;
+                    return CurrentRoutine.J1Artistry;
                 }
             }
             set
             {
-                _currentRoutine.J1Artistry = value;
+                CurrentRoutine.J1Artistry = value;
                 NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Artistry);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J1Showmanship
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J1Showmanship;
+                    return CurrentRoutine.J1Showmanship;
                 }
             }
             set
             {
-                _currentRoutine.J1Showmanship = value;
+                CurrentRoutine.J1Showmanship = value;
                 NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J1Total
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    _j1Total = _currentRoutine.J1Appearance;
-                    _j1Total += _currentRoutine.J1Artistry;
-                    _j1Total += _currentRoutine.J1Choreography;
-                    _j1Total += _currentRoutine.J1Execution;
-                    _j1Total += _currentRoutine.J1Showmanship;
-                    _j1Total += _currentRoutine.J1Technique;
+                    _j1Total = CurrentRoutine.J1Appearance;
+                    _j1Total += CurrentRoutine.J1Artistry;
+                    _j1Total += CurrentRoutine.J1Choreography;
+                    _j1Total += CurrentRoutine.J1Execution;
+                    _j1Total += CurrentRoutine.J1Showmanship;
+                    _j1Total += CurrentRoutine.J1Technique;
 
                     return _j1Total;
                 }
@@ -228,134 +245,146 @@ namespace TSD_Comp_Tabulator.ViewModels
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J2Appearance;
+                    return CurrentRoutine.J2Appearance;
                 }
             }
             set
             {
-                _currentRoutine.J2Appearance = value;
+                CurrentRoutine.J2Appearance = value;
                 NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Appearance);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J2Technique
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J2Technique;
+                    return CurrentRoutine.J2Technique;
                 }
             }
             set
             {
-                _currentRoutine.J2Technique = value;
+                CurrentRoutine.J2Technique = value;
                 NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Technique);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J2Choreography
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J2Choreography;
+                    return CurrentRoutine.J2Choreography;
                 }
             }
             set
             {
-                _currentRoutine.J2Choreography = value;
+                CurrentRoutine.J2Choreography = value;
                 NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Choreography);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J2Execution
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J2Execution;
+                    return CurrentRoutine.J2Execution;
                 }
             }
             set
             {
-                _currentRoutine.J2Execution = value;
+                CurrentRoutine.J2Execution = value;
                 NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Execution);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J2Artistry
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J2Artistry;
+                    return CurrentRoutine.J2Artistry;
                 }
             }
             set
             {
-                _currentRoutine.J2Artistry = value;
+                CurrentRoutine.J2Artistry = value;
                 NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Artistry);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J2Showmanship
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J2Showmanship;
+                    return CurrentRoutine.J2Showmanship;
                 }
             }
             set
             {
-                _currentRoutine.J2Showmanship = value;
+                CurrentRoutine.J2Showmanship = value;
                 NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J2Total
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    _J2Total = _currentRoutine.J2Appearance;
-                    _J2Total += _currentRoutine.J2Artistry;
-                    _J2Total += _currentRoutine.J2Choreography;
-                    _J2Total += _currentRoutine.J2Execution;
-                    _J2Total += _currentRoutine.J2Showmanship;
-                    _J2Total += _currentRoutine.J2Technique;
+                    _j2Total = CurrentRoutine.J2Appearance;
+                    _j2Total += CurrentRoutine.J2Artistry;
+                    _j2Total += CurrentRoutine.J2Choreography;
+                    _j2Total += CurrentRoutine.J2Execution;
+                    _j2Total += CurrentRoutine.J2Showmanship;
+                    _j2Total += CurrentRoutine.J2Technique;
 
-                    return _J2Total;
+                    return _j2Total;
                 }
             }
         }
@@ -364,137 +393,275 @@ namespace TSD_Comp_Tabulator.ViewModels
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J3Appearance;
+                    return CurrentRoutine.J3Appearance;
                 }
             }
             set
             {
-                _currentRoutine.J3Appearance = value;
+                CurrentRoutine.J3Appearance = value;
                 NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Appearance);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J3Technique
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J3Technique;
+                    return CurrentRoutine.J3Technique;
                 }
             }
             set
             {
-                _currentRoutine.J3Technique = value;
+                CurrentRoutine.J3Technique = value;
                 NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Technique);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J3Choreography
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J3Choreography;
+                    return CurrentRoutine.J3Choreography;
                 }
             }
             set
             {
-                _currentRoutine.J3Choreography = value;
+                CurrentRoutine.J3Choreography = value;
                 NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Choreography);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J3Execution
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J3Execution;
+                    return CurrentRoutine.J3Execution;
                 }
             }
             set
             {
-                _currentRoutine.J3Execution = value;
+                CurrentRoutine.J3Execution = value;
                 NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Execution);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J3Artistry
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J3Artistry;
+                    return CurrentRoutine.J3Artistry;
                 }
             }
             set
             {
-                _currentRoutine.J3Artistry = value;
+                CurrentRoutine.J3Artistry = value;
                 NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Artistry);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J3Showmanship
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    return _currentRoutine.J3Showmanship;
+                    return CurrentRoutine.J3Showmanship;
                 }
             }
             set
             {
-                _currentRoutine.J3Showmanship = value;
+                CurrentRoutine.J3Showmanship = value;
                 NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => Total);
             }
         }
         public double J3Total
         {
             get
             {
-                if (_currentRoutine == null)
+                if (CurrentRoutine == null)
                 {
                     return 0;
                 }
                 else
                 {
-                    _J3Total = _currentRoutine.J3Appearance;
-                    _J3Total += _currentRoutine.J3Artistry;
-                    _J3Total += _currentRoutine.J3Choreography;
-                    _J3Total += _currentRoutine.J3Execution;
-                    _J3Total += _currentRoutine.J3Showmanship;
-                    _J3Total += _currentRoutine.J3Technique;
+                    _j3Total = CurrentRoutine.J3Appearance;
+                    _j3Total += CurrentRoutine.J3Artistry;
+                    _j3Total += CurrentRoutine.J3Choreography;
+                    _j3Total += CurrentRoutine.J3Execution;
+                    _j3Total += CurrentRoutine.J3Showmanship;
+                    _j3Total += CurrentRoutine.J3Technique;
 
-                    return _J3Total;
+                    return _j3Total;
                 }
             }
         }
 
+        public double Appearance
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _appearance = CurrentRoutine.J1Appearance;
+                    _appearance += CurrentRoutine.J2Appearance;
+                    _appearance += CurrentRoutine.J3Appearance;
+
+                    return _appearance;
+                }
+            }
+        }
+        public double Technique
+        {
+            get 
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _technique = CurrentRoutine.J1Technique;
+                    _technique += CurrentRoutine.J2Technique;
+                    _technique += CurrentRoutine.J3Technique;
+
+                    return _technique;
+                }
+            }
+        }
+        public double Choreography
+        {
+            get 
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _choreography = CurrentRoutine.J1Choreography;
+                    _choreography += CurrentRoutine.J2Choreography;
+                    _choreography += CurrentRoutine.J3Choreography;
+
+                    return _choreography;
+                }
+            }
+        }
+        public double Execution
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _execution = CurrentRoutine.J1Execution;
+                    _execution += CurrentRoutine.J2Execution;
+                    _execution += CurrentRoutine.J3Execution;
+
+                    return _execution;
+                }
+            }
+        }
+        public double Artistry
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _artistry = CurrentRoutine.J1Artistry;
+                    _artistry += CurrentRoutine.J2Artistry;
+                    _artistry += CurrentRoutine.J3Artistry;
+
+                    return _artistry;
+                }
+            }
+        }
+        public double Showmanship
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _showmanship = CurrentRoutine.J1Showmanship;
+                    _showmanship += CurrentRoutine.J2Showmanship;
+                    _showmanship += CurrentRoutine.J3Showmanship;
+
+                    return _showmanship;
+                }
+            }
+        }
+        public double Total
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _total = _j1Total;
+                    _total += _j2Total;
+                    _total += _j3Total;
+
+                    return _total;
+                }
+            }
+        }
     }
 }

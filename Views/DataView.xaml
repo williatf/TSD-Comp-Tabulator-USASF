@@ -132,6 +132,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="20" />
@@ -357,7 +358,16 @@
                     </TextBox.Text>
                 </TextBox>
                 <TextBlock Text="{Binding Path=J3Total, Mode=OneWay}" Grid.Row="4" Grid.Column="7" Style="{StaticResource DataStyle}" />
-                <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
+                <!-- Totals -->
+                <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Totals" />
+                <TextBlock Text="{Binding Path=Technique, Mode=OneWay}" Grid.Row="5" Grid.Column="1" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Choreography, Mode=OneWay}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Execution, Mode=OneWay}" Grid.Row="5" Grid.Column="3" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Artistry, Mode=OneWay}" Grid.Row="5" Grid.Column="4" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Showmanship, Mode=OneWay}" Grid.Row="5" Grid.Column="5" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Appearance, Mode=OneWay}" Grid.Row="5" Grid.Column="6" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Total, Mode=OneWay}" Grid.Row="5" Grid.Column="7" Style="{StaticResource DataStyle}"/>
+                <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75" />
                         <ColumnDefinition Width="10" />
