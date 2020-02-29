@@ -8,6 +8,8 @@ namespace TSD_Comp_Tabulator.Models
 {
     public class RoutineModel
     {
+        private double _j1Total;
+
         public int EntryID { get; set; }
         public string EntryType { get; set; }
         public string Category { get; set; }
@@ -33,7 +35,7 @@ namespace TSD_Comp_Tabulator.Models
         public double J3Artistry { get; set; }
         public double J3Showmanship { get; set; }
         public double J3Appearance { get; set; }
-        
+
         public object Shallowcopy()
         {
             return this.MemberwiseClone();

@@ -112,7 +112,16 @@ namespace TSD_Comp_Tabulator
                 SQLiteDataAdapter adaptor = new SQLiteDataAdapter("SELECT * from MasterDataReport", cnn);
 
                 // create the insert command
-                adaptor.InsertCommand = new SQLiteCommand("INSERT INTO MasterDataReport VALUES (" +
+                adaptor.InsertCommand = new SQLiteCommand("INSERT INTO MasterDataReport (" +
+                    "StartTime," +
+                    "EntryId," +
+                    "EntryType," +
+                    "Category," +
+                    "Class," +
+                    "Participants," +
+                    "StudioName," +
+                    "RoutineTitle" +
+                    ") VALUES (" +
                     ":startTime, " +
                     ":entryId, " +
                     ":entryType, " +
@@ -120,8 +129,8 @@ namespace TSD_Comp_Tabulator
                     ":class, " +
                     ":participants, " +
                     ":studioName, " +
-                    ":routineTitle," +
-                    "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)",
+                    ":routineTitle" +
+                    ")",
                     cnn
                 );
 

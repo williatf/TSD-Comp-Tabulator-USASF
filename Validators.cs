@@ -69,8 +69,14 @@ namespace MyValidators
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             ValidationResult result = new ValidationResult(true, null);
-            double inputValue = Convert.ToDouble(value);
-            if (inputValue > this.MaxValue )
+            try
+            {
+                double inputValue = Convert.ToDouble(value);
+                if (inputValue > this.MaxValue )
+                {
+                    result = new ValidationResult(false, this.ErrorMessage);
+                }
+            } catch
             {
                 result = new ValidationResult(false, this.ErrorMessage);
             }

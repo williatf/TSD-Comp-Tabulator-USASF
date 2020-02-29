@@ -1,10 +1,10 @@
-﻿<Window x:Class="TSD_Comp_Tabulator.Views.ShellView"
+﻿<RibbonWindow x:Class="TSD_Comp_Tabulator.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TSD_Comp_Tabulator.Views"
-        xmlns:validators="clr-namespace:MyValidators"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="TSDance Tabulator" Height="600" Width="800" WindowStartupLocation="CenterScreen">
     <!-- Menu -->
@@ -21,27 +21,35 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Column="1" Grid.Row="1">
-            <Menu DockPanel.Dock="Top">
+            <!--<Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header ="_Score Routines" x:Name="ShowDataView" />
-                    <MenuItem Header ="Generate _Reports" x:Name="ShowReportsView" />
+                    <MenuItem Header ="_Score Routines"  />
+                    <MenuItem Header ="Generate _Reports"  />
                     <Separator/>
-                    <MenuItem Header ="_Load New Routines" x:Name="LoadNewContest" />
-                    <MenuItem Header="_Exit"/>
+                    <MenuItem Header ="_Load New Routines"   />
+                    <MenuItem Header ="_Exit"/>
                 </MenuItem>
-            </Menu>
+            </Menu>-->
             <Ribbon x:Name="RibbonWin" SelectedIndex="0" >
                 <Ribbon.ApplicationMenu>
                     <RibbonApplicationMenu KeyTip="F">
-                        <RibbonApplicationMenuItem Header="Exit" ImageSource="..\Images\exit.png" />
+                        <RibbonApplicationMenuItem Header="Exit" ImageSource="..\Images\exit.png" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="CloseApp"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </RibbonApplicationMenuItem>
                     </RibbonApplicationMenu>
                 </Ribbon.ApplicationMenu>
+                <!-- Ribbon Tab #1 Tabulation -->
                 <RibbonTab Header="Tabulation" KeyTip="T">
-                     <RibbonGroup x:Name="Actions">
-                        <RibbonMenuButton LargeImageSource="..\Images\download.png" Label="Load Routines" KeyTip="S"/>
-                    </RibbonGroup>                   <RibbonGroup x:Name="Application">
-                        <RibbonMenuButton LargeImageSource="..\Images\score.png" Label="Record Scores" KeyTip="S"/>
-                        <RibbonMenuButton LargeImageSource="..\Images\reports.png" Label="View Reports" KeyTip="S"/>
+                    <RibbonGroup>
+                        <RibbonButton x:Name="LoadNewContest" LargeImageSource="..\Images\download.png" Label="Load New Contest" KeyTip="S" ToolTip="Load new contest from CSV file downloaded from DCG"/>
+                    </RibbonGroup>
+                    <RibbonGroup>
+                        <RibbonButton x:Name="ShowDataView" LargeImageSource="..\Images\score.png" Label="Record Scores" KeyTip="S" />
+                        <RibbonButton x:Name="ShowReportsView" LargeImageSource="..\Images\reports.png" Label="View Reports" KeyTip="R" />
                     </RibbonGroup>
 
                 </RibbonTab>
@@ -52,4 +60,4 @@
     </Grid>
 
 
-</Window>
+</RibbonWindow>

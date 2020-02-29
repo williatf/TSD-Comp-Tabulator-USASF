@@ -18,7 +18,7 @@
         </Style>
         <Style x:Key="DataStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Blue" />
-            <Setter Property="Margin" Value="0 0 15 5" />
+            <Setter Property="Margin" Value="5 0 15 5" />
         </Style>
         <Style x:Key="SmallStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Gray" />
@@ -111,13 +111,14 @@
                 </Grid.RowDefinitions>
                 <!-- Row 0 -->
                 <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Routine Title:" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_RoutineTitle">Routine Title</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DataStyle}" x:Name="CurrentRoutine_RoutineTitle">Routine Title</TextBlock>
                 <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Participants:" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource DataStyle}" x:Name="SelectedRoutine_Participants">Participants</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource DataStyle}" x:Name="CurrentRoutine_Participants">Participants</TextBlock>
             </Grid>
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
                     <ColumnDefinition MinWidth="20" Width="auto" />
                     <ColumnDefinition MinWidth="20" Width="auto" />
                     <ColumnDefinition MinWidth="20" Width="auto" />
@@ -142,6 +143,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource HeaderStyle}" Text="Artistry" />
                 <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource HeaderStyle}" Text="Showmanship" />
                 <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource HeaderStyle}" Text="Appearance" />
+                <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource HeaderStyle}" Text="Total" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource SmallStyle}" Text="Max 25" />
                 <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource SmallStyle}" Text="Max 25" />
                 <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource SmallStyle}" Text="Max 25" />
@@ -150,10 +152,9 @@
                 <TextBlock Grid.Row="1" Grid.Column="6" Style="{StaticResource SmallStyle}" Text="Max 5" />
                 <!-- Judge 1 -->
                 <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 1" />
-                <!--<TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=SelectedRoutine.J1Technique, UpdateSourceTrigger=LostFocus}" ></TextBox>-->
                 <TextBox Grid.Row="2" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus" >
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J1Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -162,10 +163,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J1Choreography, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="2" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J1Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -174,10 +174,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J1Execution, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="2" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J1Execution" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Execution" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -186,10 +185,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="1" Grid.Column="4" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J1Artistry, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="2" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J1Artistry" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Artistry" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -198,10 +196,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="1" Grid.Column="5" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J1Showmanship, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="2" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J1Showmanship" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Showmanship" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -210,10 +207,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="1" Grid.Column="6" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J1Appearance, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="2" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J1Appearance" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Appearance" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="5"
@@ -222,12 +218,12 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
+                <TextBlock Text="{Binding Path=J1Total, Mode=OneWay}" Grid.Row="2" Grid.Column="7" Style="{StaticResource DataStyle}" />
                 <!-- Judge 2 -->
                 <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 2" />
-                <!--<TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J2Technique, UpdateSourceTrigger=LostFocus}" ></TextBox>-->
                 <TextBox Grid.Row="3" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J2Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -236,10 +232,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="2" Grid.Column="2" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J2Choreography, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="3" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J2Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -248,10 +243,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="2" Grid.Column="3" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J2Execution, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="3" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J2Execution" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Execution" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -260,10 +254,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="2" Grid.Column="4" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J2Artistry, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="3" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J2Artistry" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Artistry" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -272,10 +265,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="2" Grid.Column="5" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J2Showmanship, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="3" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J2Showmanship" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Showmanship" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -284,10 +276,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="2" Grid.Column="6" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J2Appearance, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="3" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J2Appearance" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Appearance" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="5"
@@ -296,12 +287,12 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
+                <TextBlock Text="{Binding Path=J2Total, Mode=OneWay}" Grid.Row="3" Grid.Column="7" Style="{StaticResource DataStyle}" />
                 <!-- Judge 3 -->
                 <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 3" />
-                <!--<TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J3Technique, UpdateSourceTrigger=LostFocus}" ></TextBox>-->
                 <TextBox Grid.Row="4" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J3Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -310,10 +301,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="3" Grid.Column="2" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J3Choreography, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="4" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J3Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -322,10 +312,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="3" Grid.Column="3" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J3Execution, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="4" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J3Execution" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Execution" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -334,10 +323,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="3" Grid.Column="4" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J3Artistry, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="4" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J3Artistry" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Artistry" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -346,10 +334,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="3" Grid.Column="5" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J3Showmanship, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="4" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J3Showmanship" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Showmanship" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -358,10 +345,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <!--<TextBox Grid.Row="3" Grid.Column="6" Style="{StaticResource TextBoxStyle}" GotKeyboardFocus="TextBox_GotKeyboardFocus" Text="{Binding Path=CurrentRoutine.J3Appearance, UpdateSourceTrigger=LostFocus}"></TextBox>-->
                 <TextBox Grid.Row="4" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus">
                     <TextBox.Text>
-                        <Binding Path="CurrentRoutine.J3Appearance" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Appearance" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="5"
@@ -370,6 +356,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
+                <TextBlock Text="{Binding Path=J3Total, Mode=OneWay}" Grid.Row="4" Grid.Column="7" Style="{StaticResource DataStyle}" />
                 <Grid Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75" />

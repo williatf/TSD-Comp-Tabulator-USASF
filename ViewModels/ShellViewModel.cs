@@ -13,6 +13,11 @@ namespace TSD_Comp_Tabulator.ViewModels
         {
             ActivateItem(new DataViewModel());
         }
+
+        public void CloseApp()
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
         public void ShowReportsView()
         {
             ActivateItem(new ReportsViewModel());
@@ -23,7 +28,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             ActivateItem(new DataViewModel());
         }
 
-        public void LoadNewContest(object sender, RoutedEventArgs e)
+        public void LoadNewContest()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -46,13 +51,43 @@ namespace TSD_Comp_Tabulator.ViewModels
                 // connect to the CSV file and fill the data set
                 using (var conn = new OleDbConnection(connString))
                 {
-                    conn.Open();
-                    var query = "SELECT * FROM [" + System.IO.Path.GetFileName(filename) + "]";
-                    using (var adaptr = new OleDbDataAdapter(query, conn))
+                    try
                     {
-                        adaptr.Fill(ds);
+                        conn.Open();
+                        var query = "SELECT * FROM [" + System.IO.Path.GetFileName(filename) + "]";
+                        using (var adaptr = new OleDbDataAdapter(query, conn))
+                        {
+                            adaptr.Fill(ds);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error loading " + filename);
+                        return;
+                    }
+
+                }
+
+                // check to make sure all of the columns exist
+                foreach (DataColumn column in ds.Tables[0].Columns)
+                {
+                    switch (column.ColumnName)
+                    {
+                        case "StartTime":
+                        case "EntryID":
+                        case "EntryType":
+                        case "Category":
+                        case "Class":
+                        case "Participants":
+                        case "StudioName":
+                        case "Routine Title":
+                            break;
+                        default:
+                            MessageBox.Show("Error loading " + filename + "\nMissing Column(s)");
+                            return;
                     }
                 }
+
 
                 // set the row status to added for each row in the data set
                 // if you don't do this, the rows won't get added to the db in the next step
