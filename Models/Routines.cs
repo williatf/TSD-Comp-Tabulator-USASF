@@ -12,6 +12,8 @@ namespace TSD_Comp_Tabulator.Models
         public string StudioName { get; set; }
         public string Dancer { get; set; }
         public string AvgScore { get; set; }
+        public string Class { get; set; }
+        public int Rank { get; set; }
     }
     public class Duets
     {
@@ -21,6 +23,13 @@ namespace TSD_Comp_Tabulator.Models
         public string AvgScore { get; set; }
     }
     public class Trios
+    {
+        public int EntryID { get; set; }
+        public string StudioName { get; set; }
+        public string Dancer { get; set; }
+        public string AvgScore { get; set; }
+    }
+    public class Ensembles
     {
         public int EntryID { get; set; }
         public string StudioName { get; set; }

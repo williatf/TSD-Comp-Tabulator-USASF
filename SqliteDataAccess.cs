@@ -168,7 +168,6 @@ namespace TSD_Comp_Tabulator
 
             }
         }
-
         public static List<string> getSoloClasses(string category)
         {
             List<string> vClasses = new List<string>();
@@ -178,17 +177,7 @@ namespace TSD_Comp_Tabulator
                 cnn.Open();
                 using (SQLiteCommand fmd = cnn.CreateCommand())
                 {
-                    fmd.CommandText = @"SELECT DISTINCT Class FROM Solos WHERE Category LIKE '%" + category + "%'" +
-                        " ORDER BY " +
-                            "CASE Class " +
-                                "WHEN '1st-2nd' THEN 0 " +
-                                "WHEN '3rd-4th' THEN 1 " +
-                                "WHEN '5th-6th' THEN 2 " +
-                                "WHEN '7th-8th' THEN 3 " +
-                                "WHEN '9th-10th' THEN 4 " +
-                                "WHEN '11th-12th' THEN 5 " +
-                            "END"
-                    ;
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Solos WHERE Category LIKE '%" + category + "%' ORDER BY listOrder";
                     fmd.CommandType = CommandType.Text;
                     SQLiteDataReader r = fmd.ExecuteReader();
                     while (r.Read())
@@ -201,15 +190,14 @@ namespace TSD_Comp_Tabulator
         }
         public static List<Solos> getSoloTrophies(string vClass, string category)
         {
+            string tbl = "Solos_" + category + "RankByClass";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Solos>(
-                    "SELECT EntryID,StudioName,Dancer,AvgScore " +
-                    "FROM Solos " +
+                    "SELECT * FROM " + tbl + " " +
                     "WHERE Class='" + vClass + "' " +
-                    "AND Category LIKE '%" + category + "%' " +
-                    "ORDER BY AvgScore DESC " +
-                    "LIMIT 6", new DynamicParameters()
+                    "AND Rank <= 5 " +
+                    "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -226,12 +214,11 @@ namespace TSD_Comp_Tabulator
                     fmd.CommandText = @"SELECT DISTINCT Class FROM Duets WHERE Category LIKE '%" + category + "%'" +
                         " ORDER BY " +
                             "CASE Class " +
-                                "WHEN '1st-2nd' THEN 0 " +
-                                "WHEN '3rd-4th' THEN 1 " +
-                                "WHEN '5th-6th' THEN 2 " +
-                                "WHEN '7th-8th' THEN 3 " +
-                                "WHEN '9th-10th' THEN 4 " +
-                                "WHEN '11th-12th' THEN 5 " +
+                                "WHEN 'Studio Pre-K-K' THEN 0 " +
+                                "WHEN 'Studio Elem 1st-3rd' THEN 1 " +
+                                "WHEN 'Studio Inter 4th-6th' THEN 2 " +
+                                "WHEN 'Studio Jr High 7th-9th' THEN 3 " +
+                                "WHEN 'Studio High School 9th-12th' THEN 4 " +
                             "END"
                     ;
                     fmd.CommandType = CommandType.Text;
@@ -294,6 +281,51 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Trios>(
+                    "SELECT EntryID,StudioName,Dancer,AvgScore " +
+                    "FROM Trios " +
+                    "WHERE Class='" + vClass + "' " +
+                    "AND Category LIKE '%" + category + "%' " +
+                    "ORDER BY AvgScore DESC " +
+                    "LIMIT 6", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<string> getEnsembleClasses(string category)
+        {
+            List<string> vClasses = new List<string>();
+
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
+                using (SQLiteCommand fmd = cnn.CreateCommand())
+                {
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Ensembles WHERE Category LIKE '%" + category + "%'" +
+                        " ORDER BY " +
+                            "CASE Class " +
+                                "WHEN '1st-2nd' THEN 0 " +
+                                "WHEN '3rd-4th' THEN 1 " +
+                                "WHEN '5th-6th' THEN 2 " +
+                                "WHEN '7th-8th' THEN 3 " +
+                                "WHEN '9th-10th' THEN 4 " +
+                                "WHEN '11th-12th' THEN 5 " +
+                            "END"
+                    ;
+                    fmd.CommandType = CommandType.Text;
+                    SQLiteDataReader r = fmd.ExecuteReader();
+                    while (r.Read())
+                    {
+                        vClasses.Add(Convert.ToString(r["Class"]));
+                    }
+                }
+                return vClasses;
+            }
+        }
+        public static List<Ensembles> getEnsembleTrophies(string vClass, string category)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Ensembles>(
                     "SELECT EntryID,StudioName,Dancer,AvgScore " +
                     "FROM Trios " +
                     "WHERE Class='" + vClass + "' " +

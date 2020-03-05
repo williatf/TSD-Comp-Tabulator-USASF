@@ -16,7 +16,9 @@
             <TabItem Header="Trios">
                 <FlowDocumentScrollViewer Document="{Binding Trios}"/>
             </TabItem>
-            <TabItem Header="Ensembles"></TabItem>
+            <TabItem Header="Ensembles">
+                <FlowDocumentScrollViewer Document="{Binding Ensembles}"/>
+            </TabItem>
             <TabItem Header="Officer"></TabItem>
             <TabItem Header="Team"></TabItem>
             <TabItem Header="Special"></TabItem>
