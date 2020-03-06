@@ -108,12 +108,10 @@ namespace TSD_Comp_Tabulator
                     "WHERE EntryID = @EntryID", routine);
             }
         }
-
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
-
         public static void LoadNewRoutinesFromDataset(DataSet ds)
         {
             using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -211,16 +209,7 @@ namespace TSD_Comp_Tabulator
                 cnn.Open();
                 using (SQLiteCommand fmd = cnn.CreateCommand())
                 {
-                    fmd.CommandText = @"SELECT DISTINCT Class FROM Duets WHERE Category LIKE '%" + category + "%'" +
-                        " ORDER BY " +
-                            "CASE Class " +
-                                "WHEN 'Studio Pre-K-K' THEN 0 " +
-                                "WHEN 'Studio Elem 1st-3rd' THEN 1 " +
-                                "WHEN 'Studio Inter 4th-6th' THEN 2 " +
-                                "WHEN 'Studio Jr High 7th-9th' THEN 3 " +
-                                "WHEN 'Studio High School 9th-12th' THEN 4 " +
-                            "END"
-                    ;
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Duets WHERE Category LIKE '%" + category + "%' ORDER BY listOrder";
                     fmd.CommandType = CommandType.Text;
                     SQLiteDataReader r = fmd.ExecuteReader();
                     while (r.Read())
@@ -233,15 +222,14 @@ namespace TSD_Comp_Tabulator
         }
         public static List<Duets> getDuetTrophies(string vClass, string category)
         {
+            string tbl = "Duets_" + category + "RankByClass";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Duets>(
-                    "SELECT EntryID,StudioName,Dancer,AvgScore " +
-                    "FROM Duets " +
-                    "WHERE Class='" + vClass + "' " +
-                    "AND Category LIKE '%" + category + "%' " +
-                    "ORDER BY AvgScore DESC " +
-                    "LIMIT 6", new DynamicParameters()
+                    "SELECT * FROM " + tbl + " " +
+                    "WHERE Class LIKE '" + vClass + "%' " +
+                    "AND Rank <= 5 " +
+                    "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -255,17 +243,7 @@ namespace TSD_Comp_Tabulator
                 cnn.Open();
                 using (SQLiteCommand fmd = cnn.CreateCommand())
                 {
-                    fmd.CommandText = @"SELECT DISTINCT Class FROM Trios WHERE Category LIKE '%" + category + "%'" +
-                        " ORDER BY " +
-                            "CASE Class " +
-                                "WHEN '1st-2nd' THEN 0 " +
-                                "WHEN '3rd-4th' THEN 1 " +
-                                "WHEN '5th-6th' THEN 2 " +
-                                "WHEN '7th-8th' THEN 3 " +
-                                "WHEN '9th-10th' THEN 4 " +
-                                "WHEN '11th-12th' THEN 5 " +
-                            "END"
-                    ;
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Trios WHERE Category LIKE '%" + category + "%' ORDER BY listOrder";
                     fmd.CommandType = CommandType.Text;
                     SQLiteDataReader r = fmd.ExecuteReader();
                     while (r.Read())
@@ -278,15 +256,14 @@ namespace TSD_Comp_Tabulator
         }
         public static List<Trios> getTrioTrophies(string vClass, string category)
         {
+            string tbl = "Trios_" + category + "RankByClass";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Trios>(
-                    "SELECT EntryID,StudioName,Dancer,AvgScore " +
-                    "FROM Trios " +
-                    "WHERE Class='" + vClass + "' " +
-                    "AND Category LIKE '%" + category + "%' " +
-                    "ORDER BY AvgScore DESC " +
-                    "LIMIT 6", new DynamicParameters()
+                    "SELECT * FROM " + tbl + " " +
+                    "WHERE Class LIKE '" + vClass + "%' " +
+                    "AND Rank <= 5 " +
+                    "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
