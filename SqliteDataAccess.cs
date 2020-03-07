@@ -359,5 +359,34 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
+        public static List<TeamAward> getSuperiorAwards(string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "FROM " + db_table + "_Top " +
+                    "WHERE NumRoutines < 3 " +
+                    "AND AvgScore >= 85 " +
+                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<TeamAward> getSweepstakesAwards(string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "FROM " + db_table + "_Top " +
+                    "WHERE NumRoutines = 3 " +
+                    "AND AvgScore >= 85 " +
+                    "AND AvgScore < 90 " +
+                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
     }
 }

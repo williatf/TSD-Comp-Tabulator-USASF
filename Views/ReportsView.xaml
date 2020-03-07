@@ -22,8 +22,10 @@
             <TabItem Header="Social Officers">
                 <FlowDocumentScrollViewer Document="{Binding Socials}"/>
             </TabItem>
-            <TabItem Header="Officer"></TabItem>
-            <TabItem Header="Team"></TabItem>
+            <TabItem Header="Officers">
+                <FlowDocumentScrollViewer Document="{Binding Officers}"/>
+            </TabItem>
+            <TabItem Header="Teams"></TabItem>
             <TabItem Header="Special"></TabItem>
         </TabControl>
 

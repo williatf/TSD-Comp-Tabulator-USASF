@@ -100,9 +100,28 @@ namespace TSD_Comp_Tabulator.ViewModels
         public void Submit(object sender, RoutedEventArgs e)
         {
             SqliteDataAccess.SubmitRoutineScores(CurrentRoutine);
-            SelectedRoutine = null;
+            _selectedRoutine.J1Appearance = CurrentRoutine.J1Appearance;
+            _selectedRoutine.J1Artistry = CurrentRoutine.J1Artistry;
+            _selectedRoutine.J1Choreography = CurrentRoutine.J1Choreography;
+            _selectedRoutine.J1Execution = CurrentRoutine.J1Execution;
+            _selectedRoutine.J1Showmanship = CurrentRoutine.J1Showmanship;
+            _selectedRoutine.J1Technique = CurrentRoutine.J1Technique;
+            _selectedRoutine.J2Appearance = CurrentRoutine.J2Appearance;
+            _selectedRoutine.J2Artistry = CurrentRoutine.J2Artistry;
+            _selectedRoutine.J2Choreography = CurrentRoutine.J2Choreography;
+            _selectedRoutine.J2Execution = CurrentRoutine.J2Execution;
+            _selectedRoutine.J2Showmanship = CurrentRoutine.J2Showmanship;
+            _selectedRoutine.J2Technique = CurrentRoutine.J2Technique;
+            _selectedRoutine.J3Appearance = CurrentRoutine.J3Appearance;
+            _selectedRoutine.J3Artistry = CurrentRoutine.J3Artistry;
+            _selectedRoutine.J3Choreography = CurrentRoutine.J3Choreography;
+            _selectedRoutine.J3Execution = CurrentRoutine.J3Execution;
+            _selectedRoutine.J3Showmanship = CurrentRoutine.J3Showmanship;
+            _selectedRoutine.J3Technique = CurrentRoutine.J3Technique;
+
             NotifyOfPropertyChange(() => SelectedRoutine);
-            Routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
+            SelectedRoutine = null;
+            //Routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
             NotifyOfPropertyChange(() => Routines);
         }
 
