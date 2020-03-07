@@ -268,7 +268,27 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
-        public static List<string> getEnsembleClasses(string category)
+        public static List<string> getEnsembleEntryTypes(string category)
+        {
+            List<string> entryTypes = new List<string>();
+
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
+                using (SQLiteCommand fmd = cnn.CreateCommand())
+                {
+                    fmd.CommandText = @"SELECT DISTINCT EntryType FROM Ensembles WHERE Category LIKE '%" + category + "%' ORDER BY listOrder";
+                    fmd.CommandType = CommandType.Text;
+                    SQLiteDataReader r = fmd.ExecuteReader();
+                    while (r.Read())
+                    {
+                        entryTypes.Add(Convert.ToString(r["EntryType"]));
+                    }
+                }
+                return entryTypes;
+            }
+        }
+        public static List<string> getEnsembleClasses(string category, string entryType)
         {
             List<string> vClasses = new List<string>();
 
@@ -277,17 +297,7 @@ namespace TSD_Comp_Tabulator
                 cnn.Open();
                 using (SQLiteCommand fmd = cnn.CreateCommand())
                 {
-                    fmd.CommandText = @"SELECT DISTINCT Class FROM Ensembles WHERE Category LIKE '%" + category + "%'" +
-                        " ORDER BY " +
-                            "CASE Class " +
-                                "WHEN '1st-2nd' THEN 0 " +
-                                "WHEN '3rd-4th' THEN 1 " +
-                                "WHEN '5th-6th' THEN 2 " +
-                                "WHEN '7th-8th' THEN 3 " +
-                                "WHEN '9th-10th' THEN 4 " +
-                                "WHEN '11th-12th' THEN 5 " +
-                            "END"
-                    ;
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Ensembles WHERE Category LIKE '%" + category + "%' AND EntryType = '" + entryType + "' ORDER BY listOrder";
                     fmd.CommandType = CommandType.Text;
                     SQLiteDataReader r = fmd.ExecuteReader();
                     while (r.Read())
@@ -298,17 +308,18 @@ namespace TSD_Comp_Tabulator
                 return vClasses;
             }
         }
-        public static List<Ensembles> getEnsembleTrophies(string vClass, string category)
+        public static List<Ensembles> getEnsembleTrophies(string vClass, string entryType)
         {
+            string tbl = "Ensembles";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Ensembles>(
-                    "SELECT EntryID,StudioName,Dancer,AvgScore " +
-                    "FROM Trios " +
-                    "WHERE Class='" + vClass + "' " +
-                    "AND Category LIKE '%" + category + "%' " +
-                    "ORDER BY AvgScore DESC " +
-                    "LIMIT 6", new DynamicParameters()
+                    "SELECT EntryID,StudioName,RoutineTitle,AvgScore,Class,Rank " +
+                    "FROM ( SELECT *, rank() OVER ( PARTITION BY Class ORDER BY AvgScore DESC ) Rank FROM " + tbl + " " +
+                    "WHERE EntryType = '" + entryType + "' ) " +
+                    "WHERE Class = '" + vClass + "' " +
+                    "AND Rank <= 5 " +
+                    "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }

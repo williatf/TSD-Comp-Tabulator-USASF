@@ -17,6 +17,7 @@ namespace TSD_Comp_Tabulator.ViewModels
         private FlowDocument _ensembles;
 
         private List<string> list;
+        private List<string> classList;
         private List<Solos> listSolos;
 
         public ReportsViewModel()
@@ -24,7 +25,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             _solos = generateSolos();
             _duets = generateDuets();
             _trios = generateTrios();
-            //_ensembles = generateEnsembles();
+            _ensembles = generateEnsembles();
         }
 
         public FlowDocument Solos
@@ -132,7 +133,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             // Awards
             string category = "Studio";
-            System.Collections.Generic.List<string> list = SqliteDataAccess.getDuetClasses(category);
+            list = SqliteDataAccess.getDuetClasses(category);
 
             if (list.Count > 0)
             {
@@ -193,7 +194,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             // Awards
             string category = "Studio";
-            System.Collections.Generic.List<string> list = SqliteDataAccess.getTrioClasses(category);
+            list = SqliteDataAccess.getTrioClasses(category);
 
             if (list.Count > 0)
             {
@@ -246,8 +247,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             // Description
             p = new Paragraph(new Run("Highest Scores at top!!\n\n" +
                 "Top 3 scores within each age group, for both Studios and Schools.\n\n" +
-                "The results are limited to the top 6 scores.  If there are less than 6 results, that means there were less than 6 competitors in that group. The bottom score shown in each group should be dropped and should NOT receive a trophy.\n\n" +
-                "Only the top 5 performers should receive trophies. In a tie situation, all tied competitors would receive the same award.  For example, if there is a tie between two dancers for 1st runner up, both dancers would receive 1st runner up trophies, you would skip 2nd runner up, and the next dancer would receive the 3rd runner up trophy."
+                "Only the top 5 routines should receive trophies. In a tie situation, all tied routines would receive the same award."
                 )
             );
             p.FontSize = 12;
@@ -255,7 +255,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             // Awards
             string category = "Studio";
-            System.Collections.Generic.List<string> list = SqliteDataAccess.getEnsembleClasses(category);
+            list = SqliteDataAccess.getEnsembleEntryTypes(category);
 
             if (list.Count > 0)
             {
@@ -268,15 +268,31 @@ namespace TSD_Comp_Tabulator.ViewModels
                 p.Padding = new Thickness(5, 5, 0, 5);
                 fd.Blocks.Add(p);
 
-                // loop over each solo class and print a table of results
-                foreach (string vClass in list)
+                // loop over each ensemble entrytype
+                foreach (string entryType in list)
                 {
-                    fd.Blocks.Add(ensembleTable(vClass, category));
+
+                    p = new Paragraph(new Run("Entry Type: " + entryType));
+                    p.FontSize = 16;
+                    p.Foreground = Brushes.Brown;
+                    p.Background = Brushes.Wheat;
+                    p.FontWeight = FontWeights.SemiBold;
+                    p.TextAlignment = TextAlignment.Left;
+                    p.Padding = new Thickness(5, 5, 0, 5);
+                    fd.Blocks.Add(p);
+
+                    classList = SqliteDataAccess.getEnsembleClasses(category,entryType);
+
+                    // loop over each class and print a table of results
+                    foreach (string vClass in classList)
+                    {
+                        fd.Blocks.Add(ensembleTable(vClass, entryType));
+                    }
                 }
             }
 
             category = "School";
-            list = SqliteDataAccess.getEnsembleClasses(category);
+            list = SqliteDataAccess.getEnsembleEntryTypes(category);
 
             if (list.Count > 0)
             {
@@ -289,10 +305,26 @@ namespace TSD_Comp_Tabulator.ViewModels
                 p.Padding = new Thickness(5, 5, 0, 5);
                 fd.Blocks.Add(p);
 
-                // loop over each solo class and print a table of results
-                foreach (string vClass in list)
+                // loop over each ensemble entrytype
+                foreach (string entryType in list)
                 {
-                    fd.Blocks.Add(ensembleTable(vClass, category));
+
+                    p = new Paragraph(new Run("Entry Type: " + entryType));
+                    p.FontSize = 16;
+                    p.Foreground = Brushes.Brown;
+                    p.Background = Brushes.Wheat;
+                    p.FontWeight = FontWeights.SemiBold;
+                    p.TextAlignment = TextAlignment.Left;
+                    p.Padding = new Thickness(5, 5, 0, 5);
+                    fd.Blocks.Add(p);
+
+                    classList = SqliteDataAccess.getEnsembleClasses(category, entryType);
+
+                    // loop over each class and print a table of results
+                    foreach (string vClass in classList)
+                    {
+                        fd.Blocks.Add(ensembleTable(vClass, entryType));
+                    }
                 }
             }
 
@@ -589,13 +621,13 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return tbl;
         }
-        private Table ensembleTable(string vClass, string category)
+        private Table ensembleTable(string vClass, string entryType)
         {
             // create the table
             Table tbl = new Table();
 
             // create 4 columns and add them to the table's column collection
-            int numCols = 4;
+            int numCols = 5;
             for (int x = 0; x < numCols; x++)
             {
                 tbl.Columns.Add(new TableColumn());
@@ -613,7 +645,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             // add the class header to the table
             TableRow header_row = new TableRow();
             TableCell header_cell = new TableCell(p);
-            header_cell.ColumnSpan = 4;
+            header_cell.ColumnSpan = 5;
             header_cell.Padding = new Thickness(0, 0, 0, 10);
             header_row.Cells.Add(header_cell);
             tbl.RowGroups[0].Rows.Add(header_row);
@@ -631,6 +663,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 
 
             // add content
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Rank"))));
             currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
             currentRow.Cells.Add(new TableCell(new Paragraph(new Run("StudioName"))));
             currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Dancers"))));
@@ -644,7 +677,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             }
 
             // get trophies
-            List<Ensembles> trophies = SqliteDataAccess.getEnsembleTrophies(vClass, category);
+            List<Ensembles> trophies = SqliteDataAccess.getEnsembleTrophies(vClass, entryType);
 
             // if there are trophies
             if (trophies.Count > 0)
@@ -657,9 +690,10 @@ namespace TSD_Comp_Tabulator.ViewModels
                     currentRow = tbl.RowGroups[0].Rows[i];
                     currentRow.FontSize = 12;
                     currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.Rank.ToString()))));
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.EntryID.ToString()))));
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.StudioName))));
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.Dancer.Replace(", ", "\n")))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.RoutineTitle))));
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.AvgScore))));
 
                     if (i % 2 == 0)
@@ -677,9 +711,10 @@ namespace TSD_Comp_Tabulator.ViewModels
             }
 
             tbl.Columns[0].Width = new GridLength(75);
-            tbl.Columns[1].Width = new GridLength(250);
+            tbl.Columns[1].Width = new GridLength(75);
             tbl.Columns[2].Width = new GridLength(250);
-            tbl.Columns[3].Width = new GridLength(75);
+            tbl.Columns[3].Width = new GridLength(250);
+            tbl.Columns[4].Width = new GridLength(75);
 
             return tbl;
         }

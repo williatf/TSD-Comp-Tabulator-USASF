@@ -20,6 +20,7 @@ namespace TSD_Comp_Tabulator.ViewModels
         private double _artistry;
         private double _showmanship;
         private double _total;
+        private bool _tb_isEnabled = false;
 
         public DataViewModel()
         {
@@ -37,10 +38,12 @@ namespace TSD_Comp_Tabulator.ViewModels
                 if (value != null)
                 {
                     CurrentRoutine = (RoutineModel)_selectedRoutine.Shallowcopy();
+                    _tb_isEnabled = true;
                 }
                 else
                 {
                     CurrentRoutine = null;
+                    _tb_isEnabled = false;
                 }
                 NotifyOfPropertyChange(() => SelectedRoutine);
                 NotifyOfPropertyChange(() => CurrentRoutine);
@@ -72,10 +75,27 @@ namespace TSD_Comp_Tabulator.ViewModels
                 NotifyOfPropertyChange(() => Artistry);
                 NotifyOfPropertyChange(() => Showmanship);
                 NotifyOfPropertyChange(() => Total);
+                NotifyOfPropertyChange(() => tb_IsEnabled);
             }
         }
 
         public RoutineModel CurrentRoutine { get; private set; }
+
+        public bool tb_IsEnabled
+        {
+            get { return _tb_isEnabled; }
+            set
+            {
+                if ( _tb_isEnabled == value )
+                {
+                    return;
+                }
+
+                _tb_isEnabled = value;
+                NotifyOfPropertyChange("tb_IsEnabled");
+            }
+
+        }
 
         public void Submit(object sender, RoutedEventArgs e)
         {

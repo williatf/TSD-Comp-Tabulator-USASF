@@ -153,7 +153,7 @@
                 <TextBlock Grid.Row="1" Grid.Column="6" Style="{StaticResource SmallStyle}" Text="Max 5" />
                 <!-- Judge 1 -->
                 <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 1" />
-                <TextBox Grid.Row="2" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus" >
+                <TextBox Grid.Row="2" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J1Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -164,7 +164,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="2" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="2" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J1Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -175,7 +175,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="2" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="2" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J1Execution" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -186,7 +186,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="2" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="2" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J1Artistry" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -197,7 +197,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="2" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="2" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J1Showmanship" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -208,7 +208,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="2" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="2" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J1Appearance" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -222,7 +222,7 @@
                 <TextBlock Text="{Binding Path=J1Total, Mode=OneWay}" Grid.Row="2" Grid.Column="7" Style="{StaticResource DataStyle}" />
                 <!-- Judge 2 -->
                 <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 2" />
-                <TextBox Grid.Row="3" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="3" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J2Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -233,7 +233,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="3" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="3" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J2Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -244,7 +244,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="3" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="3" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J2Execution" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -255,7 +255,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="3" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="3" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J2Artistry" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -266,7 +266,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="3" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="3" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J2Showmanship" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -277,7 +277,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="3" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="3" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J2Appearance" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -291,7 +291,7 @@
                 <TextBlock Text="{Binding Path=J2Total, Mode=OneWay}" Grid.Row="3" Grid.Column="7" Style="{StaticResource DataStyle}" />
                 <!-- Judge 3 -->
                 <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 3" />
-                <TextBox Grid.Row="4" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="4" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J3Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -302,7 +302,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="4" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="4" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J3Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -313,7 +313,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="4" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="4" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J3Execution" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -324,7 +324,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="4" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="4" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J3Artistry" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -335,7 +335,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="4" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="4" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J3Showmanship" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
@@ -346,7 +346,7 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="4" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus">
+                <TextBox Grid.Row="4" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
                         <Binding Path="J3Appearance" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
