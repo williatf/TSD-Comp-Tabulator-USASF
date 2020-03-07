@@ -99,7 +99,11 @@ namespace TSD_Comp_Tabulator.ViewModels
 
         public void Submit(object sender, RoutedEventArgs e)
         {
+            // update the record in the database
             SqliteDataAccess.SubmitRoutineScores(CurrentRoutine);
+
+            // update the properties in the datatable
+            // uses INotifyPropertyChanged in the model
             _selectedRoutine.J1Appearance = CurrentRoutine.J1Appearance;
             _selectedRoutine.J1Artistry = CurrentRoutine.J1Artistry;
             _selectedRoutine.J1Choreography = CurrentRoutine.J1Choreography;
@@ -119,10 +123,9 @@ namespace TSD_Comp_Tabulator.ViewModels
             _selectedRoutine.J3Showmanship = CurrentRoutine.J3Showmanship;
             _selectedRoutine.J3Technique = CurrentRoutine.J3Technique;
 
-            NotifyOfPropertyChange(() => SelectedRoutine);
+            // reset the selected routine to clear out the form
             SelectedRoutine = null;
-            //Routines = new BindableCollection<RoutineModel>(SqliteDataAccess.LoadRoutines());
-            NotifyOfPropertyChange(() => Routines);
+            NotifyOfPropertyChange(() => SelectedRoutine);
         }
 
         public void Cancel(object sender, RoutedEventArgs e)

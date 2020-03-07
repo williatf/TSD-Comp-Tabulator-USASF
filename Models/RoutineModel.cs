@@ -29,6 +29,34 @@ namespace TSD_Comp_Tabulator.Models
         private double _j3showmanship;
         private double _j3appearance;
 
+        public RoutineModel()
+        {
+            if (false)
+            {
+                Random r = new Random();
+
+                _j1appearance = r.Next(4, 5);
+                _j1choreography = r.Next(20, 25);
+                _j1artistry = r.Next(7, 10);
+                _j1execution = r.Next(20, 25);
+                _j1showmanship = r.Next(7, 10);
+                _j1technique = r.Next(20, 25);
+                _j2appearance = r.Next(4, 5);
+                _j2choreography = r.Next(20, 25);
+                _j2artistry = r.Next(7, 10);
+                _j2execution = r.Next(20, 25);
+                _j2showmanship = r.Next(7, 10);
+                _j2technique = r.Next(20, 25);
+                _j3appearance = r.Next(4, 5);
+                _j3choreography = r.Next(20, 25);
+                _j3artistry = r.Next(7, 10);
+                _j3execution = r.Next(20, 25);
+                _j3showmanship = r.Next(7, 10);
+                _j3technique = r.Next(20, 25);
+
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

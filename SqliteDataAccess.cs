@@ -388,5 +388,49 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
+        public static List<TeamAward> getSuperSweepstakesAwards(string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "FROM " + db_table + "_Top " +
+                    "WHERE NumRoutines = 3 " +
+                    "AND AvgScore >= 90 " +
+                    "AND AvgScore < 95 " +
+                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<TeamAward> getJudgesAwards(string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "FROM " + db_table + "_Top " +
+                    "WHERE NumRoutines = 3 " +
+                    "AND AvgScore >= 95 " +
+                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<TeamAward> getTechnicalMeritAwards(string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT StudioName,Class,NumRoutines,AvgTech as AvgScore FROM " +
+                    "( SELECT StudioName,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
+                    "WHERE NumRoutines = 3 " +
+                    "AND AvgTech >= 22 ) " +
+                    "WHERE rank > 1 " +
+                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
     }
 }
