@@ -186,12 +186,12 @@ namespace TSD_Comp_Tabulator
                 return vClasses;
             }
         }
-        public static List<Solos> getSoloTrophies(string vClass, string category)
+        public static List<Individual> getSoloTrophies(string vClass, string category)
         {
             string tbl = "Solos_" + category + "RankByClass";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Solos>(
+                var output = cnn.Query<Individual>(
                     "SELECT * FROM " + tbl + " " +
                     "WHERE Class='" + vClass + "' " +
                     "AND Rank <= 5 " +
@@ -220,12 +220,12 @@ namespace TSD_Comp_Tabulator
                 return vClasses;
             }
         }
-        public static List<Duets> getDuetTrophies(string vClass, string category)
+        public static List<Individual> getDuetTrophies(string vClass, string category)
         {
             string tbl = "Duets_" + category + "RankByClass";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Duets>(
+                var output = cnn.Query<Individual>(
                     "SELECT * FROM " + tbl + " " +
                     "WHERE Class LIKE '" + vClass + "%' " +
                     "AND Rank <= 5 " +
@@ -254,12 +254,12 @@ namespace TSD_Comp_Tabulator
                 return vClasses;
             }
         }
-        public static List<Trios> getTrioTrophies(string vClass, string category)
+        public static List<Individual> getTrioTrophies(string vClass, string category)
         {
             string tbl = "Trios_" + category + "RankByClass";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Trios>(
+                var output = cnn.Query<Individual>(
                     "SELECT * FROM " + tbl + " " +
                     "WHERE Class LIKE '" + vClass + "%' " +
                     "AND Rank <= 5 " +
@@ -308,15 +308,50 @@ namespace TSD_Comp_Tabulator
                 return vClasses;
             }
         }
-        public static List<Ensembles> getEnsembleTrophies(string vClass, string entryType)
+        public static List<Team> getEnsembleTrophies(string vClass, string entryType)
         {
             string tbl = "Ensembles";
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Ensembles>(
+                var output = cnn.Query<Team>(
                     "SELECT EntryID,StudioName,RoutineTitle,AvgScore,Class,Rank " +
                     "FROM ( SELECT *, rank() OVER ( PARTITION BY Class ORDER BY AvgScore DESC ) Rank FROM " + tbl + " " +
                     "WHERE EntryType = '" + entryType + "' ) " +
+                    "WHERE Class = '" + vClass + "' " +
+                    "AND Rank <= 5 " +
+                    "ORDER BY Rank ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<string> getSocialClasses()
+        {
+            List<string> vClasses = new List<string>();
+
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
+                using (SQLiteCommand fmd = cnn.CreateCommand())
+                {
+                    fmd.CommandText = @"SELECT DISTINCT Class FROM Socials ORDER BY listOrder";
+                    fmd.CommandType = CommandType.Text;
+                    SQLiteDataReader r = fmd.ExecuteReader();
+                    while (r.Read())
+                    {
+                        vClasses.Add(Convert.ToString(r["Class"]));
+                    }
+                }
+                return vClasses;
+            }
+        }
+        public static List<Team> getSocialTrophies(string vClass)
+        {
+            string tbl = "Socials_SchoolRankByClass";
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Team>(
+                    "SELECT EntryID,StudioName,RoutineTitle,AvgScore,Class,Rank " +
+                    "FROM " + tbl + " " +
                     "WHERE Class = '" + vClass + "' " +
                     "AND Rank <= 5 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()

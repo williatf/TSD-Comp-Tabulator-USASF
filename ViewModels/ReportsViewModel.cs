@@ -15,10 +15,10 @@ namespace TSD_Comp_Tabulator.ViewModels
         private FlowDocument _duets;
         private FlowDocument _trios;
         private FlowDocument _ensembles;
-
+        private FlowDocument _socials;
+        private FlowDocument _officers;
         private List<string> list;
         private List<string> classList;
-        private List<Solos> listSolos;
 
         public ReportsViewModel()
         {
@@ -26,6 +26,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             _duets = generateDuets();
             _trios = generateTrios();
             _ensembles = generateEnsembles();
+            _socials = generateSocials();
+            _officers = generateOfficers();
         }
 
         public FlowDocument Solos
@@ -46,6 +48,11 @@ namespace TSD_Comp_Tabulator.ViewModels
         public FlowDocument Ensembles
         {
             get { return _ensembles; }
+
+        }
+        public FlowDocument Socials
+        {
+            get { return _socials; }
 
         }
         private FlowDocument generateSolos()
@@ -330,6 +337,72 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
+        private FlowDocument generateOfficers()
+        {
+            FlowDocument fd = new FlowDocument();
+            fd.PagePadding = new Thickness(50);
+
+            // Title
+            Paragraph p = new Paragraph(new Run("Social Officer Trophies"));
+            p.FontSize = 18;
+            fd.Blocks.Add(p);
+
+            // Description
+            p = new Paragraph(new Run("Highest Scores at top!!\n\n" +
+                "Top 3 scores within each age group, for both Studios and Schools.\n\n" +
+                "Only the top 5 performers should receive trophies. In a tie situation, all tied competitors would receive the same award."
+                )
+            );
+            p.FontSize = 12;
+            fd.Blocks.Add(p);
+
+            // Awards
+            list = SqliteDataAccess.getSocialClasses();
+
+            if (list.Count > 0)
+            {
+                // loop over each solo class and print a table of results
+                foreach (string vClass in list)
+                {
+                    fd.Blocks.Add(socialTable(vClass));
+                }
+            }
+
+            return fd;
+        }
+        private FlowDocument generateSocials()
+        {
+            FlowDocument fd = new FlowDocument();
+            fd.PagePadding = new Thickness(50);
+
+            // Title
+            Paragraph p = new Paragraph(new Run("Social Officer Trophies"));
+            p.FontSize = 18;
+            fd.Blocks.Add(p);
+
+            // Description
+            p = new Paragraph(new Run("Highest Scores at top!!\n\n" +
+                "Top 3 scores within each age group, for both Studios and Schools.\n\n" +
+                "Only the top 5 performers should receive trophies. In a tie situation, all tied competitors would receive the same award."
+                )
+            );
+            p.FontSize = 12;
+            fd.Blocks.Add(p);
+
+            // Awards
+            list = SqliteDataAccess.getSocialClasses();
+
+            if (list.Count > 0)
+            {
+                // loop over each solo class and print a table of results
+                foreach (string vClass in list)
+                {
+                    fd.Blocks.Add(socialTable(vClass));
+                }
+            }
+
+            return fd;
+        }
         private Table soloTable(string vClass, string category)
         {
             // create the table
@@ -386,13 +459,13 @@ namespace TSD_Comp_Tabulator.ViewModels
             }
 
             // get trophies
-            List<Solos> trophies = SqliteDataAccess.getSoloTrophies(vClass, category);
+            List<Individual> trophies = SqliteDataAccess.getSoloTrophies(vClass, category);
 
             // if there are trophies
             if (trophies.Count > 0)
             {
                 int i = 2; //table row index
-                foreach (Solos trophy in trophies)
+                foreach (Individual trophy in trophies)
                 {
                     // add a new row to the table
                     tbl.RowGroups[0].Rows.Add(new TableRow());
@@ -483,13 +556,13 @@ namespace TSD_Comp_Tabulator.ViewModels
             }
 
             // get trophies
-            List<Duets> trophies = SqliteDataAccess.getDuetTrophies(vClass, category);
+            List<Individual> trophies = SqliteDataAccess.getDuetTrophies(vClass, category);
 
             // if there are trophies
             if (trophies.Count > 0)
             {
                 int i = 2; //table row index
-                foreach (Duets trophy in trophies)
+                foreach (Individual trophy in trophies)
                 {
                     // add a new row to the table
                     tbl.RowGroups[0].Rows.Add(new TableRow());
@@ -580,13 +653,13 @@ namespace TSD_Comp_Tabulator.ViewModels
             }
 
             // get trophies
-            List<Trios> trophies = SqliteDataAccess.getTrioTrophies(vClass, category);
+            List<Individual> trophies = SqliteDataAccess.getTrioTrophies(vClass, category);
 
             // if there are trophies
             if (trophies.Count > 0)
             {
                 int i = 2; //table row index
-                foreach (Trios trophy in trophies)
+                foreach (Individual trophy in trophies)
                 {
                     // add a new row to the table
                     tbl.RowGroups[0].Rows.Add(new TableRow());
@@ -666,7 +739,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Rank"))));
             currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
             currentRow.Cells.Add(new TableCell(new Paragraph(new Run("StudioName"))));
-            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Dancers"))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Routine Title"))));
             currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
 
             for (int n = 0; n < currentRow.Cells.Count; n++)
@@ -677,13 +750,110 @@ namespace TSD_Comp_Tabulator.ViewModels
             }
 
             // get trophies
-            List<Ensembles> trophies = SqliteDataAccess.getEnsembleTrophies(vClass, entryType);
+            List<Team> trophies = SqliteDataAccess.getEnsembleTrophies(vClass, entryType);
 
             // if there are trophies
             if (trophies.Count > 0)
             {
                 int i = 2; //table row index
-                foreach (Ensembles trophy in trophies)
+                foreach (Team trophy in trophies)
+                {
+                    // add a new row to the table
+                    tbl.RowGroups[0].Rows.Add(new TableRow());
+                    currentRow = tbl.RowGroups[0].Rows[i];
+                    currentRow.FontSize = 12;
+                    currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.Rank.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.EntryID.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.RoutineTitle))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.AvgScore))));
+
+                    if (i % 2 == 0)
+                        currentRow.Background = Brushes.AntiqueWhite;
+
+                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    {
+                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        currentRow.Cells[n].BorderBrush = Brushes.Black;
+                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                    }
+
+                    i++;
+                }
+            }
+
+            tbl.Columns[0].Width = new GridLength(75);
+            tbl.Columns[1].Width = new GridLength(75);
+            tbl.Columns[2].Width = new GridLength(250);
+            tbl.Columns[3].Width = new GridLength(250);
+            tbl.Columns[4].Width = new GridLength(75);
+
+            return tbl;
+        }
+        private Table socialTable(string vClass)
+        {
+            // create the table
+            Table tbl = new Table();
+
+            // create 4 columns and add them to the table's column collection
+            int numCols = 5;
+            for (int x = 0; x < numCols; x++)
+            {
+                tbl.Columns.Add(new TableColumn());
+            }
+
+            // create and add and empty TableRowGroup to hold the table's rows
+            tbl.RowGroups.Add(new TableRowGroup());
+
+            // Class:
+            Paragraph p = new Paragraph(new Run("Class: " + vClass));
+            p.FontSize = 16;
+            p.Foreground = Brushes.Blue;
+            p.FontWeight = FontWeights.Bold;
+
+            // add the class header to the table
+            TableRow header_row = new TableRow();
+            TableCell header_cell = new TableCell(p);
+            header_cell.ColumnSpan = 5;
+            header_cell.Padding = new Thickness(0, 0, 0, 10);
+            header_row.Cells.Add(header_cell);
+            tbl.RowGroups[0].Rows.Add(header_row);
+
+            // add the first (title) row
+            tbl.RowGroups[0].Rows.Add(new TableRow());
+
+            // alias the current row
+            TableRow currentRow = tbl.RowGroups[0].Rows[1];
+
+            // format the header row
+            currentRow.FontSize = 12;
+            currentRow.FontWeight = FontWeights.Bold;
+            currentRow.Background = Brushes.Gray;
+
+
+            // add content
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Rank"))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("StudioName"))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Routine Title"))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+            for (int n = 0; n < currentRow.Cells.Count; n++)
+            {
+                currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                currentRow.Cells[n].BorderBrush = Brushes.Black;
+                currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+            }
+
+            // get trophies
+            List<Team> trophies = SqliteDataAccess.getSocialTrophies(vClass);
+
+            // if there are trophies
+            if (trophies.Count > 0)
+            {
+                int i = 2; //table row index
+                foreach (Team trophy in trophies)
                 {
                     // add a new row to the table
                     tbl.RowGroups[0].Rows.Add(new TableRow());

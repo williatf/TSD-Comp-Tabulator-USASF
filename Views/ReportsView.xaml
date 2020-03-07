@@ -19,6 +19,9 @@
             <TabItem Header="Ensembles">
                 <FlowDocumentScrollViewer Document="{Binding Ensembles}"/>
             </TabItem>
+            <TabItem Header="Social Officers">
+                <FlowDocumentScrollViewer Document="{Binding Socials}"/>
+            </TabItem>
             <TabItem Header="Officer"></TabItem>
             <TabItem Header="Team"></TabItem>
             <TabItem Header="Special"></TabItem>
