@@ -496,6 +496,86 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(technicalMeritTable(db_table));
             #endregion
 
+            #region High Point Technique Award
+            // High Point Technique Award
+            p = new Paragraph(new Run("Overall High Point Technique Award"));
+            p.FontSize = 16;
+            p.Foreground = Brushes.Wheat;
+            p.Background = Brushes.Brown;
+            p.FontWeight = FontWeights.Bold;
+            p.TextAlignment = TextAlignment.Left;
+            p.Padding = new Thickness(5, 5, 0, 5);
+            blk.Blocks.Add(p);
+
+            p = new Paragraph(new Run("Awarded to the Team and Officers, regardless of size, with the highest overall average in technique for 3 routines. Must have 8 or more teams to award."));
+            p.FontSize = 14;
+            p.Foreground = Brushes.Gray;
+            p.Padding = new Thickness(3, 0, 0, 3);
+            blk.Blocks.Add(p);
+
+            blk.Blocks.Add(highPointTechniqueTable(db_table));
+            #endregion
+
+            #region Precision Merit Awards
+            // Precision Merit Awards
+            p = new Paragraph(new Run("Precision Merit Awards"));
+            p.FontSize = 16;
+            p.Foreground = Brushes.Wheat;
+            p.Background = Brushes.Brown;
+            p.FontWeight = FontWeights.Bold;
+            p.TextAlignment = TextAlignment.Left;
+            p.Padding = new Thickness(5, 5, 0, 5);
+            blk.Blocks.Add(p);
+
+            p = new Paragraph(new Run("Awarded to Teams and Officers receiving an average precision score of 22 or higher on 3 routines."));
+            p.FontSize = 14;
+            p.Foreground = Brushes.Gray;
+            p.Padding = new Thickness(3, 0, 0, 3);
+            blk.Blocks.Add(p);
+
+            blk.Blocks.Add(precisionMeritTable(db_table));
+            #endregion
+
+            #region High Point Precision Award
+            // High Point Precision Award
+            p = new Paragraph(new Run("Overall High Point Precision Award"));
+            p.FontSize = 16;
+            p.Foreground = Brushes.Wheat;
+            p.Background = Brushes.Brown;
+            p.FontWeight = FontWeights.Bold;
+            p.TextAlignment = TextAlignment.Left;
+            p.Padding = new Thickness(5, 5, 0, 5);
+            blk.Blocks.Add(p);
+
+            p = new Paragraph(new Run("Awarded to the Team and Officers, regardless of size, with the highest overall average in precision for 3 routines. Must have 8 or more teams to award."));
+            p.FontSize = 14;
+            p.Foreground = Brushes.Gray;
+            p.Padding = new Thickness(3, 0, 0, 3);
+            blk.Blocks.Add(p);
+
+            blk.Blocks.Add(highPointPrecisionTable(db_table));
+            #endregion
+
+            #region Outstanding Choreography
+            // Outstanding Choreography
+            p = new Paragraph(new Run("Outstanding Choreography"));
+            p.FontSize = 16;
+            p.Foreground = Brushes.Wheat;
+            p.Background = Brushes.Brown;
+            p.FontWeight = FontWeights.Bold;
+            p.TextAlignment = TextAlignment.Left;
+            p.Padding = new Thickness(5, 5, 0, 5);
+            blk.Blocks.Add(p);
+
+            p = new Paragraph(new Run("Awarded to the Teams and Officers receiving an average choreography score of 22 or higher for any routine entered."));
+            p.FontSize = 14;
+            p.Foreground = Brushes.Gray;
+            p.Padding = new Thickness(3, 0, 0, 3);
+            blk.Blocks.Add(p);
+
+            blk.Blocks.Add(outstandingChoreographyTable(db_table));
+            #endregion
+
             return blk;
 
         }
@@ -1395,6 +1475,335 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
+        private Table highPointTechniqueTable(string db_table)
+        {
+            // get recipients
+            List<TeamAward> awards = SqliteDataAccess.gethighPointTechniqueAwards(db_table);
+            // create the table
+            Table tbl = new Table();
+
+            // if there are trophies
+            if (awards.Count > 0)
+            {
+
+                // create 4 columns and add them to the table's column collection
+                int numCols = 4;
+                for (int x = 0; x < numCols; x++)
+                {
+                    tbl.Columns.Add(new TableColumn());
+                }
+
+                // create and add and empty TableRowGroup to hold the table's rows
+                tbl.RowGroups.Add(new TableRowGroup());
+
+                // add the first (title) row
+                tbl.RowGroups[0].Rows.Add(new TableRow());
+
+                // alias the current row
+                TableRow currentRow = tbl.RowGroups[0].Rows[0];
+
+                // format the header row
+                currentRow.FontSize = 12;
+                currentRow.FontWeight = FontWeights.Bold;
+                currentRow.Background = Brushes.Gray;
+
+
+                // add content
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Class"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("# Routines"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+                for (int n = 0; n < currentRow.Cells.Count; n++)
+                {
+                    currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                    currentRow.Cells[n].BorderBrush = Brushes.Black;
+                    currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                }
+
+                int i = 1; //table row index
+                foreach (TeamAward award in awards)
+                {
+                    // add a new row to the table
+                    tbl.RowGroups[0].Rows.Add(new TableRow());
+                    currentRow = tbl.RowGroups[0].Rows[i];
+                    currentRow.FontSize = 12;
+                    currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Class))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.NumRoutines.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
+
+                    if (i % 2 == 0)
+                        currentRow.Background = Brushes.AntiqueWhite;
+
+                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    {
+                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        currentRow.Cells[n].BorderBrush = Brushes.Black;
+                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                    }
+
+                    i++;
+                }
+
+                tbl.Columns[0].Width = new GridLength(250);
+                tbl.Columns[1].Width = new GridLength(250);
+                tbl.Columns[2].Width = new GridLength(100);
+                tbl.Columns[3].Width = new GridLength(75);
+
+            }
+
+            return tbl;
+
+        }
+        private Table precisionMeritTable(string db_table)
+        {
+            // get recipients
+            List<TeamAward> awards = SqliteDataAccess.getPrecisionMeritAwards(db_table);
+            // create the table
+            Table tbl = new Table();
+
+            // if there are trophies
+            if (awards.Count > 0)
+            {
+
+                // create 4 columns and add them to the table's column collection
+                int numCols = 4;
+                for (int x = 0; x < numCols; x++)
+                {
+                    tbl.Columns.Add(new TableColumn());
+                }
+
+                // create and add and empty TableRowGroup to hold the table's rows
+                tbl.RowGroups.Add(new TableRowGroup());
+
+                // add the first (title) row
+                tbl.RowGroups[0].Rows.Add(new TableRow());
+
+                // alias the current row
+                TableRow currentRow = tbl.RowGroups[0].Rows[0];
+
+                // format the header row
+                currentRow.FontSize = 12;
+                currentRow.FontWeight = FontWeights.Bold;
+                currentRow.Background = Brushes.Gray;
+
+
+                // add content
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Class"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("# Routines"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+                for (int n = 0; n < currentRow.Cells.Count; n++)
+                {
+                    currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                    currentRow.Cells[n].BorderBrush = Brushes.Black;
+                    currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                }
+
+                int i = 1; //table row index
+                foreach (TeamAward award in awards)
+                {
+                    // add a new row to the table
+                    tbl.RowGroups[0].Rows.Add(new TableRow());
+                    currentRow = tbl.RowGroups[0].Rows[i];
+                    currentRow.FontSize = 12;
+                    currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Class))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.NumRoutines.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
+
+                    if (i % 2 == 0)
+                        currentRow.Background = Brushes.AntiqueWhite;
+
+                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    {
+                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        currentRow.Cells[n].BorderBrush = Brushes.Black;
+                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                    }
+
+                    i++;
+                }
+
+                tbl.Columns[0].Width = new GridLength(250);
+                tbl.Columns[1].Width = new GridLength(250);
+                tbl.Columns[2].Width = new GridLength(100);
+                tbl.Columns[3].Width = new GridLength(75);
+
+            }
+
+            return tbl;
+
+        }
+        private Table highPointPrecisionTable(string db_table)
+        {
+            // get recipients
+            List<TeamAward> awards = SqliteDataAccess.gethighPointPrecisionAwards(db_table);
+            // create the table
+            Table tbl = new Table();
+
+            // if there are trophies
+            if (awards.Count > 0)
+            {
+
+                // create 4 columns and add them to the table's column collection
+                int numCols = 4;
+                for (int x = 0; x < numCols; x++)
+                {
+                    tbl.Columns.Add(new TableColumn());
+                }
+
+                // create and add and empty TableRowGroup to hold the table's rows
+                tbl.RowGroups.Add(new TableRowGroup());
+
+                // add the first (title) row
+                tbl.RowGroups[0].Rows.Add(new TableRow());
+
+                // alias the current row
+                TableRow currentRow = tbl.RowGroups[0].Rows[0];
+
+                // format the header row
+                currentRow.FontSize = 12;
+                currentRow.FontWeight = FontWeights.Bold;
+                currentRow.Background = Brushes.Gray;
+
+
+                // add content
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Class"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("# Routines"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+                for (int n = 0; n < currentRow.Cells.Count; n++)
+                {
+                    currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                    currentRow.Cells[n].BorderBrush = Brushes.Black;
+                    currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                }
+
+                int i = 1; //table row index
+                foreach (TeamAward award in awards)
+                {
+                    // add a new row to the table
+                    tbl.RowGroups[0].Rows.Add(new TableRow());
+                    currentRow = tbl.RowGroups[0].Rows[i];
+                    currentRow.FontSize = 12;
+                    currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Class))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.NumRoutines.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
+
+                    if (i % 2 == 0)
+                        currentRow.Background = Brushes.AntiqueWhite;
+
+                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    {
+                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        currentRow.Cells[n].BorderBrush = Brushes.Black;
+                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                    }
+
+                    i++;
+                }
+
+                tbl.Columns[0].Width = new GridLength(250);
+                tbl.Columns[1].Width = new GridLength(250);
+                tbl.Columns[2].Width = new GridLength(100);
+                tbl.Columns[3].Width = new GridLength(75);
+
+            }
+
+            return tbl;
+
+        }
+        private Table outstandingChoreographyTable(string db_table)
+        {
+            // get recipients
+            List<ChoreographyAward> awards = SqliteDataAccess.getoutstandingChoreographyAwards(db_table);
+            // create the table
+            Table tbl = new Table();
+
+            // if there are trophies
+            if (awards.Count > 0)
+            {
+
+                // create 4 columns and add them to the table's column collection
+                int numCols = 4;
+                for (int x = 0; x < numCols; x++)
+                {
+                    tbl.Columns.Add(new TableColumn());
+                }
+
+                // create and add and empty TableRowGroup to hold the table's rows
+                tbl.RowGroups.Add(new TableRowGroup());
+
+                // add the first (title) row
+                tbl.RowGroups[0].Rows.Add(new TableRow());
+
+                // alias the current row
+                TableRow currentRow = tbl.RowGroups[0].Rows[0];
+
+                // format the header row
+                currentRow.FontSize = 12;
+                currentRow.FontWeight = FontWeights.Bold;
+                currentRow.Background = Brushes.Gray;
+
+
+                // add content
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Category"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+                for (int n = 0; n < currentRow.Cells.Count; n++)
+                {
+                    currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                    currentRow.Cells[n].BorderBrush = Brushes.Black;
+                    currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                }
+
+                int i = 1; //table row index
+                foreach (ChoreographyAward award in awards)
+                {
+                    // add a new row to the table
+                    tbl.RowGroups[0].Rows.Add(new TableRow());
+                    currentRow = tbl.RowGroups[0].Rows[i];
+                    currentRow.FontSize = 12;
+                    currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.EntryID.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Category))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
+
+                    if (i % 2 == 0)
+                        currentRow.Background = Brushes.AntiqueWhite;
+
+                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    {
+                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        currentRow.Cells[n].BorderBrush = Brushes.Black;
+                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                    }
+
+                    i++;
+                }
+
+                tbl.Columns[0].Width = new GridLength(75);
+                tbl.Columns[1].Width = new GridLength(250);
+                tbl.Columns[2].Width = new GridLength(100);
+                tbl.Columns[3].Width = new GridLength(75);
+
+            }
+
+            return tbl;
+
+        }
+
     }
 
 }
