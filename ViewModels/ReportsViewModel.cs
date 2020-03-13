@@ -576,6 +576,39 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(outstandingChoreographyTable(db_table));
             #endregion
 
+            #region Best In Category
+            // Best In Category
+            p = new Paragraph(new Run("Best In Category"));
+            p.FontSize = 16;
+            p.Foreground = Brushes.Wheat;
+            p.Background = Brushes.Brown;
+            p.FontWeight = FontWeights.Bold;
+            p.TextAlignment = TextAlignment.Left;
+            p.Padding = new Thickness(5, 5, 0, 5);
+            blk.Blocks.Add(p);
+
+            p = new Paragraph(new Run("Awarded to Teams and Officers with the highest score in a category."));
+            p.FontSize = 14;
+            p.Foreground = Brushes.Gray;
+            p.Padding = new Thickness(3, 0, 0, 3);
+            blk.Blocks.Add(p);
+
+            p = new Paragraph(new Run("Must score 90 or higher to qualify."));
+            p.FontSize = 12;
+            p.Foreground = Brushes.Gray;
+            p.Padding = new Thickness(3, 0, 0, 3);
+            blk.Blocks.Add(p);
+
+            string vClass = "Studio";
+            blk.Blocks.Add(bestInClassTable(vClass,db_table));
+
+            vClass = "MiddleSchool";
+            blk.Blocks.Add(bestInClassTable(vClass, db_table));
+
+            vClass = "School";
+            blk.Blocks.Add(bestInClassTable(vClass, db_table));
+            #endregion
+
             return blk;
 
         }
@@ -1804,6 +1837,102 @@ namespace TSD_Comp_Tabulator.ViewModels
 
         }
 
+        private Table bestInClassTable(string vClass, string db_table)
+        {
+            // get recipients
+            List<BestInClassAward> awards = SqliteDataAccess.getBestInClass(vClass,db_table);
+            // create the table
+            Table tbl = new Table();
+
+            // if there are trophies
+            if (awards.Count > 0)
+            {
+
+                // create 4 columns and add them to the table's column collection
+                int numCols = 4;
+                for (int x = 0; x < numCols; x++)
+                {
+                    tbl.Columns.Add(new TableColumn());
+                }
+
+                // create and add and empty TableRowGroup to hold the table's rows
+                tbl.RowGroups.Add(new TableRowGroup());
+
+                // Class:
+                Paragraph p = new Paragraph(new Run(vClass+"s"));
+                p.FontSize = 16;
+                p.Foreground = Brushes.Blue;
+                p.FontWeight = FontWeights.Bold;
+
+                // add the class header to the table
+                TableRow header_row = new TableRow();
+                TableCell header_cell = new TableCell(p);
+                header_cell.ColumnSpan = 4;
+                header_cell.Padding = new Thickness(0, 0, 0, 10);
+                header_row.Cells.Add(header_cell);
+                tbl.RowGroups[0].Rows.Add(header_row);
+
+                // add the first (title) row
+                tbl.RowGroups[0].Rows.Add(new TableRow());
+
+                // alias the current row
+                TableRow currentRow = tbl.RowGroups[0].Rows[1];
+
+                // format the header row
+                currentRow.FontSize = 12;
+                currentRow.FontWeight = FontWeights.Bold;
+                currentRow.Background = Brushes.Gray;
+
+
+                // add content
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Category"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+                for (int n = 0; n < currentRow.Cells.Count; n++)
+                {
+                    currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                    currentRow.Cells[n].BorderBrush = Brushes.Black;
+                    currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                }
+
+                int i = 2; //table row index
+                foreach (BestInClassAward award in awards)
+                {
+                    // add a new row to the table
+                    tbl.RowGroups[0].Rows.Add(new TableRow());
+                    currentRow = tbl.RowGroups[0].Rows[i];
+                    currentRow.FontSize = 12;
+                    currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Category))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.EntryID.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
+
+                    if (i % 2 == 0)
+                        currentRow.Background = Brushes.AntiqueWhite;
+
+                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    {
+                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        currentRow.Cells[n].BorderBrush = Brushes.Black;
+                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                    }
+
+                    i++;
+                }
+
+                tbl.Columns[0].Width = new GridLength(250);
+                tbl.Columns[1].Width = new GridLength(100);
+                tbl.Columns[2].Width = new GridLength(75);
+                tbl.Columns[3].Width = new GridLength(75);
+
+            }
+
+            return tbl;
+
+        }
     }
 
 }

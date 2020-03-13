@@ -490,5 +490,18 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
+        public static List<BestInClassAward> getBestInClass(string vClass,string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<BestInClassAward>(
+                    "SELECT StudioName,EntryID,Category,AvgScore " +
+                    "FROM " + db_table + "_" + vClass + "BestInCategory " +
+                    "WHERE AvgScore >= 90 " +
+                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
     }
 }
