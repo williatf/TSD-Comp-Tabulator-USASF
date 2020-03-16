@@ -6,7 +6,18 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TabControl >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Button Content="Print All" Height="37" 
+                    HorizontalAlignment="Left" 
+                    Margin="0,0,0,0"  
+                    VerticalAlignment="Top" Width="134"  
+                    x:Name="PrintAll_Click" />
+        </Grid>
+        <TabControl Grid.Row="1" >
             <TabItem Header="Solos">
                 <FlowDocumentScrollViewer Document="{Binding Solos}"/>
             </TabItem>
@@ -28,7 +39,12 @@
             <TabItem Header="Teams">
                 <FlowDocumentScrollViewer Document="{Binding Teams}"/>
             </TabItem>
-            <TabItem Header="Special"></TabItem>
+            <TabItem Header="Specialty">
+                <FlowDocumentScrollViewer Document="{Binding Specialty}"/>
+            </TabItem>
+            <TabItem Header="Champions">
+                <FlowDocumentScrollViewer Document="{Binding Champions}"/>
+            </TabItem>
         </TabControl>
 
     </Grid>

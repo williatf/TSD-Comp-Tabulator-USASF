@@ -514,5 +514,41 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
+        public static List<highPointPerformanceAward> getHighPointPerformanceAward()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<highPointPerformanceAward>(
+                    "SELECT EntryID,EntryType,RoutineTitle,StudioName,Class,Category,Round(Score/3.0,2) as AvgScore " +
+                    "FROM MasterDataReport WHERE Score = (SELECT MAX(Score) FROM MasterDataReport)", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<TeamAward> getAwardOfExcellenceAwards(string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT StudioName,Class,AvgScore " +
+                    "FROM " + db_table + "_Top " +
+                    "WHERE NumRoutines = 3 " +
+                    "ORDER BY AvgScore DESC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<TeamAward> getChampionAwards(string vClass, string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT StudioName,Class,AvgScore " +
+                    "FROM " + db_table + "_" + vClass + "Rank " +
+                    "WHERE Rank = 1 ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
     }
 }
