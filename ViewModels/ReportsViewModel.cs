@@ -1,7 +1,5 @@
 ﻿using Caliburn.Micro;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -13,29 +11,29 @@ namespace TSD_Comp_Tabulator.ViewModels
     public class ReportsViewModel : Screen
     {
 
-        private FlowDocument _solos;
-        private FlowDocument _duets;
-        private FlowDocument _trios;
-        private FlowDocument _ensembles;
-        private FlowDocument _socials;
-        private FlowDocument _officers;
-        private FlowDocument _teams;
-        private FlowDocument _specialty;
-        private FlowDocument _champions;
+        private FlowDocument _solos = new FlowDocument();
+        private FlowDocument _duets = new FlowDocument();
+        private FlowDocument _trios = new FlowDocument();
+        private FlowDocument _ensembles = new FlowDocument();
+        private FlowDocument _socials = new FlowDocument();
+        private FlowDocument _officers = new FlowDocument();
+        private FlowDocument _teams = new FlowDocument();
+        private FlowDocument _specialty = new FlowDocument();
+        private FlowDocument _champions = new FlowDocument();
         private List<string> list;
         private List<string> classList;
 
         public ReportsViewModel()
         {
-            _solos = generateSolos();
-            _duets = generateDuets();
-            _trios = generateTrios();
-            _ensembles = generateEnsembles();
-            _socials = generateSocials();
-            _officers = generateOfficers();
-            _teams = generateTeams();
-            _specialty = generateSpecialty();
-            _champions = generateChampions();
+            generateSolos(_solos);
+            generateDuets(_duets);
+            generateTrios(_trios);
+            generateEnsembles(_ensembles);
+            generateSocials(_socials);
+            generateOfficers(_officers);
+            generateTeams(_teams);
+            generateSpecialty(_specialty);
+            generateChampions(_champions);
         }
 
         public FlowDocument Solos
@@ -84,19 +82,18 @@ namespace TSD_Comp_Tabulator.ViewModels
 
         }
 
-        private FlowDocument generateSolos()
+        private FlowDocument generateSolos(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Solo Trophies"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.Margin = new Thickness(0, 0, 0, 0);
             fd.Blocks.Add(p);
 
             // Description
             p = new Paragraph(new Run("Highest Scores at top!!\n\n" +
-                "Top 3 scores within each age group, for both Studios and Schools.\n\n" +
                 "Only the top 5 performers should receive trophies. In a tie situation, all tied competitors would receive the same award.  For example, if there is a tie between two dancers for 1st runner up, both dancers would receive 1st runner up trophies, you would skip 2nd runner up, and the next dancer would receive the 3rd runner up trophy."
                 )
             );
@@ -148,14 +145,14 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
-        private FlowDocument generateDuets()
+        private FlowDocument generateDuets(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Duet Trophies"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             // Description
@@ -209,14 +206,14 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
-        private FlowDocument generateTrios()
+        private FlowDocument generateTrios(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Trio Trophies"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             // Description
@@ -270,14 +267,14 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
-        private FlowDocument generateEnsembles()
+        private FlowDocument generateEnsembles(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Ensemble Trophies"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             // Description
@@ -366,14 +363,14 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
-        private FlowDocument generateSocials()
+        private FlowDocument generateSocials(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Social Officer Trophies"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             // Description
@@ -399,42 +396,42 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
-        private FlowDocument generateOfficers()
+        private FlowDocument generateOfficers(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Dance Officer Line Awards"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             fd.Blocks.Add(officer_and_team_Awards("Officer"));
 
             return fd;
         }
-        private FlowDocument generateTeams()
+        private FlowDocument generateTeams(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Team Awards"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             fd.Blocks.Add(officer_and_team_Awards("Team"));
 
             return fd;
         }
-        private FlowDocument generateSpecialty()
+        private FlowDocument generateSpecialty(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Specialty Awards"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             #region High Point Performance
@@ -519,14 +516,14 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
-        private FlowDocument generateChampions()
+        private FlowDocument generateChampions(FlowDocument fd)
         {
-            FlowDocument fd = new FlowDocument();
             fd.PagePadding = new Thickness(50);
 
             // Title
             Paragraph p = new Paragraph(new Run("Overall Grand Champion Awards"));
-            p.FontSize = 18;
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
             fd.Blocks.Add(p);
 
             p = new Paragraph(new Run("Awarded to the Officer Lines and Teams receiving the highest average total score for 3 routines."));
@@ -898,6 +895,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -995,6 +993,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1003,8 +1002,8 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             tbl.Columns[0].Width = new GridLength(75);
             tbl.Columns[1].Width = new GridLength(75);
-            tbl.Columns[2].Width = new GridLength(250);
-            tbl.Columns[3].Width = new GridLength(250);
+            tbl.Columns[2].Width = new GridLength(200);
+            tbl.Columns[3].Width = new GridLength(200);
             tbl.Columns[4].Width = new GridLength(75);
 
             return tbl;
@@ -1092,6 +1091,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1100,8 +1100,8 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             tbl.Columns[0].Width = new GridLength(75);
             tbl.Columns[1].Width = new GridLength(75);
-            tbl.Columns[2].Width = new GridLength(250);
-            tbl.Columns[3].Width = new GridLength(250);
+            tbl.Columns[2].Width = new GridLength(200);
+            tbl.Columns[3].Width = new GridLength(200);
             tbl.Columns[4].Width = new GridLength(75);
 
             return tbl;
@@ -1189,6 +1189,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1197,8 +1198,8 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             tbl.Columns[0].Width = new GridLength(75);
             tbl.Columns[1].Width = new GridLength(75);
-            tbl.Columns[2].Width = new GridLength(250);
-            tbl.Columns[3].Width = new GridLength(250);
+            tbl.Columns[2].Width = new GridLength(200);
+            tbl.Columns[3].Width = new GridLength(200);
             tbl.Columns[4].Width = new GridLength(75);
 
             return tbl;
@@ -1286,6 +1287,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1367,6 +1369,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1449,6 +1452,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1531,6 +1535,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1613,6 +1618,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1695,6 +1701,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1777,6 +1784,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1859,6 +1867,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -1941,6 +1950,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -2023,6 +2033,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -2121,15 +2132,16 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
                 }
 
-                tbl.Columns[0].Width = new GridLength(250);
+                tbl.Columns[0].Width = new GridLength(200);
                 tbl.Columns[1].Width = new GridLength(100);
                 tbl.Columns[2].Width = new GridLength(75);
-                tbl.Columns[3].Width = new GridLength(250);
+                tbl.Columns[3].Width = new GridLength(200);
                 tbl.Columns[4].Width = new GridLength(75);
 
             }
@@ -2202,6 +2214,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -2290,18 +2303,19 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
                         currentRow.Cells[n].TextAlignment = TextAlignment.Left;
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
                 }
 
-                tbl.Columns[0].Width = new GridLength(75);
-                tbl.Columns[1].Width = new GridLength(100);
-                tbl.Columns[2].Width = new GridLength(200);
-                tbl.Columns[3].Width = new GridLength(200);
-                tbl.Columns[4].Width = new GridLength(100);
-                tbl.Columns[5].Width = new GridLength(100);
-                tbl.Columns[6].Width = new GridLength(75);
+                tbl.Columns[0].Width = new GridLength(60);
+                tbl.Columns[1].Width = new GridLength(80);
+                tbl.Columns[2].Width = new GridLength(150);
+                tbl.Columns[3].Width = new GridLength(150);
+                tbl.Columns[4].Width = new GridLength(80);
+                tbl.Columns[5].Width = new GridLength(80);
+                tbl.Columns[6].Width = new GridLength(60);
 
             }
 
@@ -2373,6 +2387,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                         currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                         currentRow.Cells[n].BorderBrush = Brushes.Black;
                         currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
@@ -2445,6 +2460,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                     currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
                     currentRow.Cells[n].BorderBrush = Brushes.Black;
                     currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                    currentRow.Cells[n].TextAlignment = TextAlignment.Left;
                 }
 
                 int i = 2; //table row index
@@ -2486,21 +2502,21 @@ namespace TSD_Comp_Tabulator.ViewModels
         {
 
             FlowDocument doc = new FlowDocument();
+            doc.PagePadding = new Thickness(50);
 
-            AddDocument(_solos, doc);
-            AddDocument(_duets, doc);
-            AddDocument(_trios, doc);
-            AddDocument(_ensembles, doc);
-            AddDocument(_socials, doc);
-            AddDocument(_officers, doc);
-            AddDocument(_teams, doc);
-            AddDocument(_specialty, doc);
-            AddDocument(_champions, doc);
+            generateSolos(doc);
+            generateDuets(doc);
+            generateTrios(doc);
+            generateEnsembles(doc);
+            generateSocials(doc);
+            generateOfficers(doc);
+            generateTeams(doc);
+            generateSpecialty(doc);
+            generateChampions(doc);
 
 
-
-        // create print dialog
-        PrintDialog printDlg = new PrintDialog();
+            // create print dialog
+            PrintDialog printDlg = new PrintDialog();
             
             // create idocpaginator source from flow doc
             IDocumentPaginatorSource idpSource = doc;
@@ -2515,15 +2531,30 @@ namespace TSD_Comp_Tabulator.ViewModels
         /// </summary>
         /// <param name="from">From.</param>
         /// <param name="to">To.</param>
-        public static void AddDocument(FlowDocument from, FlowDocument to)
+        public static void AddDocument(FlowDocument from, FlowDocument to, bool addPageBreak)
         {
-            TextRange range = new TextRange(from.ContentStart, from.ContentEnd);
-            MemoryStream stream = new MemoryStream();
-            System.Windows.Markup.XamlWriter.Save(range, stream);
-            range.Save(stream, DataFormats.XamlPackage);
+            //TextRange range = new TextRange(from.ContentStart, from.ContentEnd);
+            //MemoryStream stream = new MemoryStream();
+            //System.Windows.Markup.XamlWriter.Save(range, stream);
+            //range.Save(stream, DataFormats.XamlPackage);
 
-            TextRange range2 = new TextRange(to.ContentEnd, to.ContentEnd);
-            range2.Load(stream, DataFormats.XamlPackage);
+            //TextRange range2 = new TextRange(to.ContentEnd, to.ContentEnd);
+            //range2.Load(stream, DataFormats.XamlPackage);
+
+            //if (addPageBreak)
+            //{
+            //    Section section = new Section();
+            //    section.BreakPageBefore = true;
+            //    section.Blocks.Add(new Paragraph(new Run("\n")));
+            //    to.Blocks.Add(section);
+            //}
+
+            BlockCollection blocks = from.Blocks;
+            foreach (Block block in blocks)
+            {
+                to.Blocks.Add(block);
+            } 
+
         }
     }
 
