@@ -6,12 +6,13 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="TSDance Tabulator" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="TSDance Comp Tabulator" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="/TSD Comp Tabulator;component/Images/trend_setters_dance_logo_icon_cMW_icon.ico">
     <!-- Menu -->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="289*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -20,7 +21,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Column="1" Grid.Row="1">
+        <DockPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
             <!--<Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header ="_Score Routines"  />
@@ -55,7 +56,7 @@
                 </RibbonTab>
             </Ribbon>
         </DockPanel>
-        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.Row="2"/>
+        <ContentControl x:Name="ActiveItem" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"/>
 
     </Grid>
 

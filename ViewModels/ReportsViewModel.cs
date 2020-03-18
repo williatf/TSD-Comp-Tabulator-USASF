@@ -666,7 +666,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             p.Padding = new Thickness(5, 5, 0, 5);
             blk.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Awarded to Teams and Officers receiving an average technique score of 22 or higher on 3 routines."));
+            p = new Paragraph(new Run("Awarded to Teams and Officers receiving an average technique score of 23 or higher on 3 routines."));
             p.FontSize = 14;
             p.Foreground = Brushes.Gray;
             p.Padding = new Thickness(3, 0, 0, 3);
@@ -706,7 +706,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             p.Padding = new Thickness(5, 5, 0, 5);
             blk.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Awarded to Teams and Officers receiving an average precision score of 22 or higher on 3 routines."));
+            p = new Paragraph(new Run("Awarded to Teams and Officers receiving an average precision score of 23 or higher on 3 routines."));
             p.FontSize = 14;
             p.Foreground = Brushes.Gray;
             p.Padding = new Thickness(3, 0, 0, 3);
@@ -746,7 +746,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             p.Padding = new Thickness(5, 5, 0, 5);
             blk.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Awarded to the Teams and Officers receiving an average choreography score of 22 or higher for any routine entered."));
+            p = new Paragraph(new Run("Awarded to the Teams and Officers receiving an average choreography score of 23 or higher for any routine entered."));
             p.FontSize = 14;
             p.Foreground = Brushes.Gray;
             p.Padding = new Thickness(3, 0, 0, 3);

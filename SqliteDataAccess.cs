@@ -425,7 +425,7 @@ namespace TSD_Comp_Tabulator
                     "SELECT StudioName,Class,NumRoutines,AvgTech as AvgScore FROM " +
                     "( SELECT StudioName,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
                     "WHERE NumRoutines = 3 " +
-                    "AND AvgTech >= 22 ) " +
+                    "AND AvgTech >= 23 ) " +
                     "WHERE rank > 1 " +
                     "ORDER BY StudioName ASC ", new DynamicParameters()
                 );
@@ -455,7 +455,7 @@ namespace TSD_Comp_Tabulator
                     "SELECT StudioName,Class,NumRoutines,AvgPrec as AvgScore FROM " +
                     "( SELECT StudioName,Class,NumRoutines,AvgPrec,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgPrec DESC) as rank FROM " + db_table + "_Prec " +
                     "WHERE NumRoutines = 3 " +
-                    "AND AvgPrec >= 22 ) " +
+                    "AND AvgPrec >= 23 ) " +
                     "WHERE rank > 1 " +
                     "ORDER BY StudioName ASC ", new DynamicParameters()
                 );
@@ -484,7 +484,7 @@ namespace TSD_Comp_Tabulator
                 var output = cnn.Query<ChoreographyAward>(
                     "SELECT EntryID, StudioName,Category,AvgChor as AvgScore " +
                     "FROM " + db_table + "_Score " +
-                    "WHERE AvgScore >= 22 " +
+                    "WHERE AvgScore >= 23 " +
                     "ORDER BY StudioName ASC ", new DynamicParameters()
                 );
                 return output.ToList();
