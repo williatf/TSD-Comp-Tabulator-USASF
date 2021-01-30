@@ -41,6 +41,13 @@
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </RibbonApplicationMenuItem>
+                        <RibbonApplicationMenuItem Header="Save Database" ImageSource="..\Images\save.png" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="ExportDB"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </RibbonApplicationMenuItem>
                     </RibbonApplicationMenu>
                 </Ribbon.ApplicationMenu>
                 <!-- Ribbon Tab #1 Tabulation -->

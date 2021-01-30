@@ -130,23 +130,23 @@ namespace TSD_Comp_Tabulator
 
                 // create the insert command
                 adaptor.InsertCommand = new SQLiteCommand("INSERT INTO MasterDataReport (" +
-                    "StartTime," +
-                    "EntryId," +
-                    "EntryType," +
-                    "Category," +
-                    "Class," +
-                    "Participants," +
-                    "StudioName," +
-                    "RoutineTitle" +
+                        "StartTime," +
+                        "EntryId," +
+                        "EntryType," +
+                        "Category," +
+                        "Class," +
+                        "Participants," +
+                        "StudioName," +
+                        "RoutineTitle" +
                     ") VALUES (" +
-                    ":startTime, " +
-                    ":entryId, " +
-                    ":entryType, " +
-                    ":category, " +
-                    ":class, " +
-                    ":participants, " +
-                    ":studioName, " +
-                    ":routineTitle" +
+                        ":startTime, " +
+                        ":entryId, " +
+                        ":entryType, " +
+                        ":category, " +
+                        ":class, " +
+                        ":participants, " +
+                        ":studioName, " +
+                        ":routineTitle" +
                     ")",
                     cnn
                 );
