@@ -118,6 +118,10 @@ namespace TSD_Comp_Tabulator.ViewModels
         public void ExportDB()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "Routines"; // default filename
+            saveFileDialog.DefaultExt = ".db"; // default extension
+            saveFileDialog.Filter = "Databases (.db)|*.db"; // filters files by extension
+
             if (saveFileDialog.ShowDialog() == true)
             {
                 string filename = saveFileDialog.FileName;
@@ -125,7 +129,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                 string dbFile = new System.Uri(
                     System.IO.Path.GetDirectoryName(path)
                     ).LocalPath + @"\Routines.db";
-                System.IO.File.Copy(dbFile, filename);
+                System.IO.File.Copy(dbFile, filename, true); // overwriting is allowed
 
             }
         }
