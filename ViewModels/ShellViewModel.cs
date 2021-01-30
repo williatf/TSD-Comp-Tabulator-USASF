@@ -114,5 +114,20 @@ namespace TSD_Comp_Tabulator.ViewModels
             }
 
         }
+
+        public void ExportDB()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string filename = saveFileDialog.FileName;
+                string path = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+                string dbFile = new System.Uri(
+                    System.IO.Path.GetDirectoryName(path)
+                    ).LocalPath + @"\Routines.db";
+                System.IO.File.Copy(dbFile, filename);
+
+            }
+        }
     }
 }
