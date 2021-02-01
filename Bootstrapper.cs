@@ -16,7 +16,7 @@ namespace TSD_Comp_Tabulator
 
         private async Task CheckForUpdates()
         {
-            using (var manager = new UpdateManager(@"http://tttkjk.com/Releases"))
+            using (var manager = new UpdateManager(@"http://tttkjk.com/TSDTabulator/Releases"))
             {
                 await manager.UpdateApp();
             }
