@@ -21,6 +21,7 @@ namespace TSD_Comp_Tabulator.Models
         public int EntryID { get; set; }
         public string StudioName { get; set; }
         public string Category { get; set; }
+        public string Class { get; set; }
         public string AvgScore { get; set; }
     }
 

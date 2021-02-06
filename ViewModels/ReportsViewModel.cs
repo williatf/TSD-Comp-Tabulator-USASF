@@ -1978,7 +1978,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             {
 
                 // create 4 columns and add them to the table's column collection
-                int numCols = 4;
+                int numCols = 5;
                 for (int x = 0; x < numCols; x++)
                 {
                     tbl.Columns.Add(new TableColumn());
@@ -2002,6 +2002,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                 // add content
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Class"))));
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Category"))));
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
 
@@ -2022,6 +2023,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                     currentRow.FontWeight = FontWeights.Normal;
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.EntryID.ToString()))));
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Class))));
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Category))));
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
 
@@ -2041,8 +2043,9 @@ namespace TSD_Comp_Tabulator.ViewModels
 
                 tbl.Columns[0].Width = new GridLength(75);
                 tbl.Columns[1].Width = new GridLength(250);
-                tbl.Columns[2].Width = new GridLength(100);
-                tbl.Columns[3].Width = new GridLength(75);
+                tbl.Columns[2].Width = new GridLength(200);
+                tbl.Columns[3].Width = new GridLength(100);
+                tbl.Columns[4].Width = new GridLength(75);
 
             }
 

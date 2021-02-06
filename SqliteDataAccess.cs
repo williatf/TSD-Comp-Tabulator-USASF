@@ -365,10 +365,11 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<TeamAward>(
                     "SELECT StudioName,Class,NumRoutines,AvgScore " +
-                    "FROM " + db_table + "_Top " +
+                    "FROM " + db_table + "_Top t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines < 3 " +
                     "AND AvgScore >= 85 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -379,11 +380,12 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<TeamAward>(
                     "SELECT StudioName,Class,NumRoutines,AvgScore " +
-                    "FROM " + db_table + "_Top " +
+                    "FROM " + db_table + "_Top t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines = 3 " +
                     "AND AvgScore >= 85 " +
                     "AND AvgScore < 90 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -394,11 +396,12 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<TeamAward>(
                     "SELECT StudioName,Class,NumRoutines,AvgScore " +
-                    "FROM " + db_table + "_Top " +
+                    "FROM " + db_table + "_Top t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines = 3 " +
                     "AND AvgScore >= 90 " +
                     "AND AvgScore < 95 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -409,11 +412,12 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<TeamAward>(
                     "SELECT StudioName,Class,NumRoutines,AvgScore " +
-                    "FROM " + db_table + "_Top " +
+                    "FROM " + db_table + "_Top t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines = 3 " +
                     "AND AvgScore >= 95 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
-                );
+                    "ORDER BY listOrder ASC, StudioName ASC ", new DynamicParameters()
+                 );
                 return output.ToList();
             }
         }
@@ -425,9 +429,10 @@ namespace TSD_Comp_Tabulator
                     "SELECT StudioName,Class,NumRoutines,AvgTech as AvgScore FROM " +
                     "( SELECT StudioName,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
                     "WHERE NumRoutines = 3 " +
-                    "AND AvgTech >= 23 ) " +
+                    "AND AvgTech >= 23 ) t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE rank > 1 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -440,9 +445,10 @@ namespace TSD_Comp_Tabulator
                     "SELECT StudioName,Class,NumRoutines,AvgTech as AvgScore FROM " +
                     "( SELECT StudioName,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
                     "WHERE NumRoutines = 3 " +
-                    "AND AvgTech >= 22 ) " +
+                    "AND AvgTech >= 22 ) t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE rank = 1 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -455,9 +461,10 @@ namespace TSD_Comp_Tabulator
                     "SELECT StudioName,Class,NumRoutines,AvgPrec as AvgScore FROM " +
                     "( SELECT StudioName,Class,NumRoutines,AvgPrec,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgPrec DESC) as rank FROM " + db_table + "_Prec " +
                     "WHERE NumRoutines = 3 " +
-                    "AND AvgPrec >= 23 ) " +
+                    "AND AvgPrec >= 23 ) t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE rank > 1 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -482,10 +489,11 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<ChoreographyAward>(
-                    "SELECT EntryID, StudioName,Category,AvgChor as AvgScore " +
-                    "FROM " + db_table + "_Score " +
+                    "SELECT EntryID, StudioName,Category,Class,AvgChor as AvgScore " +
+                    "FROM " + db_table + "_Score t " +
+                    "JOIN Classes c ON c.className = t.Class " +
                     "WHERE AvgScore >= 23 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC", new DynamicParameters()
                 );
                 return output.ToList();
             }
