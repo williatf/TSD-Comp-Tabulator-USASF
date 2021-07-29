@@ -9,11 +9,11 @@ Build Solution (very important)
 
 Go to <solution>/bin/Release folder - will need to copy all changed files into the NuGet Package
 
-NuGet Package Explorer
+NuGet Package Explorer - windows app
 * need to create/edit NuGet package
 * update version number
 * update/add changed or new files
-* save
+* save to "TSD Comp Tabulator" folder (not Releases folder)
 
 Open "Package Manager Console" - view, other windows, package manager console
 > Squirrel --releasify <NuGet Package Name>

@@ -138,8 +138,8 @@
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
                 <!-- Headers -->
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderStyle}" Text="Technique" />
-                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Choreography" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderStyle}" Text="Choreography" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Technique" />
                 <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource HeaderStyle}" Text="Execution" />
                 <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource HeaderStyle}" Text="Artistry" />
                 <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource HeaderStyle}" Text="Showmanship" />
@@ -153,9 +153,9 @@
                 <TextBlock Grid.Row="1" Grid.Column="6" Style="{StaticResource SmallStyle}" Text="Max 5" />
                 <!-- Judge 1 -->
                 <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 1" />
-                <TextBox Grid.Row="2" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
+                <TextBox Grid.Row="2" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -164,9 +164,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="2" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                <TextBox Grid.Row="2" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -224,7 +224,7 @@
                 <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 2" />
                 <TextBox Grid.Row="3" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -235,7 +235,7 @@
                 </TextBox>
                 <TextBox Grid.Row="3" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -293,7 +293,7 @@
                 <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 3" />
                 <TextBox Grid.Row="4" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Choreography" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -304,7 +304,7 @@
                 </TextBox>
                 <TextBox Grid.Row="4" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Technique" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="25"
@@ -360,8 +360,8 @@
                 <TextBlock Text="{Binding Path=J3Total, Mode=OneWay}" Grid.Row="4" Grid.Column="7" Style="{StaticResource DataStyle}" />
                 <!-- Totals -->
                 <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Totals" />
-                <TextBlock Text="{Binding Path=Technique, Mode=OneWay}" Grid.Row="5" Grid.Column="1" Style="{StaticResource DataStyle}"/>
-                <TextBlock Text="{Binding Path=Choreography, Mode=OneWay}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Choreography, Mode=OneWay}" Grid.Row="5" Grid.Column="1" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Technique, Mode=OneWay}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DataStyle}"/>
                 <TextBlock Text="{Binding Path=Execution, Mode=OneWay}" Grid.Row="5" Grid.Column="3" Style="{StaticResource DataStyle}"/>
                 <TextBlock Text="{Binding Path=Artistry, Mode=OneWay}" Grid.Row="5" Grid.Column="4" Style="{StaticResource DataStyle}"/>
                 <TextBlock Text="{Binding Path=Showmanship, Mode=OneWay}" Grid.Row="5" Grid.Column="5" Style="{StaticResource DataStyle}"/>

@@ -10,20 +10,20 @@ namespace TSD_Comp_Tabulator.Models
 {
     public class RoutineModel : INotifyPropertyChanged
     {
-        private double _j1technique;
         private double _j1choreography;
+        private double _j1technique;
         private double _j1execution;
         private double _j1artistry;
         private double _j1showmanship;
         private double _j1appearance;
-        private double _j2technique;
         private double _j2choreography;
+        private double _j2technique;
         private double _j2execution;
         private double _j2artistry;
         private double _j2showmanship;
         private double _j2appearance;
-        private double _j3technique;
         private double _j3choreography;
+        private double _j3technique;
         private double _j3execution;
         private double _j3artistry;
         private double _j3showmanship;
