@@ -72,21 +72,6 @@ namespace TSD_Comp_Tabulator.Models
         public string RoutineTitle { get; set; }
 
         // Judge 1 Scores
-        public double J1Technique
-        {
-            get 
-            { 
-                return this._j1technique; 
-            }
-            set
-            {
-                if (value != this._j1technique)
-                {
-                    this._j1technique = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
         public double J1Choreography
         {
             get
@@ -98,6 +83,21 @@ namespace TSD_Comp_Tabulator.Models
                 if (value != this._j1choreography)
                 {
                     this._j1choreography = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        public double J1Technique
+        {
+            get 
+            { 
+                return this._j1technique; 
+            }
+            set
+            {
+                if (value != this._j1technique)
+                {
+                    this._j1technique = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -164,21 +164,6 @@ namespace TSD_Comp_Tabulator.Models
         }
 
         // Judge 2 Scores
-        public double J2Technique
-        {
-            get
-            {
-                return this._j2technique;
-            }
-            set
-            {
-                if (value != this._j2technique)
-                {
-                    this._j2technique = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
         public double J2Choreography
         {
             get
@@ -190,6 +175,21 @@ namespace TSD_Comp_Tabulator.Models
                 if (value != this._j2choreography)
                 {
                     this._j2choreography = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        public double J2Technique
+        {
+            get
+            {
+                return this._j2technique;
+            }
+            set
+            {
+                if (value != this._j2technique)
+                {
+                    this._j2technique = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -256,21 +256,6 @@ namespace TSD_Comp_Tabulator.Models
         }
 
         // Judge 3 Scores
-        public double J3Technique
-        {
-            get
-            {
-                return this._j3technique;
-            }
-            set
-            {
-                if (value != this._j3technique)
-                {
-                    this._j3technique = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
         public double J3Choreography
         {
             get
@@ -282,6 +267,21 @@ namespace TSD_Comp_Tabulator.Models
                 if (value != this._j3choreography)
                 {
                     this._j3choreography = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+        public double J3Technique
+        {
+            get
+            {
+                return this._j3technique;
+            }
+            set
+            {
+                if (value != this._j3technique)
+                {
+                    this._j3technique = value;
                     NotifyPropertyChanged();
                 }
             }
