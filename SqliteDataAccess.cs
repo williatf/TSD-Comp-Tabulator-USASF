@@ -194,7 +194,7 @@ namespace TSD_Comp_Tabulator
                 var output = cnn.Query<Individual>(
                     "SELECT * FROM " + tbl + " " +
                     "WHERE Class='" + vClass + "' " +
-                    "AND Rank <= 5 " +
+                    "AND Rank <= 10 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
@@ -228,7 +228,7 @@ namespace TSD_Comp_Tabulator
                 var output = cnn.Query<Individual>(
                     "SELECT * FROM " + tbl + " " +
                     "WHERE Class LIKE '" + vClass + "%' " +
-                    "AND Rank <= 5 " +
+                    "AND Rank <= 10 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
@@ -262,7 +262,7 @@ namespace TSD_Comp_Tabulator
                 var output = cnn.Query<Individual>(
                     "SELECT * FROM " + tbl + " " +
                     "WHERE Class LIKE '" + vClass + "%' " +
-                    "AND Rank <= 5 " +
+                    "AND Rank <= 10 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
@@ -318,7 +318,7 @@ namespace TSD_Comp_Tabulator
                     "FROM ( SELECT *, rank() OVER ( PARTITION BY Class ORDER BY AvgScore DESC ) Rank FROM " + tbl + " " +
                     "WHERE EntryType = '" + entryType + "' ) " +
                     "WHERE Class = '" + vClass + "' " +
-                    "AND Rank <= 5 " +
+                    "AND Rank <= 10 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
@@ -353,7 +353,7 @@ namespace TSD_Comp_Tabulator
                     "SELECT EntryID,StudioName,RoutineTitle,AvgScore,Class,Rank " +
                     "FROM " + tbl + " " +
                     "WHERE Class = '" + vClass + "' " +
-                    "AND Rank <= 5 " +
+                    "AND Rank <= 10 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()
                 );
                 return output.ToList();
@@ -492,7 +492,7 @@ namespace TSD_Comp_Tabulator
                     "SELECT EntryID, StudioName,Category,Class,AvgChor as AvgScore " +
                     "FROM " + db_table + "_Score t " +
                     "JOIN Classes c ON c.className = t.Class " +
-                    "WHERE AvgScore >= 23 " +
+                    "WHERE AvgChor >= 23 " +
                     "ORDER BY listOrder ASC, StudioName ASC", new DynamicParameters()
                 );
                 return output.ToList();
