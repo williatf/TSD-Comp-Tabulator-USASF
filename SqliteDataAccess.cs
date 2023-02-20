@@ -354,7 +354,7 @@ namespace TSD_Comp_Tabulator
                     "FROM ( SELECT *, rank() OVER ( PARTITION BY Class ORDER BY AvgScore DESC ) Rank FROM " + tbl + " " +
                     "WHERE EntryType = '" + entryType + "' ) " +
                     "WHERE Category = '" + category + "' " +
-                    "AND Class " + vClass + " " +
+                    "AND Class LIKE '" + vClass + "%' " +
                     "AND Rank <= 10 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()
                 );

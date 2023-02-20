@@ -422,16 +422,19 @@ namespace TSD_Comp_Tabulator.ViewModels
                     }
 
                     // do schools by Middle School and High School
-                    // category = Public/Private School, Class = Middle School
-                    // and category = Public/Private School, Class != Middle School (everything not Middle School is High School)
                     category = "Public/Private School";
-                    string school = "= 'Middle School' ";
+                    string school = "Middle School";
 
-                    fd.Blocks.Add(ensembleTable_School(school, category, entryType));
+                    if (ensembleTable_School(school, category, entryType).IsInitialized)
+                    {
+                        fd.Blocks.Add(ensembleTable_School(school, category, entryType));
+                    }
+                    school = "High School";
 
-                    school = "!= 'Middle School' ";
-
-                    fd.Blocks.Add(ensembleTable_School(school, category, entryType));
+                    if (ensembleTable_School(school, category, entryType).IsInitialized)
+                    {
+                        fd.Blocks.Add(ensembleTable_School(school, category, entryType));
+                    }
 
                 }
             }
@@ -1300,18 +1303,8 @@ namespace TSD_Comp_Tabulator.ViewModels
                 // create and add and empty TableRowGroup to hold the table's rows
                 tbl.RowGroups.Add(new TableRowGroup());
 
-                string label;
-
-                if (vClass == "= 'Middle School' ")
-                {
-                    label = "Middle School";
-                } else
-                {
-                    label = "High School";
-                }
-
                 // Class:
-                Paragraph p = new Paragraph(new Run("Class: " + label));
+                Paragraph p = new Paragraph(new Run("Class: " + vClass));
                 p.FontSize = 16;
                 p.Foreground = Brushes.Blue;
                 p.FontWeight = FontWeights.Bold;
