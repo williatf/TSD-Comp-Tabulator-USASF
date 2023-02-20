@@ -2697,13 +2697,19 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             // create print dialog
             PrintDialog printDlg = new PrintDialog();
-            
-            // create idocpaginator source from flow doc
-            IDocumentPaginatorSource idpSource = doc;
-            doc.ColumnWidth = printDlg.PrintableAreaWidth;
 
-            // call printdocument method to send to printer
-            printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reports...");
+            if (printDlg.ShowDialog().Value)
+            {
+                doc.PageHeight = printDlg.PrintableAreaHeight;
+                doc.PageWidth = printDlg.PrintableAreaWidth;
+                doc.ColumnWidth = printDlg.PrintableAreaWidth;
+
+                // create idocpaginator source from flow doc
+                IDocumentPaginatorSource idpSource = doc;
+
+                // call printdocument method to send to printer
+                printDlg.PrintDocument(idpSource.DocumentPaginator, "Printing Reports...");
+            }
         }
 
         /// <summary>
