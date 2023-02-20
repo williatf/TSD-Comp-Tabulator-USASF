@@ -575,7 +575,7 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,AvgScore " +
+                    "SELECT StudioName,EntryType,AvgScore " +
                     "FROM " + db_table + "_Top " +
                     "WHERE NumRoutines = 3 " +
                     "ORDER BY AvgScore DESC ", new DynamicParameters()

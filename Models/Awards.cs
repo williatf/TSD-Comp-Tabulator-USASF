@@ -13,6 +13,7 @@ namespace TSD_Comp_Tabulator.Models
         public string Class { get; set; }
         public int Rank { get; set; }
         public int NumRoutines { get; set; }
+        public string EntryType { get; set; }
 
     }
 

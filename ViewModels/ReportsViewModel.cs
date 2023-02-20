@@ -574,21 +574,21 @@ namespace TSD_Comp_Tabulator.ViewModels
             p.Padding = new Thickness(3, 0, 0, 3);
             fd.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Officer Line Awards"));
-            p.FontSize = 14;
-            p.Foreground = Brushes.Blue;
-            p.Padding = new Thickness(3, 0, 0, 3);
-            fd.Blocks.Add(p);
+            //p = new Paragraph(new Run("Officer Line Awards"));
+            //p.FontSize = 14;
+            //p.Foreground = Brushes.Blue;
+            //p.Padding = new Thickness(3, 0, 0, 3);
+            //fd.Blocks.Add(p);
 
-            fd.Blocks.Add(awardOfExcellenceTable("Officer"));
+            fd.Blocks.Add(awardOfExcellenceTable("Officer_Team_Combined"));
 
-            p = new Paragraph(new Run("Team Awards"));
-            p.FontSize = 14;
-            p.Foreground = Brushes.Blue;
-            p.Padding = new Thickness(3, 0, 0, 3);
-            fd.Blocks.Add(p);
+            //p = new Paragraph(new Run("Team Awards"));
+            //p.FontSize = 14;
+            //p.Foreground = Brushes.Blue;
+            //p.Padding = new Thickness(3, 0, 0, 3);
+            //fd.Blocks.Add(p);
 
-            fd.Blocks.Add(awardOfExcellenceTable("Team"));
+            //fd.Blocks.Add(awardOfExcellenceTable("Team"));
 
             #endregion
 
@@ -2537,7 +2537,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 
                 // add content
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Class"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Type"))));
                 currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
 
                 for (int n = 0; n < currentRow.Cells.Count; n++)
@@ -2556,7 +2556,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                     currentRow.FontSize = 12;
                     currentRow.FontWeight = FontWeights.Normal;
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Class))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.EntryType))));
                     currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
 
                     if (i % 2 == 0)
