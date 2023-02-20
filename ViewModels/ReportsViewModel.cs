@@ -28,7 +28,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             generateSolos(_solos);
             generateDuets(_duets);
             generateTrios(_trios);
-            generateEnsembles(_ensembles);
+            generateEnsembles_new(_ensembles);
             generateSocials(_socials);
             generateOfficers(_officers);
             generateTeams(_teams);
@@ -358,6 +358,81 @@ namespace TSD_Comp_Tabulator.ViewModels
                     {
                         fd.Blocks.Add(ensembleTable(vClass, entryType));
                     }
+                }
+            }
+
+            return fd;
+        }
+        private FlowDocument generateEnsembles_new(FlowDocument fd)
+        {
+            fd.PagePadding = new Thickness(50);
+
+            // Title
+            Paragraph p = new Paragraph(new Run("Ensemble Trophies"));
+            p.FontSize = 24;
+            p.BreakPageBefore = true;
+            fd.Blocks.Add(p);
+
+            // Description
+            p = new Paragraph(new Run("Highest Scores at top!!\n\n" +
+                "Top 3 scores within each age group, for both Studios and Schools.\n\n" +
+                "Only the top 5 routines should receive trophies. In a tie situation, all tied routines would receive the same award."
+                )
+            );
+            p.FontSize = 12;
+            fd.Blocks.Add(p);
+
+            // Awards
+            // get ordered list of entry types
+            list = SqliteDataAccess.getEnsembleEntryTypes_new();
+
+            if (list.Count > 0)
+            {
+                //p = new Paragraph(new Run(category + "s"));
+                //p.FontSize = 16;
+                //p.Foreground = Brushes.Wheat;
+                //p.Background = Brushes.Brown;
+                //p.FontWeight = FontWeights.Bold;
+                //p.TextAlignment = TextAlignment.Left;
+                //p.Padding = new Thickness(5, 5, 0, 5);
+                //fd.Blocks.Add(p);
+
+                // loop over each ensemble entrytype
+                foreach (string entryType in list)
+                {
+
+                    p = new Paragraph(new Run("Entry Type: " + entryType));
+                    p.FontSize = 16;
+                    p.Foreground = Brushes.Brown;
+                    p.Background = Brushes.Wheat;
+                    p.FontWeight = FontWeights.SemiBold;
+                    p.TextAlignment = TextAlignment.Left;
+                    p.Padding = new Thickness(5, 5, 0, 5);
+                    fd.Blocks.Add(p);
+
+                    // do studios by Class
+                    string category = "Studio";
+
+                    classList = SqliteDataAccess.getEnsembleClasses(category, entryType);
+
+                    // loop over each class and print a table of results
+                    foreach (string vClass in classList)
+                    {
+                        fd.Blocks.Add(ensembleTable(vClass, entryType));
+                    }
+
+                    // do schools by Middle School and High School
+                    // category = Public/Private School, Class = Middle School
+                    // and category = Public/Private School, Class != Middle School (everything not Middle School is High School)
+                    category = "Public/Private School";
+                    string school = "= 'Middle School' ";
+
+                    fd.Blocks.Add(ensembleTable_School(school, category, entryType));
+
+                    school = "!= 'Middle School' ";
+
+                    fd.Blocks.Add(ensembleTable_School(school, category, entryType));
+
                 }
             }
 
@@ -1201,6 +1276,115 @@ namespace TSD_Comp_Tabulator.ViewModels
             tbl.Columns[2].Width = new GridLength(200);
             tbl.Columns[3].Width = new GridLength(200);
             tbl.Columns[4].Width = new GridLength(75);
+
+            return tbl;
+        }
+        private Table ensembleTable_School(string vClass, string category, string entryType)
+        {
+            // create the table
+            Table tbl = new Table();
+
+            // get trophies
+            List<Team> trophies = SqliteDataAccess.getEnsembleTrophies_Schools(vClass, category, entryType);
+
+            // if there are trophies
+            if (trophies.Count > 0)
+            {
+                // create 4 columns and add them to the table's column collection
+                int numCols = 5;
+                for (int x = 0; x < numCols; x++)
+                {
+                    tbl.Columns.Add(new TableColumn());
+                }
+
+                // create and add and empty TableRowGroup to hold the table's rows
+                tbl.RowGroups.Add(new TableRowGroup());
+
+                string label;
+
+                if (vClass == "= 'Middle School' ")
+                {
+                    label = "Middle School";
+                } else
+                {
+                    label = "High School";
+                }
+
+                // Class:
+                Paragraph p = new Paragraph(new Run("Class: " + label));
+                p.FontSize = 16;
+                p.Foreground = Brushes.Blue;
+                p.FontWeight = FontWeights.Bold;
+
+                // add the class header to the table
+                TableRow header_row = new TableRow();
+                TableCell header_cell = new TableCell(p);
+                header_cell.ColumnSpan = 5;
+                header_cell.Padding = new Thickness(0, 0, 0, 10);
+                header_row.Cells.Add(header_cell);
+                tbl.RowGroups[0].Rows.Add(header_row);
+
+                // add the first (title) row
+                tbl.RowGroups[0].Rows.Add(new TableRow());
+
+                // alias the current row
+                TableRow currentRow = tbl.RowGroups[0].Rows[1];
+
+                // format the header row
+                currentRow.FontSize = 12;
+                currentRow.FontWeight = FontWeights.Bold;
+                currentRow.Background = Brushes.Gray;
+
+
+                // add content
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Rank"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("StudioName"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Routine Title"))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+                for (int n = 0; n < currentRow.Cells.Count; n++)
+                {
+                    currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                    currentRow.Cells[n].BorderBrush = Brushes.Black;
+                    currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                }
+
+                int i = 2; //table row index
+                foreach (Team trophy in trophies)
+                {
+                    // add a new row to the table
+                    tbl.RowGroups[0].Rows.Add(new TableRow());
+                    currentRow = tbl.RowGroups[0].Rows[i];
+                    currentRow.FontSize = 12;
+                    currentRow.FontWeight = FontWeights.Normal;
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.Rank.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.EntryID.ToString()))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.StudioName))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.RoutineTitle))));
+                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(trophy.AvgScore))));
+
+                    if (i % 2 == 0)
+                        currentRow.Background = Brushes.AntiqueWhite;
+
+                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    {
+                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        currentRow.Cells[n].BorderBrush = Brushes.Black;
+                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
+                    }
+
+                    i++;
+                }
+
+                tbl.Columns[0].Width = new GridLength(75);
+                tbl.Columns[1].Width = new GridLength(75);
+                tbl.Columns[2].Width = new GridLength(200);
+                tbl.Columns[3].Width = new GridLength(200);
+                tbl.Columns[4].Width = new GridLength(75);
+
+            }
 
             return tbl;
         }

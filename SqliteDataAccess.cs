@@ -288,6 +288,26 @@ namespace TSD_Comp_Tabulator
                 return entryTypes;
             }
         }
+        public static List<string> getEnsembleEntryTypes_new()
+        {
+            List<string> entryTypes = new List<string>();
+
+            using (SQLiteConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
+                using (SQLiteCommand fmd = cnn.CreateCommand())
+                {
+                    fmd.CommandText = @"SELECT DISTINCT t.listOrder, e.EntryType FROM Ensembles e LEFT JOIN Types t ON e.EntryType = t.type ORDER BY t.listOrder";
+                    fmd.CommandType = CommandType.Text;
+                    SQLiteDataReader r = fmd.ExecuteReader();
+                    while (r.Read())
+                    {
+                        entryTypes.Add(Convert.ToString(r["EntryType"]));
+                    }
+                }
+                return entryTypes;
+            }
+        }
         public static List<string> getEnsembleClasses(string category, string entryType)
         {
             List<string> vClasses = new List<string>();
@@ -318,6 +338,23 @@ namespace TSD_Comp_Tabulator
                     "FROM ( SELECT *, rank() OVER ( PARTITION BY Class ORDER BY AvgScore DESC ) Rank FROM " + tbl + " " +
                     "WHERE EntryType = '" + entryType + "' ) " +
                     "WHERE Class = '" + vClass + "' " +
+                    "AND Rank <= 10 " +
+                    "ORDER BY Rank ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<Team> getEnsembleTrophies_Schools(string vClass, string category, string entryType)
+        {
+            string tbl = "Ensembles";
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Team>(
+                    "SELECT EntryID,StudioName,RoutineTitle,AvgScore,Class,Rank " +
+                    "FROM ( SELECT *, rank() OVER ( PARTITION BY Class ORDER BY AvgScore DESC ) Rank FROM " + tbl + " " +
+                    "WHERE EntryType = '" + entryType + "' ) " +
+                    "WHERE Category = '" + category + "' " +
+                    "AND Class " + vClass + " " +
                     "AND Rank <= 10 " +
                     "ORDER BY Rank ASC ", new DynamicParameters()
                 );
