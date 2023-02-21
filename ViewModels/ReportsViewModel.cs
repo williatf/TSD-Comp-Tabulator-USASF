@@ -884,7 +884,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             // Class:
-            p = new Paragraph(new Run("Studio and School Teams - Non-Elite"));
+            p = new Paragraph(new Run("Non-Elite"));
             p.FontSize = 16;
             p.Foreground = Brushes.Blue;
             p.FontWeight = FontWeights.Bold;
@@ -912,7 +912,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             //blk.Blocks.Add(p);
 
             // Class:
-            p = new Paragraph(new Run("Elite Teams"));
+            p = new Paragraph(new Run("Elite"));
             p.FontSize = 16;
             p.Foreground = Brushes.Blue;
             p.FontWeight = FontWeights.Bold;
