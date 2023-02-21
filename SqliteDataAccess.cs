@@ -401,7 +401,7 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgScore " +
                     "FROM " + db_table + "_Top t " +
                     "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines < 3 " +
@@ -416,7 +416,7 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgScore " +
                     "FROM " + db_table + "_Top t " +
                     "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines = 3 " +
@@ -432,7 +432,7 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgScore " +
                     "FROM " + db_table + "_Top t " +
                     "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines = 3 " +
@@ -448,7 +448,7 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgScore " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgScore " +
                     "FROM " + db_table + "_Top t " +
                     "JOIN Classes c ON c.className = t.Class " +
                     "WHERE NumRoutines = 3 " +
@@ -463,8 +463,8 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgTech as AvgScore FROM " +
-                    "( SELECT StudioName,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgTech as AvgScore FROM " +
+                    "( SELECT StudioName,EntryType,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
                     "WHERE NumRoutines = 3 " +
                     "AND AvgTech >= 23 ) t " +
                     "JOIN Classes c ON c.className = t.Class " +
@@ -479,8 +479,8 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgTech as AvgScore FROM " +
-                    "( SELECT StudioName,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgTech as AvgScore FROM " +
+                    "( SELECT StudioName,EntryType,Class,NumRoutines,AvgTech,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgTech DESC) as rank FROM " + db_table + "_Tech " +
                     "WHERE NumRoutines = 3 " +
                     "AND AvgTech >= 22 ) t " +
                     "JOIN Classes c ON c.className = t.Class " +
@@ -495,8 +495,8 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgPrec as AvgScore FROM " +
-                    "( SELECT StudioName,Class,NumRoutines,AvgPrec,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgPrec DESC) as rank FROM " + db_table + "_Prec " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgPrec as AvgScore FROM " +
+                    "( SELECT StudioName,EntryType,Class,NumRoutines,AvgPrec,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgPrec DESC) as rank FROM " + db_table + "_Prec " +
                     "WHERE NumRoutines = 3 " +
                     "AND AvgPrec >= 23 ) t " +
                     "JOIN Classes c ON c.className = t.Class " +
@@ -511,8 +511,8 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,NumRoutines,AvgPrec as AvgScore FROM " +
-                    "( SELECT StudioName,Class,NumRoutines,AvgPrec,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgPrec DESC) as rank FROM " + db_table + "_Prec " +
+                    "SELECT StudioName,EntryType,Class,NumRoutines,AvgPrec as AvgScore FROM " +
+                    "( SELECT StudioName,EntryType,Class,NumRoutines,AvgPrec,rank() OVER (PARTITION BY NumRoutines ORDER BY AvgPrec DESC) as rank FROM " + db_table + "_Prec " +
                     "WHERE NumRoutines = 3 " +
                     "AND AvgPrec >= 22 ) " +
                     "WHERE rank = 1 " +
@@ -526,11 +526,11 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<ChoreographyAward>(
-                    "SELECT EntryID, StudioName,Category,Class,AvgChor as AvgScore " +
+                    "SELECT EntryID, StudioName,EntryType,Category,Class,AvgChor as AvgScore " +
                     "FROM " + db_table + "_Score t " +
                     "JOIN Classes c ON c.className = t.Class " +
                     "WHERE AvgChor >= 23 " +
-                    "ORDER BY listOrder ASC, StudioName ASC", new DynamicParameters()
+                    "ORDER BY listOrder ASC, StudioName ASC, EntryType ASC", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -540,7 +540,7 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<BestInCategoryAward>(
-                    "SELECT StudioName,EntryID,RoutineTitle,Category,AvgScore " +
+                    "SELECT StudioName,EntryType,EntryID,RoutineTitle,Category,AvgScore " +
                     "FROM " + db_table + "_" + vClass + "BestInCategory " +
                     "WHERE AvgScore >= 90 " +
                     "ORDER BY StudioName ASC ", new DynamicParameters()
@@ -553,8 +553,19 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT Class,StudioName,AvgScore " +
+                    "SELECT Class,StudioName,EntryType,AvgScore " +
                     "FROM " + db_table + "_BestInClass ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<TeamAward> getBestInClassEliteAwards(string db_table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<TeamAward>(
+                    "SELECT Class,StudioName,EntryType,AvgScore " +
+                    "FROM " + db_table + "_EliteBestInClass ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -588,7 +599,7 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<TeamAward>(
-                    "SELECT StudioName,Class,AvgScore " +
+                    "SELECT StudioName,EntryType,Class,AvgScore " +
                     "FROM " + db_table + "_" + vClass + "Rank " +
                     "WHERE Rank = 1 ", new DynamicParameters()
                 );
