@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSD Comp Tabulator", "TSD Comp Tabulator.csproj", "{043FBF87-B9D0-48CA-9FDE-6A837A0C61BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSD Comp Tabulator USASF", "TSD Comp Tabulator USASF.csproj", "{043FBF87-B9D0-48CA-9FDE-6A837A0C61BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

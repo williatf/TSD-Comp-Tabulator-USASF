@@ -175,7 +175,7 @@
     <Resource Include="Images\exit.png" />
     <Resource Include="Images\trend_setters_dance_logo_icon_cMW_icon.ico" />
     <Resource Include="Images\save.png" />
-    <Content Include="Routines.db">
+    <Content Include="Routines-USASF.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
