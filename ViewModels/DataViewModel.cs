@@ -9,16 +9,21 @@ namespace TSD_Comp_Tabulator.ViewModels
 {
     public class DataViewModel : Screen
     {
+
         private RoutineModel _selectedRoutine;
         private double _j1Total;
         private double _j2Total;
         private double _j3Total;
-        private double _appearance;
-        private double _technique;
-        private double _choreography;
-        private double _execution;
-        private double _artistry;
-        private double _showmanship;
+        private double _communication;
+        private double _suitability;
+        private double _composition;
+        private double _staging;
+        private double _difficulty;
+        private double _synchronization;
+        private double _spacing;
+        private double _movement;
+        private double _dynamics;
+        private double _elements;
         private double _total;
         private bool _tb_isEnabled = false;
 
@@ -47,33 +52,48 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 NotifyOfPropertyChange(() => SelectedRoutine);
                 NotifyOfPropertyChange(() => CurrentRoutine);
-                NotifyOfPropertyChange(() => J1Appearance);
-                NotifyOfPropertyChange(() => J1Technique);
-                NotifyOfPropertyChange(() => J1Choreography);
-                NotifyOfPropertyChange(() => J1Execution);
-                NotifyOfPropertyChange(() => J1Artistry);
-                NotifyOfPropertyChange(() => J1Showmanship);
+                NotifyOfPropertyChange(() => J1Communication);
+                NotifyOfPropertyChange(() => J1Suitability);
+                NotifyOfPropertyChange(() => J1Composition);
+                NotifyOfPropertyChange(() => J1Staging);
+                NotifyOfPropertyChange(() => J1Difficulty);
+                NotifyOfPropertyChange(() => J1Synchronization);
+                NotifyOfPropertyChange(() => J1Spacing);
+                NotifyOfPropertyChange(() => J1Movement);
+                NotifyOfPropertyChange(() => J1Dynamics);
+                NotifyOfPropertyChange(() => J1Elements);
                 NotifyOfPropertyChange(() => J1Total);
-                NotifyOfPropertyChange(() => J2Appearance);
-                NotifyOfPropertyChange(() => J2Technique);
-                NotifyOfPropertyChange(() => J2Choreography);
-                NotifyOfPropertyChange(() => J2Execution);
-                NotifyOfPropertyChange(() => J2Artistry);
-                NotifyOfPropertyChange(() => J2Showmanship);
+                NotifyOfPropertyChange(() => J2Communication);
+                NotifyOfPropertyChange(() => J2Suitability);
+                NotifyOfPropertyChange(() => J2Composition);
+                NotifyOfPropertyChange(() => J2Staging);
+                NotifyOfPropertyChange(() => J2Difficulty);
+                NotifyOfPropertyChange(() => J2Synchronization);
+                NotifyOfPropertyChange(() => J2Spacing);
+                NotifyOfPropertyChange(() => J2Movement);
+                NotifyOfPropertyChange(() => J2Dynamics);
+                NotifyOfPropertyChange(() => J2Elements);
                 NotifyOfPropertyChange(() => J2Total);
-                NotifyOfPropertyChange(() => J3Appearance);
-                NotifyOfPropertyChange(() => J3Technique);
-                NotifyOfPropertyChange(() => J3Choreography);
-                NotifyOfPropertyChange(() => J3Execution);
-                NotifyOfPropertyChange(() => J3Artistry);
-                NotifyOfPropertyChange(() => J3Showmanship);
-                NotifyOfPropertyChange(() => J3Total);
-                NotifyOfPropertyChange(() => Appearance);
-                NotifyOfPropertyChange(() => Technique);
-                NotifyOfPropertyChange(() => Choreography);
-                NotifyOfPropertyChange(() => Execution);
-                NotifyOfPropertyChange(() => Artistry);
-                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => J3Communication);
+                NotifyOfPropertyChange(() => J3Suitability);
+                NotifyOfPropertyChange(() => J3Composition);
+                NotifyOfPropertyChange(() => J3Staging);
+                NotifyOfPropertyChange(() => J3Difficulty);
+                NotifyOfPropertyChange(() => J3Synchronization);
+                NotifyOfPropertyChange(() => J3Spacing);
+                NotifyOfPropertyChange(() => J3Movement);
+                NotifyOfPropertyChange(() => J3Dynamics);
+                NotifyOfPropertyChange(() => J3Elements);
+                NotifyOfPropertyChange(() => Communication);
+                NotifyOfPropertyChange(() => Suitability);
+                NotifyOfPropertyChange(() => Composition);
+                NotifyOfPropertyChange(() => Staging);
+                NotifyOfPropertyChange(() => Difficulty);
+                NotifyOfPropertyChange(() => Synchronization);
+                NotifyOfPropertyChange(() => Spacing);
+                NotifyOfPropertyChange(() => Movement);
+                NotifyOfPropertyChange(() => Dynamics);
+                NotifyOfPropertyChange(() => Elements);
                 NotifyOfPropertyChange(() => Total);
                 NotifyOfPropertyChange(() => tb_IsEnabled);
             }
@@ -104,24 +124,40 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             // update the properties in the datatable
             // uses INotifyPropertyChanged in the model
-            _selectedRoutine.J1Appearance = CurrentRoutine.J1Appearance;
-            _selectedRoutine.J1Artistry = CurrentRoutine.J1Artistry;
-            _selectedRoutine.J1Choreography = CurrentRoutine.J1Choreography;
-            _selectedRoutine.J1Execution = CurrentRoutine.J1Execution;
-            _selectedRoutine.J1Showmanship = CurrentRoutine.J1Showmanship;
-            _selectedRoutine.J1Technique = CurrentRoutine.J1Technique;
-            _selectedRoutine.J2Appearance = CurrentRoutine.J2Appearance;
-            _selectedRoutine.J2Artistry = CurrentRoutine.J2Artistry;
-            _selectedRoutine.J2Choreography = CurrentRoutine.J2Choreography;
-            _selectedRoutine.J2Execution = CurrentRoutine.J2Execution;
-            _selectedRoutine.J2Showmanship = CurrentRoutine.J2Showmanship;
-            _selectedRoutine.J2Technique = CurrentRoutine.J2Technique;
-            _selectedRoutine.J3Appearance = CurrentRoutine.J3Appearance;
-            _selectedRoutine.J3Artistry = CurrentRoutine.J3Artistry;
-            _selectedRoutine.J3Choreography = CurrentRoutine.J3Choreography;
-            _selectedRoutine.J3Execution = CurrentRoutine.J3Execution;
-            _selectedRoutine.J3Showmanship = CurrentRoutine.J3Showmanship;
-            _selectedRoutine.J3Technique = CurrentRoutine.J3Technique;
+            _selectedRoutine.J1Communication = CurrentRoutine.J1Communication;
+            _selectedRoutine.J1Suitability = CurrentRoutine.J1Suitability;
+            _selectedRoutine.J1Composition = CurrentRoutine.J1Composition;
+            _selectedRoutine.J1Staging = CurrentRoutine.J1Staging;
+            _selectedRoutine.J1Difficulty = CurrentRoutine.J1Difficulty;
+            _selectedRoutine.J1Synchronization = CurrentRoutine.J1Synchronization;
+            _selectedRoutine.J1Spacing = CurrentRoutine.J1Spacing;
+            _selectedRoutine.J1Movement = CurrentRoutine.J1Movement;
+            _selectedRoutine.J1Dynamics = CurrentRoutine.J1Dynamics;
+            _selectedRoutine.J1Elements = CurrentRoutine.J1Elements;
+
+            _selectedRoutine.J2Communication = CurrentRoutine.J2Communication;
+            _selectedRoutine.J2Suitability = CurrentRoutine.J2Suitability;
+            _selectedRoutine.J2Composition = CurrentRoutine.J2Composition;
+            _selectedRoutine.J2Staging = CurrentRoutine.J2Staging;
+            _selectedRoutine.J2Difficulty = CurrentRoutine.J2Difficulty;
+            _selectedRoutine.J2Synchronization = CurrentRoutine.J2Synchronization;
+            _selectedRoutine.J2Spacing = CurrentRoutine.J2Spacing;
+            _selectedRoutine.J2Movement = CurrentRoutine.J2Movement;
+            _selectedRoutine.J2Dynamics = CurrentRoutine.J2Dynamics;
+            _selectedRoutine.J2Elements = CurrentRoutine.J2Elements;
+
+            _selectedRoutine.J3Communication = CurrentRoutine.J3Communication;
+            _selectedRoutine.J3Suitability = CurrentRoutine.J3Suitability;
+            _selectedRoutine.J3Composition = CurrentRoutine.J3Composition;
+            _selectedRoutine.J3Staging = CurrentRoutine.J3Staging;
+            _selectedRoutine.J3Difficulty = CurrentRoutine.J3Difficulty;
+            _selectedRoutine.J3Synchronization = CurrentRoutine.J3Synchronization;
+            _selectedRoutine.J3Spacing = CurrentRoutine.J3Spacing;
+            _selectedRoutine.J3Movement = CurrentRoutine.J3Movement;
+            _selectedRoutine.J3Dynamics = CurrentRoutine.J3Dynamics;
+            _selectedRoutine.J3Elements = CurrentRoutine.J3Elements;
+
+
 
             // reset the selected routine to clear out the form
             SelectedRoutine = null;
@@ -134,7 +170,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             NotifyOfPropertyChange(() => Routines);
         }
 
-        public double J1Appearance
+        public double J1Communication
         {
             get
             {
@@ -144,19 +180,19 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J1Appearance;
+                    return CurrentRoutine.J1Communication;
                 }
             }
             set
             {
-                CurrentRoutine.J1Appearance = value;
+                CurrentRoutine.J1Communication = value;
                 NotifyOfPropertyChange(() => J1Total);
-                NotifyOfPropertyChange(() => Appearance);
+                NotifyOfPropertyChange(() => Communication);
                 NotifyOfPropertyChange(() => Total);
 
             }
         }
-        public double J1Technique
+        public double J1Suitability
         {
             get
             {
@@ -166,18 +202,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J1Technique;
+                    return CurrentRoutine.J1Suitability;
                 }
             }
             set
             {
-                CurrentRoutine.J1Technique = value;
+                CurrentRoutine.J1Suitability = value;
                 NotifyOfPropertyChange(() => J1Total);
-                NotifyOfPropertyChange(() => Technique);
+                NotifyOfPropertyChange(() => Suitability);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J1Choreography
+        public double J1Composition
         {
             get
             {
@@ -187,18 +223,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J1Choreography;
+                    return CurrentRoutine.J1Composition;
                 }
             }
             set
             {
-                CurrentRoutine.J1Choreography = value;
+                CurrentRoutine.J1Composition = value;
                 NotifyOfPropertyChange(() => J1Total);
-                NotifyOfPropertyChange(() => Choreography);
+                NotifyOfPropertyChange(() => Composition);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J1Execution
+        public double J1Staging
         {
             get
             {
@@ -208,18 +244,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J1Execution;
+                    return CurrentRoutine.J1Staging;
                 }
             }
             set
             {
-                CurrentRoutine.J1Execution = value;
+                CurrentRoutine.J1Staging = value;
                 NotifyOfPropertyChange(() => J1Total);
-                NotifyOfPropertyChange(() => Execution);
+                NotifyOfPropertyChange(() => Staging);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J1Artistry
+        public double J1Difficulty
         {
             get
             {
@@ -229,18 +265,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J1Artistry;
+                    return CurrentRoutine.J1Difficulty;
                 }
             }
             set
             {
-                CurrentRoutine.J1Artistry = value;
+                CurrentRoutine.J1Difficulty = value;
                 NotifyOfPropertyChange(() => J1Total);
-                NotifyOfPropertyChange(() => Artistry);
+                NotifyOfPropertyChange(() => Difficulty);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J1Showmanship
+        public double J1Synchronization
         {
             get
             {
@@ -250,14 +286,98 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J1Showmanship;
+                    return CurrentRoutine.J1Synchronization;
                 }
             }
             set
             {
-                CurrentRoutine.J1Showmanship = value;
+                CurrentRoutine.J1Synchronization = value;
                 NotifyOfPropertyChange(() => J1Total);
-                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => Synchronization);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J1Spacing
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J1Spacing;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J1Spacing = value;
+                NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Spacing);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J1Movement
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J1Movement;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J1Movement = value;
+                NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Movement);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J1Dynamics
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J1Dynamics;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J1Dynamics = value;
+                NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Dynamics);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J1Elements
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J1Elements;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J1Elements = value;
+                NotifyOfPropertyChange(() => J1Total);
+                NotifyOfPropertyChange(() => Elements);
                 NotifyOfPropertyChange(() => Total);
             }
         }
@@ -271,19 +391,23 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _j1Total = CurrentRoutine.J1Appearance;
-                    _j1Total += CurrentRoutine.J1Artistry;
-                    _j1Total += CurrentRoutine.J1Choreography;
-                    _j1Total += CurrentRoutine.J1Execution;
-                    _j1Total += CurrentRoutine.J1Showmanship;
-                    _j1Total += CurrentRoutine.J1Technique;
+                    _j1Total = CurrentRoutine.J1Communication;
+                    _j1Total += CurrentRoutine.J1Suitability;
+                    _j1Total += CurrentRoutine.J1Composition;
+                    _j1Total += CurrentRoutine.J1Staging;
+                    _j1Total += CurrentRoutine.J1Difficulty;
+                    _j1Total += CurrentRoutine.J1Synchronization;
+                    _j1Total += CurrentRoutine.J1Spacing;
+                    _j1Total += CurrentRoutine.J1Movement;
+                    _j1Total += CurrentRoutine.J1Dynamics;
+                    _j1Total += CurrentRoutine.J1Elements;
 
                     return _j1Total;
                 }
             }
         }
 
-        public double J2Appearance
+        public double J2Communication
         {
             get
             {
@@ -293,18 +417,40 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J2Appearance;
+                    return CurrentRoutine.J2Communication;
                 }
             }
             set
             {
-                CurrentRoutine.J2Appearance = value;
+                CurrentRoutine.J2Communication = value;
                 NotifyOfPropertyChange(() => J2Total);
-                NotifyOfPropertyChange(() => Appearance);
+                NotifyOfPropertyChange(() => Communication);
+                NotifyOfPropertyChange(() => Total);
+
+            }
+        }
+        public double J2Suitability
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J2Suitability;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J2Suitability = value;
+                NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Suitability);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J2Technique
+        public double J2Composition
         {
             get
             {
@@ -314,18 +460,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J2Technique;
+                    return CurrentRoutine.J2Composition;
                 }
             }
             set
             {
-                CurrentRoutine.J2Technique = value;
+                CurrentRoutine.J2Composition = value;
                 NotifyOfPropertyChange(() => J2Total);
-                NotifyOfPropertyChange(() => Technique);
+                NotifyOfPropertyChange(() => Composition);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J2Choreography
+        public double J2Staging
         {
             get
             {
@@ -335,18 +481,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J2Choreography;
+                    return CurrentRoutine.J2Staging;
                 }
             }
             set
             {
-                CurrentRoutine.J2Choreography = value;
+                CurrentRoutine.J2Staging = value;
                 NotifyOfPropertyChange(() => J2Total);
-                NotifyOfPropertyChange(() => Choreography);
+                NotifyOfPropertyChange(() => Staging);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J2Execution
+        public double J2Difficulty
         {
             get
             {
@@ -356,18 +502,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J2Execution;
+                    return CurrentRoutine.J2Difficulty;
                 }
             }
             set
             {
-                CurrentRoutine.J2Execution = value;
+                CurrentRoutine.J2Difficulty = value;
                 NotifyOfPropertyChange(() => J2Total);
-                NotifyOfPropertyChange(() => Execution);
+                NotifyOfPropertyChange(() => Difficulty);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J2Artistry
+        public double J2Synchronization
         {
             get
             {
@@ -377,18 +523,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J2Artistry;
+                    return CurrentRoutine.J2Synchronization;
                 }
             }
             set
             {
-                CurrentRoutine.J2Artistry = value;
+                CurrentRoutine.J2Synchronization = value;
                 NotifyOfPropertyChange(() => J2Total);
-                NotifyOfPropertyChange(() => Artistry);
+                NotifyOfPropertyChange(() => Synchronization);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J2Showmanship
+        public double J2Spacing
         {
             get
             {
@@ -398,14 +544,77 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J2Showmanship;
+                    return CurrentRoutine.J2Spacing;
                 }
             }
             set
             {
-                CurrentRoutine.J2Showmanship = value;
+                CurrentRoutine.J2Spacing = value;
                 NotifyOfPropertyChange(() => J2Total);
-                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => Spacing);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J2Movement
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J2Movement;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J2Movement = value;
+                NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Movement);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J2Dynamics
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J2Dynamics;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J2Dynamics = value;
+                NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Dynamics);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J2Elements
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J2Elements;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J2Elements = value;
+                NotifyOfPropertyChange(() => J2Total);
+                NotifyOfPropertyChange(() => Elements);
                 NotifyOfPropertyChange(() => Total);
             }
         }
@@ -419,19 +628,23 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _j2Total = CurrentRoutine.J2Appearance;
-                    _j2Total += CurrentRoutine.J2Artistry;
-                    _j2Total += CurrentRoutine.J2Choreography;
-                    _j2Total += CurrentRoutine.J2Execution;
-                    _j2Total += CurrentRoutine.J2Showmanship;
-                    _j2Total += CurrentRoutine.J2Technique;
+                    _j2Total = CurrentRoutine.J2Communication;
+                    _j2Total += CurrentRoutine.J2Suitability;
+                    _j2Total += CurrentRoutine.J2Composition;
+                    _j2Total += CurrentRoutine.J2Staging;
+                    _j2Total += CurrentRoutine.J2Difficulty;
+                    _j2Total += CurrentRoutine.J2Synchronization;
+                    _j2Total += CurrentRoutine.J2Spacing;
+                    _j2Total += CurrentRoutine.J2Movement;
+                    _j2Total += CurrentRoutine.J2Dynamics;
+                    _j2Total += CurrentRoutine.J2Elements;
 
                     return _j2Total;
                 }
             }
         }
 
-        public double J3Appearance
+        public double J3Communication
         {
             get
             {
@@ -441,18 +654,40 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J3Appearance;
+                    return CurrentRoutine.J3Communication;
                 }
             }
             set
             {
-                CurrentRoutine.J3Appearance = value;
+                CurrentRoutine.J3Communication = value;
                 NotifyOfPropertyChange(() => J3Total);
-                NotifyOfPropertyChange(() => Appearance);
+                NotifyOfPropertyChange(() => Communication);
+                NotifyOfPropertyChange(() => Total);
+
+            }
+        }
+        public double J3Suitability
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J3Suitability;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J3Suitability = value;
+                NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Suitability);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J3Technique
+        public double J3Composition
         {
             get
             {
@@ -462,18 +697,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J3Technique;
+                    return CurrentRoutine.J3Composition;
                 }
             }
             set
             {
-                CurrentRoutine.J3Technique = value;
+                CurrentRoutine.J3Composition = value;
                 NotifyOfPropertyChange(() => J3Total);
-                NotifyOfPropertyChange(() => Technique);
+                NotifyOfPropertyChange(() => Composition);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J3Choreography
+        public double J3Staging
         {
             get
             {
@@ -483,18 +718,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J3Choreography;
+                    return CurrentRoutine.J3Staging;
                 }
             }
             set
             {
-                CurrentRoutine.J3Choreography = value;
+                CurrentRoutine.J3Staging = value;
                 NotifyOfPropertyChange(() => J3Total);
-                NotifyOfPropertyChange(() => Choreography);
+                NotifyOfPropertyChange(() => Staging);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J3Execution
+        public double J3Difficulty
         {
             get
             {
@@ -504,18 +739,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J3Execution;
+                    return CurrentRoutine.J3Difficulty;
                 }
             }
             set
             {
-                CurrentRoutine.J3Execution = value;
+                CurrentRoutine.J3Difficulty = value;
                 NotifyOfPropertyChange(() => J3Total);
-                NotifyOfPropertyChange(() => Execution);
+                NotifyOfPropertyChange(() => Difficulty);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J3Artistry
+        public double J3Synchronization
         {
             get
             {
@@ -525,18 +760,18 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J3Artistry;
+                    return CurrentRoutine.J3Synchronization;
                 }
             }
             set
             {
-                CurrentRoutine.J3Artistry = value;
+                CurrentRoutine.J3Synchronization = value;
                 NotifyOfPropertyChange(() => J3Total);
-                NotifyOfPropertyChange(() => Artistry);
+                NotifyOfPropertyChange(() => Synchronization);
                 NotifyOfPropertyChange(() => Total);
             }
         }
-        public double J3Showmanship
+        public double J3Spacing
         {
             get
             {
@@ -546,14 +781,77 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    return CurrentRoutine.J3Showmanship;
+                    return CurrentRoutine.J3Spacing;
                 }
             }
             set
             {
-                CurrentRoutine.J3Showmanship = value;
+                CurrentRoutine.J3Spacing = value;
                 NotifyOfPropertyChange(() => J3Total);
-                NotifyOfPropertyChange(() => Showmanship);
+                NotifyOfPropertyChange(() => Spacing);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J3Movement
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J3Movement;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J3Movement = value;
+                NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Movement);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J3Dynamics
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J3Dynamics;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J3Dynamics = value;
+                NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Dynamics);
+                NotifyOfPropertyChange(() => Total);
+            }
+        }
+        public double J3Elements
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.J3Elements;
+                }
+            }
+            set
+            {
+                CurrentRoutine.J3Elements = value;
+                NotifyOfPropertyChange(() => J3Total);
+                NotifyOfPropertyChange(() => Elements);
                 NotifyOfPropertyChange(() => Total);
             }
         }
@@ -567,19 +865,23 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _j3Total = CurrentRoutine.J3Appearance;
-                    _j3Total += CurrentRoutine.J3Artistry;
-                    _j3Total += CurrentRoutine.J3Choreography;
-                    _j3Total += CurrentRoutine.J3Execution;
-                    _j3Total += CurrentRoutine.J3Showmanship;
-                    _j3Total += CurrentRoutine.J3Technique;
+                    _j3Total = CurrentRoutine.J3Communication;
+                    _j3Total += CurrentRoutine.J3Suitability;
+                    _j3Total += CurrentRoutine.J3Composition;
+                    _j3Total += CurrentRoutine.J3Staging;
+                    _j3Total += CurrentRoutine.J3Difficulty;
+                    _j3Total += CurrentRoutine.J3Synchronization;
+                    _j3Total += CurrentRoutine.J3Spacing;
+                    _j3Total += CurrentRoutine.J3Movement;
+                    _j3Total += CurrentRoutine.J3Dynamics;
+                    _j3Total += CurrentRoutine.J3Elements;
 
                     return _j3Total;
                 }
             }
         }
 
-        public double Appearance
+        public double Communication
         {
             get
             {
@@ -589,15 +891,15 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _appearance = CurrentRoutine.J1Appearance;
-                    _appearance += CurrentRoutine.J2Appearance;
-                    _appearance += CurrentRoutine.J3Appearance;
+                    _communication = CurrentRoutine.J1Communication;
+                    _communication += CurrentRoutine.J2Communication;
+                    _communication += CurrentRoutine.J3Communication;
 
-                    return _appearance;
+                    return _communication;
                 }
             }
         }
-        public double Technique
+        public double Synchronization
         {
             get 
             {
@@ -607,15 +909,15 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _technique = CurrentRoutine.J1Technique;
-                    _technique += CurrentRoutine.J2Technique;
-                    _technique += CurrentRoutine.J3Technique;
+                    _synchronization = CurrentRoutine.J1Synchronization;
+                    _synchronization += CurrentRoutine.J2Synchronization;
+                    _synchronization += CurrentRoutine.J3Synchronization;
 
-                    return _technique;
+                    return _synchronization;
                 }
             }
         }
-        public double Choreography
+        public double Composition
         {
             get 
             {
@@ -625,15 +927,15 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _choreography = CurrentRoutine.J1Choreography;
-                    _choreography += CurrentRoutine.J2Choreography;
-                    _choreography += CurrentRoutine.J3Choreography;
+                    _composition = CurrentRoutine.J1Composition;
+                    _composition += CurrentRoutine.J2Composition;
+                    _composition += CurrentRoutine.J3Composition;
 
-                    return _choreography;
+                    return _composition;
                 }
             }
         }
-        public double Execution
+        public double Staging
         {
             get
             {
@@ -643,15 +945,15 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _execution = CurrentRoutine.J1Execution;
-                    _execution += CurrentRoutine.J2Execution;
-                    _execution += CurrentRoutine.J3Execution;
+                    _staging = CurrentRoutine.J1Staging;
+                    _staging += CurrentRoutine.J2Staging;
+                    _staging += CurrentRoutine.J3Staging;
 
-                    return _execution;
+                    return _staging;
                 }
             }
         }
-        public double Artistry
+        public double Suitability
         {
             get
             {
@@ -661,15 +963,15 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _artistry = CurrentRoutine.J1Artistry;
-                    _artistry += CurrentRoutine.J2Artistry;
-                    _artistry += CurrentRoutine.J3Artistry;
+                    _suitability = CurrentRoutine.J1Suitability;
+                    _suitability += CurrentRoutine.J2Suitability;
+                    _suitability += CurrentRoutine.J3Suitability;
 
-                    return _artistry;
+                    return _suitability;
                 }
             }
         }
-        public double Showmanship
+        public double Difficulty
         {
             get
             {
@@ -679,11 +981,83 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _showmanship = CurrentRoutine.J1Showmanship;
-                    _showmanship += CurrentRoutine.J2Showmanship;
-                    _showmanship += CurrentRoutine.J3Showmanship;
+                    _difficulty = CurrentRoutine.J1Difficulty;
+                    _difficulty += CurrentRoutine.J2Difficulty;
+                    _difficulty += CurrentRoutine.J3Difficulty;
 
-                    return _showmanship;
+                    return _difficulty;
+                }
+            }
+        }
+        public double Spacing
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _spacing = CurrentRoutine.J1Spacing;
+                    _spacing += CurrentRoutine.J2Spacing;
+                    _spacing += CurrentRoutine.J3Spacing;
+
+                    return _spacing;
+                }
+            }
+        }
+        public double Movement
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _movement = CurrentRoutine.J1Movement;
+                    _movement += CurrentRoutine.J2Movement;
+                    _movement += CurrentRoutine.J3Movement;
+
+                    return _movement;
+                }
+            }
+        }
+        public double Dynamics
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _dynamics = CurrentRoutine.J1Dynamics;
+                    _dynamics += CurrentRoutine.J2Dynamics;
+                    _dynamics += CurrentRoutine.J3Dynamics;
+
+                    return _dynamics;
+                }
+            }
+        }
+        public double Elements
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _elements = CurrentRoutine.J1Elements;
+                    _elements += CurrentRoutine.J2Elements;
+                    _elements += CurrentRoutine.J3Elements;
+
+                    return _elements;
                 }
             }
         }
