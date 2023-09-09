@@ -5,13 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:validators="clr-namespace:MyValidators"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1100">
     <UserControl.Resources>
         <Style x:Key="HeaderStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Crimson" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0 0 5 0" />
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Crimson" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 0 0" />
+            <Setter Property="FontSize" Value="10" />
         </Style>
         <Style x:Key="TextBoxStyle" TargetType="TextBox">
             <Setter Property="Width" Value="90" />
@@ -68,7 +75,7 @@
             <TextBlock Padding="3"
                     FontSize="18"
                     HorizontalAlignment="Center" 
-                    Text="Trendsetters Dance Competition Tabulator" 
+                    Text="Trendsetters Dance Competition Tabulator - USASF Version" 
                     VerticalAlignment="Top" />
             <!-- Item Details -->
             <Grid >
@@ -125,6 +132,10 @@
                     <ColumnDefinition MinWidth="20" Width="auto" />
                     <ColumnDefinition MinWidth="20" Width="auto" />
                     <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
+                    <ColumnDefinition MinWidth="20" Width="auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
@@ -138,57 +149,65 @@
                     <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
                 <!-- Headers -->
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource HeaderStyle}" Text="Choreography" />
-                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Technique" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource HeaderStyle}" Text="Execution" />
-                <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource HeaderStyle}" Text="Artistry" />
-                <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource HeaderStyle}" Text="Showmanship" />
-                <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource HeaderStyle}" Text="Appearance" />
-                <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource HeaderStyle}" Text="Total" />
-                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource SmallStyle}" Text="Max 25" />
-                <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource SmallStyle}" Text="Max 25" />
-                <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource SmallStyle}" Text="Max 25" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelStyle}" Text="Communication" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource LabelStyle}" Text="Suitability" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource LabelStyle}" Text="Composition" />
+                <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource LabelStyle}" Text="Staging" />
+                <TextBlock Grid.Row="0" Grid.Column="5" Style="{StaticResource LabelStyle}" Text="Difficulty" />
+                <TextBlock Grid.Row="0" Grid.Column="6" Style="{StaticResource LabelStyle}" Text="Synchronization" />
+                <TextBlock Grid.Row="0" Grid.Column="7" Style="{StaticResource LabelStyle}" Text="Spacing" />
+                <TextBlock Grid.Row="0" Grid.Column="8" Style="{StaticResource LabelStyle}" Text="Movement" />
+                <TextBlock Grid.Row="0" Grid.Column="9" Style="{StaticResource LabelStyle}" Text="Dynamics" />
+                <TextBlock Grid.Row="0" Grid.Column="10" Style="{StaticResource LabelStyle}" Text="Elements" />
+                <TextBlock Grid.Row="0" Grid.Column="11" Style="{StaticResource LabelStyle}" Text="Total" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource SmallStyle}" Text="Max 10" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource SmallStyle}" Text="Max 10" />
+                <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource SmallStyle}" Text="Max 10" />
                 <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource SmallStyle}" Text="Max 10" />
                 <TextBlock Grid.Row="1" Grid.Column="5" Style="{StaticResource SmallStyle}" Text="Max 10" />
-                <TextBlock Grid.Row="1" Grid.Column="6" Style="{StaticResource SmallStyle}" Text="Max 5" />
+                <TextBlock Grid.Row="1" Grid.Column="6" Style="{StaticResource SmallStyle}" Text="Max 10" />
+                <TextBlock Grid.Row="1" Grid.Column="7" Style="{StaticResource SmallStyle}" Text="Max 10" />
+                <TextBlock Grid.Row="1" Grid.Column="8" Style="{StaticResource SmallStyle}" Text="Max 10" />
+                <TextBlock Grid.Row="1" Grid.Column="9" Style="{StaticResource SmallStyle}" Text="Max 10" />
+                <TextBlock Grid.Row="1" Grid.Column="10" Style="{StaticResource SmallStyle}" Text="Max 10" />
                 <!-- Judge 1 -->
                 <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 1" />
                 <TextBox Grid.Row="2" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Communication" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
                 <TextBox Grid.Row="2" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Suitability" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
                 <TextBox Grid.Row="2" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Execution" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Composition" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
                 <TextBox Grid.Row="2" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Artistry" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Staging" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -199,7 +218,7 @@
                 </TextBox>
                 <TextBox Grid.Row="2" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Showmanship" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Difficulty" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -210,54 +229,98 @@
                 </TextBox>
                 <TextBox Grid.Row="2" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J1Appearance" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J1Synchronization" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="5"
-                                    ErrorMessage="Max is 5!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBlock Text="{Binding Path=J1Total, Mode=OneWay}" Grid.Row="2" Grid.Column="7" Style="{StaticResource DataStyle}" />
+                <TextBox Grid.Row="2" Grid.Column="7" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J1Spacing" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="2" Grid.Column="8" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J1Movement" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="2" Grid.Column="9" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J1Dynamics" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="2" Grid.Column="10" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J1Elements" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="{Binding Path=J1Total, Mode=OneWay}" Grid.Row="2" Grid.Column="11" Style="{StaticResource DataStyle}" />
                 <!-- Judge 2 -->
                 <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 2" />
                 <TextBox Grid.Row="3" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Communication" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="3" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                <TextBox Grid.Row="3" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Suitability" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
                 <TextBox Grid.Row="3" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Execution" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Composition" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
                 <TextBox Grid.Row="3" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Artistry" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Staging" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -268,7 +331,7 @@
                 </TextBox>
                 <TextBox Grid.Row="3" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Showmanship" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Difficulty" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -279,54 +342,98 @@
                 </TextBox>
                 <TextBox Grid.Row="3" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J2Appearance" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J2Synchronization" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="5"
-                                    ErrorMessage="Max is 5!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBlock Text="{Binding Path=J2Total, Mode=OneWay}" Grid.Row="3" Grid.Column="7" Style="{StaticResource DataStyle}" />
+                <TextBox Grid.Row="3" Grid.Column="7" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J2Spacing" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="3" Grid.Column="8" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J2Movement" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="3" Grid.Column="9" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J2Dynamics" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="3" Grid.Column="10" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J2Elements" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="{Binding Path=J2Total, Mode=OneWay}" Grid.Row="3" Grid.Column="11" Style="{StaticResource DataStyle}" />
                 <!-- Judge 3 -->
                 <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 3" />
                 <TextBox Grid.Row="4" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Choreography" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Communication" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBox Grid.Row="4" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                <TextBox Grid.Row="4" Grid.Column="2" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Technique" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Suitability" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
                 <TextBox Grid.Row="4" Grid.Column="3" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Execution" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Composition" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="25"
-                                    ErrorMessage="Max is 25!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
                 <TextBox Grid.Row="4" Grid.Column="4" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Artistry" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Staging" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -337,7 +444,7 @@
                 </TextBox>
                 <TextBox Grid.Row="4" Grid.Column="5" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Showmanship" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Difficulty" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
                                     MaxValue="10"
@@ -348,25 +455,73 @@
                 </TextBox>
                 <TextBox Grid.Row="4" Grid.Column="6" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
-                        <Binding Path="J3Appearance" UpdateSourceTrigger="LostFocus">
+                        <Binding Path="J3Synchronization" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="5"
-                                    ErrorMessage="Max is 5!" />
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBlock Text="{Binding Path=J3Total, Mode=OneWay}" Grid.Row="4" Grid.Column="7" Style="{StaticResource DataStyle}" />
+                <TextBox Grid.Row="4" Grid.Column="7" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J3Spacing" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="4" Grid.Column="8" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J3Movement" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="4" Grid.Column="9" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J3Dynamics" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox Grid.Row="4" Grid.Column="10" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="J3Elements" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="{Binding Path=J3Total, Mode=OneWay}" Grid.Row="4" Grid.Column="11" Style="{StaticResource DataStyle}" />
                 <!-- Totals -->
                 <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Totals" />
-                <TextBlock Text="{Binding Path=Choreography, Mode=OneWay}" Grid.Row="5" Grid.Column="1" Style="{StaticResource DataStyle}"/>
-                <TextBlock Text="{Binding Path=Technique, Mode=OneWay}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DataStyle}"/>
-                <TextBlock Text="{Binding Path=Execution, Mode=OneWay}" Grid.Row="5" Grid.Column="3" Style="{StaticResource DataStyle}"/>
-                <TextBlock Text="{Binding Path=Artistry, Mode=OneWay}" Grid.Row="5" Grid.Column="4" Style="{StaticResource DataStyle}"/>
-                <TextBlock Text="{Binding Path=Showmanship, Mode=OneWay}" Grid.Row="5" Grid.Column="5" Style="{StaticResource DataStyle}"/>
-                <TextBlock Text="{Binding Path=Appearance, Mode=OneWay}" Grid.Row="5" Grid.Column="6" Style="{StaticResource DataStyle}"/>
-                <TextBlock Text="{Binding Path=Total, Mode=OneWay}" Grid.Row="5" Grid.Column="7" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Communication, Mode=OneWay}" Grid.Row="5" Grid.Column="1" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Suitability, Mode=OneWay}" Grid.Row="5" Grid.Column="2" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Composition, Mode=OneWay}" Grid.Row="5" Grid.Column="3" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Staging, Mode=OneWay}" Grid.Row="5" Grid.Column="4" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Difficulty, Mode=OneWay}" Grid.Row="5" Grid.Column="5" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Synchronization, Mode=OneWay}" Grid.Row="5" Grid.Column="6" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Spacing, Mode=OneWay}" Grid.Row="5" Grid.Column="7" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Movement, Mode=OneWay}" Grid.Row="5" Grid.Column="8" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Dynamics, Mode=OneWay}" Grid.Row="5" Grid.Column="9" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Elements, Mode=OneWay}" Grid.Row="5" Grid.Column="10" Style="{StaticResource DataStyle}"/>
+                <TextBlock Text="{Binding Path=Total, Mode=OneWay}" Grid.Row="5" Grid.Column="11" Style="{StaticResource DataStyle}"/>
                 <Grid Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75" />
