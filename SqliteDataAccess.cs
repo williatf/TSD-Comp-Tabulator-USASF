@@ -24,85 +24,133 @@ namespace TSD_Comp_Tabulator
 
         public static void SubmitRoutineScores(RoutineModel routine)
         {
-            double Score = routine.J1Appearance
-                + routine.J1Artistry
-                + routine.J1Choreography
-                + routine.J1Execution
-                + routine.J1Showmanship
-                + routine.J1Technique
-                + routine.J2Appearance
-                + routine.J2Artistry
-                + routine.J2Choreography
-                + routine.J2Execution
-                + routine.J2Showmanship
-                + routine.J2Technique
-                + routine.J3Appearance
-                + routine.J3Artistry
-                + routine.J3Choreography
-                + routine.J3Execution
-                + routine.J3Showmanship
-                + routine.J3Technique;
+            double Score = routine.J1Communication
+                + routine.J1Suitability
+                + routine.J1Composition
+                + routine.J1Staging
+                + routine.J1Difficulty
+                + routine.J1Synchronization
+                + routine.J1Spacing
+                + routine.J1Movement
+                + routine.J1Dynamics
+                + routine.J1Elements
+                + routine.J2Communication
+                + routine.J2Suitability
+                + routine.J2Composition
+                + routine.J2Staging
+                + routine.J2Difficulty
+                + routine.J2Synchronization
+                + routine.J2Spacing
+                + routine.J2Movement
+                + routine.J2Dynamics
+                + routine.J2Elements
+                + routine.J3Communication
+                + routine.J3Suitability
+                + routine.J3Composition
+                + routine.J3Staging
+                + routine.J3Difficulty
+                + routine.J3Synchronization
+                + routine.J3Spacing
+                + routine.J3Movement
+                + routine.J3Dynamics
+                + routine.J3Elements;
 
-            double Appearance = routine.J1Appearance + routine.J2Appearance + routine.J3Appearance;
-            double Artistry   = routine.J1Artistry + routine.J2Artistry + routine.J3Artistry;
-            double Choreography = routine.J1Choreography + routine.J2Choreography + routine.J3Choreography;
-            double Execution = routine.J1Execution + routine.J2Execution + routine.J3Execution;
-            double Showmanship = routine.J1Showmanship + routine.J2Showmanship + routine.J3Showmanship;
-            double Technique = routine.J1Technique + routine.J2Technique + routine.J3Technique;
+            double Communication = routine.J1Communication + routine.J2Communication + routine.J3Communication;
+            double Suitability   = routine.J1Suitability + routine.J2Suitability + routine.J3Suitability;
+            double Composition = routine.J1Composition + routine.J2Composition + routine.J3Composition;
+            double Staging = routine.J1Staging + routine.J2Staging + routine.J3Staging;
+            double Difficulty = routine.J1Difficulty + routine.J2Difficulty + routine.J3Difficulty;
+            double Synchronization = routine.J1Synchronization + routine.J2Synchronization + routine.J3Synchronization;
+            double Spacing = routine.J1Spacing + routine.J2Spacing + routine.J3Spacing;
+            double Movement = routine.J1Movement + routine.J2Movement + routine.J3Movement;
+            double Dynamics = routine.J1Dynamics + routine.J2Dynamics + routine.J3Dynamics;
+            double Elements = routine.J1Elements + routine.J2Elements + routine.J3Elements;
 
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("UPDATE MasterDataReport SET (" +
-                    "J1Technique," +
-                    "J1Choreography," +
-                    "J1Execution," +
-                    "J1Artistry," +
-                    "J1Showmanship," +
-                    "J1Appearance," +
-                    "J2Technique," +
-                    "J2Choreography," +
-                    "J2Execution," +
-                    "J2Artistry," +
-                    "J2Showmanship," +
-                    "J2Appearance," +
-                    "J3Technique," +
-                    "J3Choreography," +
-                    "J3Execution," +
-                    "J3Artistry," +
-                    "J3Showmanship," +
-                    "J3Appearance," +
-                    "Technique," +
-                    "Choreography," +
-                    "Execution," +
-                    "Artistry," +
-                    "Showmanship," +
-                    "Appearance," +
+                    "J1Synchronization," +
+                    "J1Composition," +
+                    "J1Staging," +
+                    "J1Suitability," +
+                    "J1Difficulty," +
+                    "J1Communication," +
+                    "J1Spacing," +
+                    "J1Movement," +
+                    "J1Dynamics," +
+                    "J1Elements," +
+                    "J2Synchronization," +
+                    "J2Composition," +
+                    "J2Staging," +
+                    "J2Suitability," +
+                    "J2Difficulty," +
+                    "J2Communication," +
+                    "J2Spacing," +
+                    "J2Movement," +
+                    "J2Dynamics," +
+                    "J2Elements," +
+                    "J3Synchronization," +
+                    "J3Composition," +
+                    "J3Staging," +
+                    "J3Suitability," +
+                    "J3Difficulty," +
+                    "J3Communication," +
+                    "J3Spacing," +
+                    "J3Movement," +
+                    "J3Dynamics," +
+                    "J3Elements," +
+                    "Synchronization," +
+                    "Composition," +
+                    "Staging," +
+                    "Suitability," +
+                    "Difficulty," +
+                    "Communication," +
+                    "Spacing," +
+                    "Movement," +
+                    "Dynamics," +
+                    "Elements," +
                     "Score" +
                     ") = (" +
-                    "@J1Technique," +
-                    "@J1Choreography," +
-                    "@J1Execution," +
-                    "@J1Artistry," +
-                    "@J1Showmanship," +
-                    "@J1Appearance," +
-                    "@J2Technique," +
-                    "@J2Choreography," +
-                    "@J2Execution," +
-                    "@J2Artistry," +
-                    "@J2Showmanship," +
-                    "@J2Appearance," +
-                    "@J3Technique," +
-                    "@J3Choreography," +
-                    "@J3Execution," +
-                    "@J3Artistry," +
-                    "@J3Showmanship," +
-                    "@J3Appearance," +
-                    Technique + "," +
-                    Choreography + "," +
-                    Execution + "," +
-                    Artistry + "," +
-                    Showmanship + "," +
-                    Appearance + "," +
+                    "@J1Synchronization," +
+                    "@J1Composition," +
+                    "@J1Staging," +
+                    "@J1Suitability," +
+                    "@J1Difficulty," +
+                    "@J1Communication," +
+                    "@J1Spacing," +
+                    "@J1Movement," +
+                    "@J1Dynamics," +
+                    "@J1Elements," +
+                    "@J2Synchronization," +
+                    "@J2Composition," +
+                    "@J2Staging," +
+                    "@J2Suitability," +
+                    "@J2Difficulty," +
+                    "@J2Communication," +
+                    "@J2Spacing," +
+                    "@J2Movement," +
+                    "@J2Dynamics," +
+                    "@J2Elements," +
+                    "@J3Synchronization," +
+                    "@J3Composition," +
+                    "@J3Staging," +
+                    "@J3Suitability," +
+                    "@J3Difficulty," +
+                    "@J3Communication," +
+                    "@J3Spacing," +
+                    "@J3Movement," +
+                    "@J3Dynamics," +
+                    "@J3Elements," +
+                    Synchronization + "," +
+                    Composition + "," +
+                    Staging + "," +
+                    Suitability + "," +
+                    Difficulty + "," +
+                    Communication + "," +
+                    Spacing + "," +
+                    Movement + "," +
+                    Dynamics + "," +
+                    Elements + "," +
                     Score +
                     ")" +
                     "WHERE EntryID = @EntryID", routine);
@@ -474,7 +522,7 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
-        public static List<TeamAward> gethighPointTechniqueAwards(string db_table)
+        public static List<TeamAward> gethighPointSynchronizationAwards(string db_table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
