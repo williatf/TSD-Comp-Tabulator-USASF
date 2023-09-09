@@ -68,7 +68,7 @@ namespace TSD_Comp_Tabulator
 
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("UPDATE MasterDataReport SET (" +
+                cnn.Execute("UPDATE MasterDataReport_USASF SET (" +
                     "J1Synchronization," +
                     "J1Composition," +
                     "J1Staging," +
@@ -168,16 +168,16 @@ namespace TSD_Comp_Tabulator
                 cnn.Open();
 
                 // empty the table
-                cnn.Execute("DELETE FROM MasterDataReport");
+                cnn.Execute("DELETE FROM MasterDataReport_USASF");
 
                 // Create an SQLite command
                 SQLiteCommand cmd = new SQLiteCommand(cnn);
 
                 // create an SQLite adaptor
-                SQLiteDataAdapter adaptor = new SQLiteDataAdapter("SELECT * from MasterDataReport", cnn);
+                SQLiteDataAdapter adaptor = new SQLiteDataAdapter("SELECT * from MasterDataReport_USASF", cnn);
 
                 // create the insert command
-                adaptor.InsertCommand = new SQLiteCommand("INSERT INTO MasterDataReport (" +
+                adaptor.InsertCommand = new SQLiteCommand("INSERT INTO MasterDataReport_USASF (" +
                         "StartTime," +
                         "EntryId," +
                         "EntryType," +
@@ -624,7 +624,7 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<highPointPerformanceAward>(
                     "SELECT EntryID,EntryType,RoutineTitle,StudioName,Class,Category,Round(Score/3.0,2) as AvgScore " +
-                    "FROM MasterDataReport WHERE Score = (SELECT MAX(Score) FROM MasterDataReport)", new DynamicParameters()
+                    "FROM MasterDataReport_USASF WHERE Score = (SELECT MAX(Score) FROM MasterDataReport_USASF)", new DynamicParameters()
                 );
                 return output.ToList();
             }
