@@ -18,7 +18,7 @@
             <Setter Property="Background" Value="Gray" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="TextAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0 0 5 0" />
+            <Setter Property="Margin" Value="1 0 1 0" />
         </Style>
         <Style x:Key="LabelStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Crimson" />
