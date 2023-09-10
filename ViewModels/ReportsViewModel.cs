@@ -733,8 +733,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(judgesTable(db_table));
             #endregion
 
-            #region Technical Merit Awards
-            // Technical Merit Awards
+            #region Technical Merit Awards - Out of Scope
+/*            // Technical Merit Awards
             p = new Paragraph(new Run("Technical Merit Awards"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -751,10 +751,11 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(technicalMeritTable(db_table));
+*/            
             #endregion
 
-            #region High Point Technique Award
-            // High Point Technique Award
+            #region High Point Technique Award - Out of Scope
+/*            // High Point Technique Award
             p = new Paragraph(new Run("Overall High Point Technique Award"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -771,10 +772,11 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(highPointTechniqueTable(db_table));
+*/
             #endregion
 
-            #region Precision Merit Awards
-            // Precision Merit Awards
+            #region Precision Merit Awards - Out of Scope
+/*            // Precision Merit Awards
             p = new Paragraph(new Run("Precision Merit Awards"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -791,10 +793,11 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(precisionMeritTable(db_table));
+*/
             #endregion
 
-            #region High Point Precision Award
-            // High Point Precision Award
+            #region High Point Precision Award - Out of Scope
+/*            // High Point Precision Award
             p = new Paragraph(new Run("Overall High Point Precision Award"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -811,10 +814,11 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(highPointPrecisionTable(db_table));
+*/
             #endregion
 
             #region Outstanding Choreography
-            // Outstanding Choreography
+/*            // Outstanding Choreography
             p = new Paragraph(new Run("Outstanding Choreography"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -831,6 +835,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(outstandingChoreographyTable(db_table));
+*/
             #endregion
 
             #region Best In Category
@@ -1859,7 +1864,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
-        private Table technicalMeritTable(string db_table)
+
+/*        private Table technicalMeritTable(string db_table)
         {
             // get recipients
             List<TeamAward> awards = SqliteDataAccess.getTechnicalMeritAwards(db_table);
@@ -1945,7 +1951,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
-        private Table highPointTechniqueTable(string db_table)
+*/
+/*        private Table highPointTechniqueTable(string db_table)
         {
             // get recipients
             List<TeamAward> awards = SqliteDataAccess.gethighPointTechniqueAwards(db_table);
@@ -2031,7 +2038,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
-        private Table precisionMeritTable(string db_table)
+*/        
+/*        private Table precisionMeritTable(string db_table)
         {
             // get recipients
             List<TeamAward> awards = SqliteDataAccess.getPrecisionMeritAwards(db_table);
@@ -2117,7 +2125,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
-        private Table highPointPrecisionTable(string db_table)
+*/        
+/*        private Table highPointPrecisionTable(string db_table)
         {
             // get recipients
             List<TeamAward> awards = SqliteDataAccess.gethighPointPrecisionAwards(db_table);
@@ -2203,7 +2212,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
-        private Table outstandingChoreographyTable(string db_table)
+*/        
+/*        private Table outstandingChoreographyTable(string db_table)
         {
             // get recipients
             List<ChoreographyAward> awards = SqliteDataAccess.getoutstandingChoreographyAwards(db_table);
@@ -2292,6 +2302,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
+*/
         private Table bestInCategoryTable(string vClass, string db_table)
         {
             // get recipients

@@ -84,6 +84,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                 NotifyOfPropertyChange(() => J3Movement);
                 NotifyOfPropertyChange(() => J3Dynamics);
                 NotifyOfPropertyChange(() => J3Elements);
+                NotifyOfPropertyChange(() => J3Total);
                 NotifyOfPropertyChange(() => Communication);
                 NotifyOfPropertyChange(() => Suitability);
                 NotifyOfPropertyChange(() => Composition);

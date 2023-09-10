@@ -522,7 +522,8 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
-        public static List<TeamAward> gethighPointSynchronizationAwards(string db_table)
+
+/*        public static List<TeamAward> gethighPointTechniqueAwards(string db_table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -538,7 +539,8 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
-        public static List<TeamAward> getPrecisionMeritAwards(string db_table)
+*/        
+/*        public static List<TeamAward> getPrecisionMeritAwards(string db_table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -554,7 +556,8 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
-        public static List<TeamAward> gethighPointPrecisionAwards(string db_table)
+*/        
+/*        public static List<TeamAward> gethighPointPrecisionAwards(string db_table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -569,7 +572,8 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
-        public static List<ChoreographyAward> getoutstandingChoreographyAwards(string db_table)
+*/        
+/*        public static List<ChoreographyAward> getoutstandingChoreographyAwards(string db_table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -583,6 +587,7 @@ namespace TSD_Comp_Tabulator
                 return output.ToList();
             }
         }
+*/
         public static List<BestInCategoryAward> getBestInCategoryAwards(string vClass,string db_table)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
