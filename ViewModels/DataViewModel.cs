@@ -25,6 +25,7 @@ namespace TSD_Comp_Tabulator.ViewModels
         private double _dynamics;
         private double _elements;
         private double _total;
+        private double _grandtotal;
         private bool _tb_isEnabled = false;
 
         public DataViewModel()
@@ -96,6 +97,8 @@ namespace TSD_Comp_Tabulator.ViewModels
                 NotifyOfPropertyChange(() => Dynamics);
                 NotifyOfPropertyChange(() => Elements);
                 NotifyOfPropertyChange(() => Total);
+                NotifyOfPropertyChange(() => GrandTotal);
+                NotifyOfPropertyChange(() => TeamPenalty);
                 NotifyOfPropertyChange(() => tb_IsEnabled);
             }
         }
@@ -158,7 +161,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             _selectedRoutine.J3Dynamics = CurrentRoutine.J3Dynamics;
             _selectedRoutine.J3Elements = CurrentRoutine.J3Elements;
 
-
+            _selectedRoutine.TeamPenalty = CurrentRoutine.TeamPenalty;
 
             // reset the selected routine to clear out the form
             SelectedRoutine = null;
@@ -1078,6 +1081,41 @@ namespace TSD_Comp_Tabulator.ViewModels
 
                     return _total;
                 }
+            }
+        }
+        public double GrandTotal
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _grandtotal = _total - CurrentRoutine.TeamPenalty;
+
+                    return _grandtotal;
+                }
+            }
+        }
+        public double TeamPenalty
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return CurrentRoutine.TeamPenalty;
+                }
+            }
+            set
+            {
+                CurrentRoutine.TeamPenalty = value;
+                NotifyOfPropertyChange(() => GrandTotal);
             }
         }
     }

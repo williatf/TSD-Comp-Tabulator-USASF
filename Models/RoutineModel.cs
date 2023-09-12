@@ -43,10 +43,12 @@ namespace TSD_Comp_Tabulator.Models
         private double _j3dynamics;
         private double _j3elements;
 
+        private double _teamPenalty;
+
 
         public RoutineModel()
         {
-            if (false)
+            if (true)
             {
                 Random r = new Random();
 
@@ -82,6 +84,8 @@ namespace TSD_Comp_Tabulator.Models
                 _j3movement = r.Next(5, 10);
                 _j3dynamics = r.Next(5, 10);
                 _j3elements = r.Next(5, 10);
+
+                _teamPenalty = r.Next(0, 5);
             }
         }
 
@@ -100,18 +104,6 @@ namespace TSD_Comp_Tabulator.Models
         public string RoutineTitle { get; set; }
 
 
-/*        
-        private double _j1communication;
-        private double _j1suitability;
-        private double _j1composition;
-        private double _j1staging;
-        private double _j1difficulty;
-        private double _j1synchronization;
-        private double _j1spacing;
-        private double _j1movement;
-        private double _j1dynamics;
-        private double _j1elements;
-*/
         // Judge 1 Scores
         public double J1Communication
         {
@@ -563,6 +555,22 @@ namespace TSD_Comp_Tabulator.Models
                 if (value != this._j3elements)
                 {
                     this._j3elements = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public double TeamPenalty
+        {
+            get
+            {
+                return this._teamPenalty;
+            }
+            set
+            {
+                if (value != this._teamPenalty)
+                {
+                    this._teamPenalty = value;
                     NotifyPropertyChanged();
                 }
             }

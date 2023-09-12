@@ -152,6 +152,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="5"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="20" />
@@ -535,7 +536,21 @@
                 <TextBlock Text="{Binding Path=Dynamics, Mode=OneWay}" Grid.Row="6" Grid.Column="9" Style="{StaticResource DataStyle}"/>
                 <TextBlock Text="{Binding Path=Elements, Mode=OneWay}" Grid.Row="6" Grid.Column="10" Style="{StaticResource DataStyle}"/>
                 <TextBlock Text="{Binding Path=Total, Mode=OneWay}" Grid.Row="6" Grid.Column="11" Style="{StaticResource DataStyle}"/>
-                <Grid Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="6">
+                <TextBlock Text="Team Penalty" Grid.Row="7" Grid.Column="0" Style="{StaticResource HeaderStyle}" />
+                <TextBox Grid.Row="7" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
+                    <TextBox.Text>
+                        <Binding Path="TeamPenalty" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <validators:MaxValueValidationRule
+                                    MaxValue="10"
+                                    ErrorMessage="Max is 10!" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Text="Total after penalties: " Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource HeaderStyle}" TextAlignment="Right" />
+                <TextBlock Text="{Binding Path=GrandTotal, Mode=OneWay}" Grid.Row="7" Grid.Column="11" Style="{StaticResource DataStyle}"/>
+                <Grid Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75" />
                         <ColumnDefinition Width="10" />
@@ -563,7 +578,7 @@
                 ScrollViewer.CanContentScroll="True"
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                ColumnWidth="50"
+                ColumnWidth="40"
                 IsReadOnly="True"
                 x:Name="Routines"
                 SelectedItem="{Binding Path=SelectedRoutine, Mode=OneWayToSource}"/>

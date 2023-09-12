@@ -65,6 +65,7 @@ namespace TSD_Comp_Tabulator
             double Movement = routine.J1Movement + routine.J2Movement + routine.J3Movement;
             double Dynamics = routine.J1Dynamics + routine.J2Dynamics + routine.J3Dynamics;
             double Elements = routine.J1Elements + routine.J2Elements + routine.J3Elements;
+            double TeamPenalty = routine.TeamPenalty;
 
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -109,7 +110,8 @@ namespace TSD_Comp_Tabulator
                     "Movement," +
                     "Dynamics," +
                     "Elements," +
-                    "Score" +
+                    "Score," +
+                    "TeamPenalty" +
                     ") = (" +
                     "@J1Synchronization," +
                     "@J1Composition," +
@@ -151,7 +153,8 @@ namespace TSD_Comp_Tabulator
                     Movement + "," +
                     Dynamics + "," +
                     Elements + "," +
-                    Score +
+                    Score + "," +
+                    TeamPenalty +
                     ")" +
                     "WHERE EntryID = @EntryID", routine);
             }
