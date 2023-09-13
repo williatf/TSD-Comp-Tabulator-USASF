@@ -596,10 +596,9 @@ namespace TSD_Comp_Tabulator
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<BestInCategoryAward>(
-                    "SELECT StudioName,EntryType,EntryID,RoutineTitle,Category,AvgScore " +
+                    "SELECT StudioName,Class,EntryID,RoutineTitle,Category,AvgScore " +
                     "FROM " + db_table + "_" + vClass + "BestInCategory " +
-                    "WHERE AvgScore >= 90 " +
-                    "ORDER BY StudioName ASC ", new DynamicParameters()
+                    "ORDER BY Class ASC, Category ASC, AvgScore ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }

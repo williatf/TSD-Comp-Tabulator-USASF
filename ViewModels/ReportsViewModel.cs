@@ -11,31 +11,35 @@ namespace TSD_Comp_Tabulator.ViewModels
     public class ReportsViewModel : Screen
     {
 
-        private FlowDocument _solos = new FlowDocument();
+/*        private FlowDocument _solos = new FlowDocument();
         private FlowDocument _duets = new FlowDocument();
         private FlowDocument _trios = new FlowDocument();
         private FlowDocument _ensembles = new FlowDocument();
         private FlowDocument _socials = new FlowDocument();
         private FlowDocument _officers = new FlowDocument();
+*/      
         private FlowDocument _teams = new FlowDocument();
         private FlowDocument _specialty = new FlowDocument();
         private FlowDocument _champions = new FlowDocument();
-        private List<string> list;
+        
+/*        private List<string> list;
         private List<string> classList;
-
+*/
         public ReportsViewModel()
         {
-            generateSolos(_solos);
+/*            generateSolos(_solos);
             generateDuets(_duets);
             generateTrios(_trios);
             generateEnsembles_new(_ensembles);
             generateSocials(_socials);
             generateOfficers(_officers);
+*/            
             generateTeams(_teams);
             generateSpecialty(_specialty);
             generateChampions(_champions);
         }
-
+        // flow documents
+/*
         public FlowDocument Solos
         {
             get { return _solos; } 
@@ -66,6 +70,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             get { return _officers; }
 
         }
+*/        
         public FlowDocument Teams
         {
             get { return _teams; }
@@ -81,7 +86,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             get { return _champions; }
 
         }
-
+/*
         private FlowDocument generateSolos(FlowDocument fd)
         {
             fd.PagePadding = new Thickness(50);
@@ -488,6 +493,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 
             return fd;
         }
+*/        
         private FlowDocument generateTeams(FlowDocument fd)
         {
             fd.PagePadding = new Thickness(50);
@@ -653,9 +659,9 @@ namespace TSD_Comp_Tabulator.ViewModels
             Paragraph p;
             Section blk = new Section();
 
-            #region Superior Awards
+            #region Superior Awards - Out of Scope
             // Superior Awards
-            p = new Paragraph(new Run("Superior Awards"));
+/*            p = new Paragraph(new Run("Superior Awards"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
             p.Background = Brushes.Brown;
@@ -671,10 +677,11 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(superiorTable(db_table));
+*/
             #endregion
 
-            #region Sweepstakes Awards
-            // Sweepstakes Awards
+            #region Sweepstakes Awards - Out of Scope
+/*            // Sweepstakes Awards
             p = new Paragraph(new Run("Sweepstakes Awards"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -691,10 +698,11 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(sweepstakesTable(db_table));
+*/
             #endregion
 
-            #region Super Sweepstakes Awards
-            // Super Sweepstakes Awards
+            #region Super Sweepstakes Awards - Out of Scope
+/*            // Super Sweepstakes Awards
             p = new Paragraph(new Run("Super Sweepstakes Awards"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -711,10 +719,11 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(superSweepstakesTable(db_table));
+*/
             #endregion
 
-            #region Judges Awards
-            // Judges Awards
+            #region Judges Awards - Out of Scope
+/*            // Judges Awards
             p = new Paragraph(new Run("Judges Awards"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -731,6 +740,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             blk.Blocks.Add(judgesTable(db_table));
+*/            
             #endregion
 
             #region Technical Merit Awards - Out of Scope
@@ -817,7 +827,7 @@ namespace TSD_Comp_Tabulator.ViewModels
 */
             #endregion
 
-            #region Outstanding Choreography
+            #region Outstanding Choreography - Out of Scope
 /*            // Outstanding Choreography
             p = new Paragraph(new Run("Outstanding Choreography"));
             p.FontSize = 16;
@@ -849,18 +859,18 @@ namespace TSD_Comp_Tabulator.ViewModels
             p.Padding = new Thickness(5, 5, 0, 5);
             blk.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Awarded to Teams and Officers with the highest score in a category."));
+            p = new Paragraph(new Run("Awarded to Teams with the highest score in a category."));
             p.FontSize = 14;
             p.Foreground = Brushes.Gray;
             p.Padding = new Thickness(3, 0, 0, 3);
             blk.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Must score 90 or higher to qualify."));
+/*            p = new Paragraph(new Run("Must score 90 or higher to qualify."));
             p.FontSize = 12;
             p.Foreground = Brushes.Gray;
             p.Padding = new Thickness(3, 0, 0, 3);
             blk.Blocks.Add(p);
-
+*/
             string vClass = "Studio";
             blk.Blocks.Add(bestInCategoryTable(vClass,db_table));
 
@@ -2307,99 +2317,121 @@ namespace TSD_Comp_Tabulator.ViewModels
         {
             // get recipients
             List<BestInCategoryAward> awards = SqliteDataAccess.getBestInCategoryAwards(vClass,db_table);
+
             // create the table
             Table tbl = new Table();
+            int i = 0; //table row index
+
+
+            // create 6 columns and add them to the table's column collection
+            int numCols = 6;
+            for (int x = 0; x < numCols; x++)
+            {
+                tbl.Columns.Add(new TableColumn());
+            }
+
+            // create and add an empty TableRowGroup to hold the table's rows
+            tbl.RowGroups.Add(new TableRowGroup());
+
 
             // if there are trophies
             if (awards.Count > 0)
             {
+                string currentClass = "";
+                string currentCategory = "";
 
-                // create 6 columns and add them to the table's column collection
-                int numCols = 6;
-                for (int x = 0; x < numCols; x++)
-                {
-                    tbl.Columns.Add(new TableColumn());
-                }
-
-                // create and add an empty TableRowGroup to hold the table's rows
-                tbl.RowGroups.Add(new TableRowGroup());
-
-                // Class:
-                Paragraph p = new Paragraph(new Run(vClass+"s"));
-                p.FontSize = 16;
-                p.Foreground = Brushes.Blue;
-                p.FontWeight = FontWeights.Bold;
-
-                // add the class header to the table
-                TableRow header_row = new TableRow();
-                TableCell header_cell = new TableCell(p);
-                header_cell.ColumnSpan = 5;
-                header_cell.Padding = new Thickness(0, 0, 0, 10);
-                header_row.Cells.Add(header_cell);
-                tbl.RowGroups[0].Rows.Add(header_row);
-
-                // add the first (title) row
-                tbl.RowGroups[0].Rows.Add(new TableRow());
-
-                // alias the current row
-                TableRow currentRow = tbl.RowGroups[0].Rows[1];
-
-                // format the header row
-                currentRow.FontSize = 12;
-                currentRow.FontWeight = FontWeights.Bold;
-                currentRow.Background = Brushes.Gray;
-
-
-                // add content
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Type"))));
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Category"))));
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("RoutineTitle"))));
-                currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
-
-                for (int n = 0; n < currentRow.Cells.Count; n++)
-                {
-                    currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
-                    currentRow.Cells[n].BorderBrush = Brushes.Black;
-                    currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
-                }
-
-                int i = 2; //table row index
                 foreach (BestInCategoryAward award in awards)
                 {
+
+                    if (award.Class != currentClass || award.Category != currentCategory)
+                    {
+                        currentClass = award.Class;
+                        currentCategory = award.Category;
+
+                        // Class:
+                        Paragraph p = new Paragraph(new Run("Division: " + currentClass + ", Category: " + currentCategory));
+                        p.FontSize = 16;
+                        p.Foreground = Brushes.Blue;
+                        p.FontWeight = FontWeights.Bold;
+
+                        // add the class header to the table
+                        TableRow header_row = new TableRow();
+                        TableCell header_cell = new TableCell(p);
+                        header_cell.ColumnSpan = 5;
+                        header_cell.Padding = new Thickness(0, 20, 0, 10);
+                        header_row.Cells.Add(header_cell);
+                        tbl.RowGroups[0].Rows.Add(header_row);
+
+                        i++;
+
+                        // add the first (title) row
+                        tbl.RowGroups[0].Rows.Add(new TableRow());
+
+                        // alias the current row
+                        TableRow currentRow = tbl.RowGroups[0].Rows[i];
+
+                        // format the header row
+                        currentRow.FontSize = 12;
+                        currentRow.FontWeight = FontWeights.Bold;
+                        currentRow.Background = Brushes.Gray;
+
+                        // add content
+                        currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Class"))));
+                        currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Category"))));
+                        currentRow.Cells.Add(new TableCell(new Paragraph(new Run("EntryID"))));
+                        currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Studio Name"))));
+                        currentRow.Cells.Add(new TableCell(new Paragraph(new Run("RoutineTitle"))));
+                        currentRow.Cells.Add(new TableCell(new Paragraph(new Run("AvgScore"))));
+
+                        for (int n = 0; n < currentRow.Cells.Count; n++)
+                        {
+                            currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                            currentRow.Cells[n].BorderBrush = Brushes.Black;
+                            currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        }
+
+                        i++;
+                    }
+
+
                     // add a new row to the table
                     tbl.RowGroups[0].Rows.Add(new TableRow());
-                    currentRow = tbl.RowGroups[0].Rows[i];
-                    currentRow.FontSize = 12;
-                    currentRow.FontWeight = FontWeights.Normal;
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.EntryType))));
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Category))));
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.EntryID.ToString()))));
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.RoutineTitle))));
-                    currentRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
+                    TableRow dataRow = tbl.RowGroups[0].Rows[i];
+                    dataRow.FontSize = 12;
+                    dataRow.FontWeight = FontWeights.Normal;
+                    dataRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Class))));
+                    dataRow.Cells.Add(new TableCell(new Paragraph(new Run(award.Category))));
+                    dataRow.Cells.Add(new TableCell(new Paragraph(new Run(award.EntryID.ToString()))));
+                    dataRow.Cells.Add(new TableCell(new Paragraph(new Run(award.StudioName))));
+                    dataRow.Cells.Add(new TableCell(new Paragraph(new Run(award.RoutineTitle))));
+                    dataRow.Cells.Add(new TableCell(new Paragraph(new Run(award.AvgScore))));
 
                     if (i % 2 == 0)
-                        currentRow.Background = Brushes.AntiqueWhite;
+                        dataRow.Background = Brushes.AntiqueWhite;
 
-                    for (int n = 0; n < currentRow.Cells.Count; n++)
+                    for (int n = 0; n < dataRow.Cells.Count; n++)
                     {
-                        currentRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
-                        currentRow.Cells[n].BorderBrush = Brushes.Black;
-                        currentRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
-                        currentRow.Cells[n].TextAlignment = TextAlignment.Left;
+                        dataRow.Cells[n].BorderThickness = new Thickness(1, 1, 1, 1);
+                        dataRow.Cells[n].BorderBrush = Brushes.Black;
+                        dataRow.Cells[n].Padding = new Thickness(3, 3, 3, 3);
+                        dataRow.Cells[n].TextAlignment = TextAlignment.Left;
                     }
 
                     i++;
+
+
+
                 }
 
+
+
+
                 tbl.Columns[0].Width = new GridLength(200);
-                tbl.Columns[1].Width = new GridLength(130);
-                tbl.Columns[2].Width = new GridLength(100);
-                tbl.Columns[3].Width = new GridLength(75);
+                tbl.Columns[1].Width = new GridLength(100);
+                tbl.Columns[2].Width = new GridLength(50);
+                tbl.Columns[3].Width = new GridLength(200);
                 tbl.Columns[4].Width = new GridLength(200);
-                tbl.Columns[5].Width = new GridLength(75);
+                tbl.Columns[5].Width = new GridLength(80);
 
             }
 
@@ -2856,12 +2888,13 @@ namespace TSD_Comp_Tabulator.ViewModels
             FlowDocument doc = new FlowDocument();
             doc.PagePadding = new Thickness(50);
 
-            generateSolos(doc);
+/*            generateSolos(doc);
             generateDuets(doc);
             generateTrios(doc);
             generateEnsembles(doc);
             generateSocials(doc);
             generateOfficers(doc);
+*/
             generateTeams(doc);
             generateSpecialty(doc);
             generateChampions(doc);

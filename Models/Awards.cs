@@ -34,7 +34,7 @@ namespace TSD_Comp_Tabulator.Models
         public string Category { get; set; }
         public string RoutineTitle { get; set; }
         public string AvgScore { get; set; }
-        public string EntryType { get; set; }
+        public string Class { get; set; }
 
     }
 
