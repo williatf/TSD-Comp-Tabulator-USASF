@@ -859,25 +859,25 @@ namespace TSD_Comp_Tabulator.ViewModels
             p.Padding = new Thickness(5, 5, 0, 5);
             blk.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Awarded to Teams with the highest score in a category."));
+            p = new Paragraph(new Run("Lowest Scores at the TOP!"));
             p.FontSize = 14;
             p.Foreground = Brushes.Gray;
             p.Padding = new Thickness(3, 0, 0, 3);
             blk.Blocks.Add(p);
 
-/*            p = new Paragraph(new Run("Must score 90 or higher to qualify."));
-            p.FontSize = 12;
-            p.Foreground = Brushes.Gray;
-            p.Padding = new Thickness(3, 0, 0, 3);
-            blk.Blocks.Add(p);
-*/
-            string vClass = "Studio";
-            blk.Blocks.Add(bestInCategoryTable(vClass,db_table));
+            /*            p = new Paragraph(new Run("Must score 90 or higher to qualify."));
+                        p.FontSize = 12;
+                        p.Foreground = Brushes.Gray;
+                        p.Padding = new Thickness(3, 0, 0, 3);
+                        blk.Blocks.Add(p);
+            */
+            /*            string vClass = "Studio";
+                        blk.Blocks.Add(bestInCategoryTable(vClass,db_table));
 
-            vClass = "MiddleSchool";
-            blk.Blocks.Add(bestInCategoryTable(vClass, db_table));
-
-            vClass = "School";
+                        vClass = "MiddleSchool";
+                        blk.Blocks.Add(bestInCategoryTable(vClass, db_table));
+            */
+            string vClass = "School";
             blk.Blocks.Add(bestInCategoryTable(vClass, db_table));
             #endregion
 

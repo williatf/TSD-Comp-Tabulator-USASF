@@ -18,7 +18,7 @@
                     x:Name="PrintAll_Click" />
         </Grid>
         <TabControl Grid.Row="1" >
-            <TabItem Header="Solos">
+            <!--<TabItem Header="Solos">
                 <FlowDocumentScrollViewer Document="{Binding Solos}"/>
             </TabItem>
             <TabItem Header="Duets">
@@ -35,7 +35,7 @@
             </TabItem>
             <TabItem Header="Officers">
                 <FlowDocumentScrollViewer Document="{Binding Officers}"/>
-            </TabItem>
+            </TabItem>-->
             <TabItem Header="Teams">
                 <FlowDocumentScrollViewer Document="{Binding Teams}"/>
             </TabItem>

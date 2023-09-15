@@ -215,6 +215,102 @@ namespace TSD_Comp_Tabulator
                 // the update command adds the rows in the dataset to the database
                 adaptor.Update(ds);
 
+                // randomize the scores for testing
+                if (false)
+                {
+                    Random r = new Random();
+
+                    // grab all of the routines
+                    var output = cnn.Query<RoutineModel>("SELECT * FROM MasterDataReport_USASF", new DynamicParameters() );
+
+                    // add scores to each one
+                    foreach (RoutineModel routine in output)
+                    {
+
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " +
+                            "J1Communication = " + r.Next(5, 10) + ", " +
+                            "J1Suitability = " + r.Next(5, 10) + ", " +
+                            "J1Composition = " + r.Next(5, 10) + ", " +
+                            "J1Staging = " + r.Next(5, 10) + ", " +
+                            "J1Difficulty = " + r.Next(5, 10) + ", " +
+                            "J1Synchronization = " + r.Next(5, 10) + ", " +
+                            "J1Spacing = " + r.Next(5, 10) + ", " +
+                            "J1Movement = " + r.Next(5, 10) + ", " +
+                            "J1Dynamics = " + r.Next(5, 10) + ", " +
+                            "J1Elements = " + r.Next(5, 10) + ", " +
+                            "J2Communication = " + r.Next(5, 10) + ", " +
+                            "J2Suitability = " + r.Next(5, 10) + ", " +
+                            "J2Composition = " + r.Next(5, 10) + ", " +
+                            "J2Staging = " + r.Next(5, 10) + ", " +
+                            "J2Difficulty = " + r.Next(5, 10) + ", " +
+                            "J2Synchronization = " + r.Next(5, 10) + ", " +
+                            "J2Spacing = " + r.Next(5, 10) + ", " +
+                            "J2Movement = " + r.Next(5, 10) + ", " +
+                            "J2Dynamics = " + r.Next(5, 10) + ", " +
+                            "J2Elements = " + r.Next(5, 10) + ", " +
+                            "J3Communication = " + r.Next(5, 10) + ", " +
+                            "J3Suitability = " + r.Next(5, 10) + ", " +
+                            "J3Composition = " + r.Next(5, 10) + ", " +
+                            "J3Staging = " + r.Next(5, 10) + ", " +
+                            "J3Difficulty = " + r.Next(5, 10) + ", " +
+                            "J3Synchronization = " + r.Next(5, 10) + ", " +
+                            "J3Spacing = " + r.Next(5, 10) + ", " +
+                            "J3Movement = " + r.Next(5, 10) + ", " +
+                            "J3Dynamics = " + r.Next(5, 10) + ", " +
+                            "J3Elements = " + r.Next(5, 10) + ", " +
+                            "TeamPenalty = " + r.Next(0,5) +
+                            " WHERE EntryID = " + routine.EntryID);
+
+                    }
+
+                    // grab all of the routines again, this time with the scores
+                    output = cnn.Query<RoutineModel>("SELECT * FROM MasterDataReport_USASF", new DynamicParameters());
+
+                    // add up all of the scores to get a total
+                    foreach (RoutineModel routine in output)
+                    {
+                        double total_score =
+                            routine.J1Communication +
+                            routine.J1Composition +
+                            routine.J1Difficulty +
+                            routine.J1Dynamics +
+                            routine.J1Elements +
+                            routine.J1Movement +
+                            routine.J1Spacing +
+                            routine.J1Staging +
+                            routine.J1Suitability +
+                            routine.J1Synchronization +
+                            routine.J2Communication +
+                            routine.J2Composition +
+                            routine.J2Difficulty +
+                            routine.J2Dynamics +
+                            routine.J2Elements +
+                            routine.J2Movement +
+                            routine.J2Spacing +
+                            routine.J2Staging +
+                            routine.J2Suitability +
+                            routine.J2Synchronization +
+                            routine.J3Communication +
+                            routine.J3Composition +
+                            routine.J3Difficulty +
+                            routine.J3Dynamics +
+                            routine.J3Elements +
+                            routine.J3Movement +
+                            routine.J3Spacing +
+                            routine.J3Staging +
+                            routine.J3Suitability +
+                            routine.J3Synchronization;
+
+                        // update the record with the total
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " +
+                            " Score = " + total_score +
+                            " WHERE EntryID = " + routine.EntryID);
+
+                    }
+
+
+                }
+
             }
         }
         public static List<string> getSoloClasses(string category)
@@ -597,8 +693,9 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<BestInCategoryAward>(
                     "SELECT StudioName,Class,EntryID,RoutineTitle,Category,AvgScore " +
-                    "FROM " + db_table + "_" + vClass + "BestInCategory " +
-                    "ORDER BY Class ASC, Category ASC, AvgScore ASC ", new DynamicParameters()
+                    "FROM " + db_table + "_" + vClass + "BestInCategory b " +
+                    "JOIN Classes c ON c.className = b.Class " +
+                    "ORDER BY listOrder ASC, Category ASC, AvgScore ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
