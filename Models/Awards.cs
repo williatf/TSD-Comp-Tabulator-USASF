@@ -19,11 +19,10 @@ namespace TSD_Comp_Tabulator.Models
 
     public class ChoreographyAward
     {
-        public int EntryID { get; set; }
+        //StudioName,Class,EntryType,AvgChorScore
         public string StudioName { get; set; }
-        public string Category { get; set; }
         public string Class { get; set; }
-        public string AvgScore { get; set; }
+        public string AvgChorScore { get; set; }
         public string EntryType { get; set; }
     }
 

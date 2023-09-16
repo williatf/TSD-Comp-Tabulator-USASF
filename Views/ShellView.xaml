@@ -6,7 +6,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="TSDance Comp Tabulator" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="/TSD Comp Tabulator;component/Images/trend_setters_dance_logo_icon_cMW_icon.ico">
+        Title="Trendsetters Dance Competition Tabulator USASF" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="/TSD Comp Tabulator;component/Images/trend_setters_dance_logo_icon_cMW_icon.ico">
     <!-- Menu -->
     <Grid>
         <Grid.ColumnDefinitions>

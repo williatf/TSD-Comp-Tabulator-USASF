@@ -42,9 +42,9 @@
             <TabItem Header="Specialty">
                 <FlowDocumentScrollViewer Document="{Binding Specialty}"/>
             </TabItem>
-            <TabItem Header="Champions">
+            <!--<TabItem Header="Champions">
                 <FlowDocumentScrollViewer Document="{Binding Champions}"/>
-            </TabItem>
+            </TabItem>-->
         </TabControl>
 
     </Grid>

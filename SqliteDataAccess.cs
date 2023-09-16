@@ -216,7 +216,7 @@ namespace TSD_Comp_Tabulator
                 adaptor.Update(ds);
 
                 // randomize the scores for testing
-                if (false)
+                if (true)
                 {
                     Random r = new Random();
 
@@ -302,9 +302,50 @@ namespace TSD_Comp_Tabulator
                             routine.J3Synchronization;
 
                         // update the record with the total
-                        cnn.Execute("UPDATE MasterDataReport_USASF SET " +
-                            " Score = " + total_score +
-                            " WHERE EntryID = " + routine.EntryID);
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Score = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // update each element score (reusing total_score variable)
+                        // Communication
+                        total_score = routine.J1Communication + routine.J2Communication + routine.J3Communication;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Communication = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Suitability
+                        total_score = routine.J1Suitability + routine.J2Suitability + routine.J3Suitability;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Suitability = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Composition
+                        total_score = routine.J1Composition + routine.J2Composition + routine.J3Composition;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Composition = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Staging
+                        total_score = routine.J1Staging + routine.J2Staging + routine.J3Staging;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Staging = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Difficulty
+                        total_score = routine.J1Difficulty + routine.J2Difficulty + routine.J3Difficulty;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Difficulty = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Synchronization
+                        total_score = routine.J1Synchronization + routine.J2Synchronization + routine.J3Synchronization;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Synchronization = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Spacing
+                        total_score = routine.J1Spacing + routine.J2Spacing + routine.J3Spacing;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Spacing = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Movement
+                        total_score = routine.J1Movement + routine.J2Movement + routine.J3Movement;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Movement = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+                        // Dynamics
+                        total_score = routine.J1Dynamics + routine.J2Dynamics + routine.J3Dynamics;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Dynamics = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
+
+                        // Elements
+                        total_score = routine.J1Elements + routine.J2Elements + routine.J3Elements;
+                        cnn.Execute("UPDATE MasterDataReport_USASF SET " + " Elements = " + total_score + " WHERE EntryID = " + routine.EntryID);
+
 
                     }
 
@@ -693,9 +734,21 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<BestInCategoryAward>(
                     "SELECT StudioName,Class,EntryID,RoutineTitle,Category,AvgScore " +
-                    "FROM " + db_table + "_" + vClass + "BestInCategory b " +
+                    "FROM " + db_table + "_BestInCategory b " +
                     "JOIN Classes c ON c.className = b.Class " +
                     "ORDER BY listOrder ASC, Category ASC, AvgScore ASC ", new DynamicParameters()
+                );
+                return output.ToList();
+            }
+        }
+        public static List<ChoreographyAward> getChoreographyAwards()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<ChoreographyAward>(
+                    "SELECT StudioName,Class,EntryType,AvgChorScore " +
+                    "FROM Team_Choreography_Top " +
+                    "ORDER BY listOrder ASC ", new DynamicParameters()
                 );
                 return output.ToList();
             }
@@ -752,8 +805,7 @@ namespace TSD_Comp_Tabulator
             {
                 var output = cnn.Query<TeamAward>(
                     "SELECT StudioName,EntryType,Class,AvgScore " +
-                    "FROM " + db_table + "_" + vClass + "Rank " +
-                    "WHERE Rank = 1 ", new DynamicParameters()
+                    "FROM Team_Division_Top ", new DynamicParameters()
                 );
                 return output.ToList();
             }

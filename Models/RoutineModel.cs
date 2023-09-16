@@ -45,50 +45,6 @@ namespace TSD_Comp_Tabulator.Models
 
         private double _teamPenalty;
 
-
-        public RoutineModel()
-        {
-            if (false)
-            {
-                Random r = new Random();
-
-                _j1communication = r.Next(5, 10);
-                _j1suitability = r.Next(5, 10);
-                _j1composition = r.Next(5, 10);
-                _j1staging = r.Next(5, 10);
-                _j1difficulty = r.Next(5, 10);
-                _j1synchronization = r.Next(5, 10);
-                _j1spacing = r.Next(5, 10);
-                _j1movement = r.Next(5, 10);
-                _j1dynamics = r.Next(5, 10);
-                _j1elements = r.Next(5, 10);
-
-                _j2communication = r.Next(5, 10);
-                _j2suitability = r.Next(5, 10);
-                _j2composition = r.Next(5, 10);
-                _j2staging = r.Next(5, 10);
-                _j2difficulty = r.Next(5, 10);
-                _j2synchronization = r.Next(5, 10);
-                _j2spacing = r.Next(5, 10);
-                _j2movement = r.Next(5, 10);
-                _j2dynamics = r.Next(5, 10);
-                _j2elements = r.Next(5, 10);
-
-                _j3communication = r.Next(5, 10);
-                _j3suitability = r.Next(5, 10);
-                _j3composition = r.Next(5, 10);
-                _j3staging = r.Next(5, 10);
-                _j3difficulty = r.Next(5, 10);
-                _j3synchronization = r.Next(5, 10);
-                _j3spacing = r.Next(5, 10);
-                _j3movement = r.Next(5, 10);
-                _j3dynamics = r.Next(5, 10);
-                _j3elements = r.Next(5, 10);
-
-                _teamPenalty = r.Next(0, 5);
-            }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

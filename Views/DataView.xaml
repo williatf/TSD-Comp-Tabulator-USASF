@@ -126,8 +126,8 @@
                 <!-- Row 0 -->
                 <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Routine Title:" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DataStyle}" x:Name="CurrentRoutine_RoutineTitle">Routine Title</TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Participants:" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource DataStyle}" x:Name="CurrentRoutine_Participants">Participants</TextBlock>
+                <!--<TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource HeaderStyle}" Text="Participants:" />
+                <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource DataStyle}" x:Name="CurrentRoutine_Participants">Participants</TextBlock>-->
             </Grid>
             <Grid >
                 <Grid.ColumnDefinitions>
@@ -146,6 +146,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -184,6 +185,7 @@
                 <TextBlock Grid.Row="2" Grid.Column="8" Style="{StaticResource SmallStyle}" Text="Max 10" />
                 <TextBlock Grid.Row="2" Grid.Column="9" Style="{StaticResource SmallStyle}" Text="Max 10" />
                 <TextBlock Grid.Row="2" Grid.Column="10" Style="{StaticResource SmallStyle}" Text="Max 10" />
+                
                 <!-- Judge 1 -->
                 <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 1" />
                 <TextBox Grid.Row="3" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
@@ -297,6 +299,7 @@
                     </TextBox.Text>
                 </TextBox>
                 <TextBlock Text="{Binding Path=J1Total, Mode=OneWay}" Grid.Row="3" Grid.Column="11" Style="{StaticResource DataStyle}" />
+                
                 <!-- Judge 2 -->
                 <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 2" />
                 <TextBox Grid.Row="4" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
@@ -410,6 +413,7 @@
                     </TextBox.Text>
                 </TextBox>
                 <TextBlock Text="{Binding Path=J2Total, Mode=OneWay}" Grid.Row="4" Grid.Column="11" Style="{StaticResource DataStyle}" />
+                
                 <!-- Judge 3 -->
                 <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Judge 3" />
                 <TextBox Grid.Row="5" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus"  IsEnabled="{Binding tb_IsEnabled}" >
@@ -523,6 +527,7 @@
                     </TextBox.Text>
                 </TextBox>
                 <TextBlock Text="{Binding Path=J3Total, Mode=OneWay}" Grid.Row="5" Grid.Column="11" Style="{StaticResource DataStyle}" />
+                
                 <!-- Totals -->
                 <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource HeaderStyle}" Text="Totals" />
                 <TextBlock Text="{Binding Path=Communication, Mode=OneWay}" Grid.Row="6" Grid.Column="1" Style="{StaticResource DataStyle}"/>
@@ -536,6 +541,7 @@
                 <TextBlock Text="{Binding Path=Dynamics, Mode=OneWay}" Grid.Row="6" Grid.Column="9" Style="{StaticResource DataStyle}"/>
                 <TextBlock Text="{Binding Path=Elements, Mode=OneWay}" Grid.Row="6" Grid.Column="10" Style="{StaticResource DataStyle}"/>
                 <TextBlock Text="{Binding Path=Total, Mode=OneWay}" Grid.Row="6" Grid.Column="11" Style="{StaticResource DataStyle}"/>
+
                 <TextBlock Text="Team Penalty" Grid.Row="7" Grid.Column="0" Style="{StaticResource HeaderStyle}" />
                 <TextBox Grid.Row="7" Grid.Column="1" GotKeyboardFocus="TextBox_GotKeyboardFocus" IsEnabled="{Binding tb_IsEnabled}" >
                     <TextBox.Text>
@@ -548,9 +554,13 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <TextBlock Text="Total after penalties: " Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource HeaderStyle}" TextAlignment="Right" />
-                <TextBlock Text="{Binding Path=GrandTotal, Mode=OneWay}" Grid.Row="7" Grid.Column="11" Style="{StaticResource DataStyle}"/>
-                <Grid Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="6">
+                <TextBlock Text="Average Score: " Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource HeaderStyle}" TextAlignment="Right" />
+                <TextBlock Text="{Binding Path=AvgScore, Mode=OneWay, StringFormat=N2}" Grid.Row="7" Grid.Column="11" Style="{StaticResource DataStyle}"/>
+                
+                <TextBlock Text="Average Score after penalties: " Grid.Row="8" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource HeaderStyle}" TextAlignment="Right" />
+                <TextBlock Text="{Binding Path=GrandTotal, Mode=OneWay, StringFormat=N2}" Grid.Row="8" Grid.Column="11" Style="{StaticResource DataStyle}"/>
+
+                <Grid Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75" />
                         <ColumnDefinition Width="10" />
@@ -563,6 +573,7 @@
                     <Button Grid.Row="0" Grid.Column="0" Padding="5 5" x:Name="Submit">Submit</Button>
                     <Button Grid.Row="0" Grid.Column="2" Padding="5 5" x:Name="Cancel">Cancel</Button>
                 </Grid>
+
             </Grid>
 
         </StackPanel>

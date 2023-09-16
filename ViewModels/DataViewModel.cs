@@ -26,6 +26,7 @@ namespace TSD_Comp_Tabulator.ViewModels
         private double _elements;
         private double _total;
         private double _grandtotal;
+        private double _avgscore;
         private bool _tb_isEnabled = false;
 
         public DataViewModel()
@@ -97,6 +98,7 @@ namespace TSD_Comp_Tabulator.ViewModels
                 NotifyOfPropertyChange(() => Dynamics);
                 NotifyOfPropertyChange(() => Elements);
                 NotifyOfPropertyChange(() => Total);
+                NotifyOfPropertyChange(() => AvgScore);
                 NotifyOfPropertyChange(() => GrandTotal);
                 NotifyOfPropertyChange(() => TeamPenalty);
                 NotifyOfPropertyChange(() => tb_IsEnabled);
@@ -1093,12 +1095,30 @@ namespace TSD_Comp_Tabulator.ViewModels
                 }
                 else
                 {
-                    _grandtotal = _total - CurrentRoutine.TeamPenalty;
+                    _grandtotal = _avgscore - CurrentRoutine.TeamPenalty;
 
                     return _grandtotal;
                 }
             }
         }
+
+        public double AvgScore
+        {
+            get
+            {
+                if (CurrentRoutine == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    _avgscore = _total/3;
+
+                    return _avgscore;
+                }
+            }
+        }
+
         public double TeamPenalty
         {
             get
