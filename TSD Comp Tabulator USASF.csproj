@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{043FBF87-B9D0-48CA-9FDE-6A837A0C61BF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TSD_Comp_Tabulator</RootNamespace>
-    <AssemblyName>TSD Comp Tabulator</AssemblyName>
+    <RootNamespace>TSD_Comp_Tabulator_USASF</RootNamespace>
+    <AssemblyName>TSD Comp Tabulator USASF</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

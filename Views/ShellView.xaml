@@ -1,4 +1,4 @@
-﻿<RibbonWindow x:Class="TSD_Comp_Tabulator.Views.ShellView"
+﻿<RibbonWindow x:Class="TSD_Comp_Tabulator_USASF.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="Trendsetters Dance Competition Tabulator USASF" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="/TSD Comp Tabulator;component/Images/trend_setters_dance_logo_icon_cMW_icon.ico">
+        Title="Trendsetters Dance Competition Tabulator USASF" Height="600" Width="800" WindowStartupLocation="CenterScreen" Icon="/TSD Comp Tabulator USASF;component/Images/trend_setters_dance_logo_icon_cMW_icon.ico">
     <!-- Menu -->
     <Grid>
         <Grid.ColumnDefinitions>

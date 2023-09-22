@@ -4,9 +4,9 @@ using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Windows;
-using TSD_Comp_Tabulator.Models;
+using TSD_Comp_Tabulator_USASF.Models;
 
-namespace TSD_Comp_Tabulator.ViewModels
+namespace TSD_Comp_Tabulator_USASF.ViewModels
 {
     public class ShellViewModel : Conductor<object>
     {

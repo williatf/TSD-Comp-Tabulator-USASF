@@ -7,9 +7,9 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TSD_Comp_Tabulator.Models;
+using TSD_Comp_Tabulator_USASF.Models;
 
-namespace TSD_Comp_Tabulator
+namespace TSD_Comp_Tabulator_USASF
 {
     public class SqliteDataAccess
     {

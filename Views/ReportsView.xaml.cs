@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TSD_Comp_Tabulator.Views
+namespace TSD_Comp_Tabulator_USASF.Views
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml

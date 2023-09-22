@@ -3,9 +3,9 @@ using Microsoft.Win32;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows;
-using TSD_Comp_Tabulator.Models;
+using TSD_Comp_Tabulator_USASF.Models;
 
-namespace TSD_Comp_Tabulator.ViewModels
+namespace TSD_Comp_Tabulator_USASF.ViewModels
 {
     public class DataViewModel : Screen
     {

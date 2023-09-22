@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TSD_Comp_Tabulator.Models
+namespace TSD_Comp_Tabulator_USASF.Models
 {
     public class RoutineModel : INotifyPropertyChanged
     {

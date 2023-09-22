@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Ribbon;
 
-namespace TSD_Comp_Tabulator.Views
+namespace TSD_Comp_Tabulator_USASF.Views
 {
     /// <summary>
     /// Interaction logic for ShellView.xaml

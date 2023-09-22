@@ -2,9 +2,9 @@
 using Squirrel;
 using System.Threading.Tasks;
 using System.Windows;
-using TSD_Comp_Tabulator.ViewModels;
+using TSD_Comp_Tabulator_USASF.ViewModels;
 
-namespace TSD_Comp_Tabulator
+namespace TSD_Comp_Tabulator_USASF
 {
     public class Bootstrapper : BootstrapperBase
     {

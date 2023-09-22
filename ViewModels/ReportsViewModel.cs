@@ -4,9 +4,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
-using TSD_Comp_Tabulator.Models;
+using TSD_Comp_Tabulator_USASF.Models;
 
-namespace TSD_Comp_Tabulator.ViewModels
+namespace TSD_Comp_Tabulator_USASF.ViewModels
 {
     public class ReportsViewModel : Screen
     {

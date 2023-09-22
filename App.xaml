@@ -1,7 +1,7 @@
-﻿<Application x:Class="TSD_Comp_Tabulator.App"
+﻿<Application x:Class="TSD_Comp_Tabulator_USASF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TSD_Comp_Tabulator">
+             xmlns:local="clr-namespace:TSD_Comp_Tabulator_USASF">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
