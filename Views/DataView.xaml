@@ -548,12 +548,13 @@
                         <Binding Path="TeamPenalty" UpdateSourceTrigger="LostFocus">
                             <Binding.ValidationRules>
                                 <validators:MaxValueValidationRule
-                                    MaxValue="10"
-                                    ErrorMessage="Max is 10!" />
+                                    MaxValue="3.75"
+                                    ErrorMessage="Max is 3.75!" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
+                <TextBlock Text="Max 3.75" Grid.Row="7" Grid.Column="2" Style="{StaticResource SmallStyle}" TextAlignment="Center" />
                 <TextBlock Text="Average Score: " Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource HeaderStyle}" TextAlignment="Right" />
                 <TextBlock Text="{Binding Path=AvgScore, Mode=OneWay, StringFormat=N2}" Grid.Row="7" Grid.Column="11" Style="{StaticResource DataStyle}"/>
                 

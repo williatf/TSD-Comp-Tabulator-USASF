@@ -587,6 +587,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             fd.Blocks.Add(p);
 
             #endregion
+
             #region Trendsetters Award of Excellence - Out of Scope
             /*            // Trendsetters Award of Excellence
                         p = new Paragraph(new Run("Trendsetters Award of Excellence"));
@@ -633,13 +634,19 @@ namespace TSD_Comp_Tabulator.ViewModels
             p.Padding = new Thickness(5, 5, 0, 5);
             fd.Blocks.Add(p);
 
-            p = new Paragraph(new Run("Awarded to the team in each division with the top average Choreography score over three routines."));
+            p = new Paragraph(new Run("Awarded to the team in each division that displays exceptional choreography."));
             p.FontSize = 14;
             p.Foreground = Brushes.Gray;
             p.Padding = new Thickness(3, 0, 0, 3);
             fd.Blocks.Add(p);
 
-            fd.Blocks.Add(choreographyAwardTable());
+            p = new Paragraph(new Run("[... Anounce Judges Selection...]"));
+            p.FontSize = 16;
+            p.Foreground = Brushes.Black;
+            p.Padding = new Thickness(3, 0, 0, 3);
+            fd.Blocks.Add(p);
+
+            /*            fd.Blocks.Add(choreographyAwardTable());*/
 
             #endregion
 
@@ -947,8 +954,8 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(bestInCategoryTable(vClass, db_table));
             #endregion
 
-            #region Best In Class
-            // Best In Class
+            #region Best In Class - Out of Scope
+/*            // Best In Class
             p = new Paragraph(new Run("Best In Class"));
             p.FontSize = 16;
             p.Foreground = Brushes.Wheat;
@@ -965,13 +972,13 @@ namespace TSD_Comp_Tabulator.ViewModels
             blk.Blocks.Add(p);
 
             // Class:
-/*            p = new Paragraph(new Run("Class"));
+*//*            p = new Paragraph(new Run("Class"));
             p.FontSize = 16;
             p.Foreground = Brushes.Blue;
             p.FontWeight = FontWeights.Bold;
-            blk.Blocks.Add(p);*/
+            blk.Blocks.Add(p);*//*
 
-            blk.Blocks.Add(bestInClassTable(db_table));
+            blk.Blocks.Add(bestInClassTable(db_table));*/
 
             #endregion
 
@@ -2504,6 +2511,7 @@ namespace TSD_Comp_Tabulator.ViewModels
             return tbl;
 
         }
+
         private Table bestInClassTable(string db_table)
         {
             // get recipients
